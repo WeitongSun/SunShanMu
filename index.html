@@ -1,33 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>孙山木</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShanMu Sun 孙山木</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F6F2;
+      --fg: #111;
+      --muted: #888;
+      --accent: #111;
+      --serif: Georgia, serif;
+      --sans: 'Space Grotesk', sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: #ccc;
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s;
+    }
+    a:hover { text-decoration-color: var(--fg); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: var(--bg);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      z-index: 100;
+    }
+    .nav-name {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: var(--muted);
+    }
+    .nav-links a:hover { color: var(--fg); }
+
+    /* ── LAYOUT ── */
+    main { padding-top: 80px; }
+
+    section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    section + section {
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: 120px;
+      padding-bottom: 100px;
+    }
+    .hero-name {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .hero-name-zh {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 36px;
+    }
+    .hero-tags {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .hero-tags span::after {
+      content: " · ";
+    }
+    .hero-tags span:last-child::after {
+      content: "";
+    }
+
+    /* ── ABOUT ── */
+    #about p {
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      max-width: 620px;
+    }
+    #about p:last-child { margin-bottom: 0; }
+
+    /* ── WORK ── */
+    .work-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .work-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .work-item:first-child { border-top: 1px solid rgba(0,0,0,0.07); }
+    .work-title {
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .work-title a { text-decoration: none; }
+    .work-title a:hover { text-decoration: underline; text-decoration-color: var(--fg); }
+    .work-meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .work-desc {
+      grid-column: 1 / -1;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: -8px;
+      padding-bottom: 2px;
+    }
+
+    /* ── EXHIBITIONS ── */
+    .exhibition-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .exhibition-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 20px;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      font-size: 14px;
+    }
+    .exhibition-item:first-child { border-top: 1px solid rgba(0,0,0,0.07); }
+    .ex-year {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      min-width: 36px;
+    }
+    .ex-title { font-weight: 400; }
+    .ex-venue {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* ── CONTACT ── */
+    #contact p {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+    #contact .contact-email {
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .social-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .social-row a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      color: var(--muted);
+    }
+    .social-row a:hover { color: var(--fg); }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 40px 48px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: #bbb;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 20px; }
+      section { padding: 60px 20px; }
+      footer { padding: 24px 20px 40px; }
+      .exhibition-item { grid-template-columns: auto 1fr; }
+      .ex-venue { grid-column: 2; text-align: left; color: var(--muted); font-size: 11px; }
+    }
+  </style>
 </head>
 <body>
-    <center><h3>Weitong "ShanMu" Sun</h3></center>
-    <center><h3>孙山木</h3></center>
-     <center><h1>⚠️ Web Under Construction ⚠️</h1>
-        <p>recent web with publication: <a href="https://sensenoteverything.zip/">sensenoteverything.zip</a></p>
-        <p>my recent substack post: <a href="https://open.substack.com/pub/badsense/p/the-endless-barrier-in-reading?r=58m8tn&utm_campaign=post&utm_medium=web&showWelcomeOnShare=false">The Endless Barrier in Reading</a></p>
-        <p>recent work (my thesis exhibition) <a href="https://arts.vcu.edu/the-work/ideal-home/">here</a></p>
-        <p>For more information, visit my <a href="https://www.instagram.com/shanmu_weitong_sun?igsh=amlybHgycWhnNGV0&utm_source=qr">Instagram</a>.</p>
-    </center>
 
-    <center><h3>A little bit about me:</h3></center>
-    <center>
-        <p>I am a Chinese artist and writer, currently based in the United States. I am interested in the intersection of art, literature, and technology.</p>
-        <p>My work often explores themes of identity, culture, and the human experience.</p>
-        <p>I consider myself an experimental artist who explores live simulation, digital storytelling, artificial intelligence, and the methodology of programming languages. </p>
-        <p>My practice explores the complexity of emerging technology and computation as an alternative narrative container. </p>
-        <p>My work has been exhibited internationally at venues such as Ars Electronica (Linz, Austria), Black Brick Project (NYC, US), Instinc (Singapore), ICAVCU (Richmond, VA), and others.</p>
+  <nav>
+    <a href="#" class="nav-name">SHANMU SUN</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#exhibitions">Exhibitions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
+  <main>
 
+    <!-- HERO -->
+    <section id="hero">
+      <h1 class="hero-name">ShanMu Sun</h1>
+      <p class="hero-name-zh">孙山木</p>
+      <p class="hero-tags">
+        <span>Artist</span>
+        <span>Writer</span>
+        <span>Creative Coder</span>
+        <span>she/they</span>
+      </p>
+    </section>
 
-   <h3>Contact:</h3>
-        <p>Email: <a href="mailto:shanmusun17@gmail.com">  shanmusun17@gmail.com</a></p>
-        <p>Instagram: <a href="https://www.instagram.com/shanmu_weitong_sun?igsh=amlybHgycWhnNGV0&utm_source=qr">shanmu_weitong_sun</a></p> 
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="label">About</p>
+      <p>I am a Chinese artist and writer, currently based in the United States. I am interested in the intersection of art, literature, and technology.</p>
+      <p>My work often explores themes of identity, culture, and the human experience. I consider myself an experimental artist who explores live simulation, digital storytelling, artificial intelligence, and the methodology of programming languages.</p>
+      <p>My practice explores the complexity of emerging technology and computation as an alternative narrative container.</p>
+      <p style="margin-top:32px;">
+        <a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing" target="_blank">CV →</a>
+      </p>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <p class="label">Work &amp; Writing</p>
+      <ul class="work-list">
+
+        <li class="work-item">
+          <span class="work-title">
+            <a href="https://screensaversforadyingworld.com/ruiqi-zhang-shanmu-sun" target="_blank">The Graceful Site</a>
+          </span>
+          <span class="work-meta">The Wrong Biennial</span>
+          <span class="work-desc">w/ Ruiqi Zhang</span>
+        </li>
+
+        <li class="work-item">
+          <span class="work-title">
+            <a href="https://ars.electronica.art/panic/en/view/self-reflexive-worlds-ideal-home-text-textures-20e38ddb450c81a289b2d2d5313c948f/" target="_blank">Self-Reflexive Worlds: Ideal Home / Text Textures</a>
+          </span>
+          <span class="work-meta">Ars Electronica</span>
+        </li>
+
+        <li class="work-item">
+          <span class="work-title">
+            <a href="https://sensenoteverything.zip" target="_blank">Say Sense is Not Everything</a>
+          </span>
+          <span class="work-meta">Web Publication</span>
+        </li>
+
+        <li class="work-item">
+          <span class="work-title">
+            <a href="https://sensenoteverything.zip/ShanMu.html" target="_blank">Speaking Across Emptiness: On Translation, Self, and Silence</a>
+          </span>
+          <span class="work-meta">Essay</span>
+        </li>
+
+        <li class="work-item">
+          <span class="work-title">
+            <a href="https://shimmering.world/WeitongSun.html" target="_blank">"Earth's Rotation Vertigo"</a>
+          </span>
+          <span class="work-meta">Polyphonic Shimmering</span>
+        </li>
+
+        <li class="work-item">
+          <span class="work-title">
+            <a href="https://shimmering.world/index.html" target="_blank">Polyphonic Shimmering</a>
+          </span>
+          <span class="work-meta">Collaborative Web</span>
+        </li>
+
+        <li class="work-item">
+          <span class="work-title">
+            <a href="https://badsense.substack.com/p/the-endless-barrier-in-reading" target="_blank">The Endless Barrier in Reading</a>
+          </span>
+          <span class="work-meta">Substack</span>
+        </li>
+
+        <li class="work-item">
+          <span class="work-title">
+            <a href="https://link.springer.com/article/10.1007/s10055-023-00799-8" target="_blank">Lab Streaming Layer Framework Research</a>
+          </span>
+          <span class="work-meta">Springer</span>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- EXHIBITIONS -->
+    <section id="exhibitions">
+      <p class="label">Exhibitions &amp; Venues</p>
+      <ul class="exhibition-list">
+        <li class="exhibition-item">
+          <span class="ex-year">2024</span>
+          <span class="ex-title">The Wrong Biennial — The Graceful Site</span>
+          <span class="ex-venue">Online</span>
+        </li>
+        <li class="exhibition-item">
+          <span class="ex-year">—</span>
+          <span class="ex-title">Self-Reflexive Worlds: Ideal Home / Text Textures</span>
+          <span class="ex-venue">Ars Electronica, Linz</span>
+        </li>
+        <li class="exhibition-item">
+          <span class="ex-year">—</span>
+          <span class="ex-title">Group Exhibition</span>
+          <span class="ex-venue">Black Brick Project, NYC</span>
+        </li>
+        <li class="exhibition-item">
+          <span class="ex-year">—</span>
+          <span class="ex-title">Group Exhibition</span>
+          <span class="ex-venue">Instinc, Singapore</span>
+        </li>
+        <li class="exhibition-item">
+          <span class="ex-year">—</span>
+          <span class="ex-title">Group Exhibition</span>
+          <span class="ex-venue">ICAVCU, Richmond VA</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="label">Contact</p>
+      <p class="contact-email">
+        <a href="mailto:shanmusun17@gmail.com">shanmusun17@gmail.com</a>
+      </p>
+      <div class="social-row">
+        <a href="https://instagram.com/shanmu_weitong_sun" target="_blank">Instagram</a>
+        <a href="https://badsense.substack.com" target="_blank">Substack</a>
+        <a href="https://linktr.ee/shanmusun17" target="_blank">Linktree</a>
+        <a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing" target="_blank">CV</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 ShanMu Sun 孙山木
+  </footer>
 
 </body>
 </html>
