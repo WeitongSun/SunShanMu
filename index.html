@@ -6,23 +6,23 @@
   <title>ShanMu Sun 孙山木</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --sidebar-width: 260px;
-      --bg: #F7F4EF;
-      --fg: #111111;
-      --muted: #999999;
-      --light: #E2DDD7;
-      --placeholder-bg: #EDE9E3;
-      --accent: #C24B32;
-      --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-      --serif: 'DM Serif Display', Georgia, serif;
+      --bg: #DDE5DC;
+      --fg: #1a1a1a;
+      --muted: #7a9175;
+      --light: #C8D5C6;
+      --placeholder-bg: #D0DAD0;
+      --accent: #E8157A;
+      --teal: #2DB5A5;
+      --font: 'Space Mono', 'Courier New', Courier, monospace;
     }
 
-    html { font-size: 15px; scroll-behavior: smooth; }
+    html { font-size: 14px; scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
@@ -53,21 +53,22 @@
     }
 
     .sidebar-name {
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.2;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
       margin-bottom: 44px;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
     .sidebar-name .zh {
       display: block;
-      font-family: var(--font);
       font-weight: 400;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
       margin-top: 4px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
+      text-transform: none;
     }
 
     /* Each category block */
@@ -78,7 +79,7 @@
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: var(--accent);
+      color: var(--teal);
       margin-bottom: 8px;
     }
     .sb-list {
@@ -139,18 +140,18 @@
     .entry-header { margin-bottom: 24px; }
 
     .entry-title {
-      font-family: var(--serif);
-      font-size: 28px;
-      font-weight: 400;
+      font-family: var(--font);
+      font-size: 20px;
+      font-weight: 700;
       font-style: italic;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.01em;
       line-height: 1.2;
       margin-bottom: 6px;
+      color: var(--accent);
     }
     .entry-title .zh {
       font-style: normal;
-      font-family: var(--font);
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 400;
       color: var(--muted);
     }
@@ -198,9 +199,9 @@
     /* ── Body text ── */
     .entry-body { max-width: 660px; }
     .entry-body p {
-      font-size: 15px;
-      line-height: 1.8;
-      color: #222;
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--fg);
       margin-bottom: 14px;
     }
     .entry-body p:last-child { margin-bottom: 0; }
@@ -211,7 +212,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: var(--accent);
+      color: var(--teal);
       margin-bottom: 48px;
       margin-top: 8px;
       padding-bottom: 12px;
@@ -229,9 +230,9 @@
       display: block;
     }
     .about-body p {
-      font-size: 15px;
-      line-height: 1.8;
-      color: #222;
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--fg);
       margin-bottom: 14px;
       max-width: 640px;
     }
@@ -239,9 +240,10 @@
 
     /* ── Contact ── */
     .contact-email {
-      font-size: 22px;
-      letter-spacing: -0.01em;
+      font-size: 18px;
+      letter-spacing: 0.02em;
       margin-bottom: 28px;
+      font-weight: 700;
     }
     .contact-email a { color: inherit; text-decoration: underline; }
     .contact-links {
@@ -276,7 +278,7 @@
         background: var(--bg);
         z-index: 100;
       }
-      .mobile-name { font-size: 14px; font-family: var(--serif); font-style: italic; font-weight: 400; }
+      .mobile-name { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
       .menu-btn {
         background: none; border: none;
         font-size: 13px; cursor: pointer; color: var(--fg);
@@ -293,7 +295,7 @@
       .mobile-nav .sb-group { margin-bottom: 20px; }
 
       .content { padding: 32px 20px 80px; }
-      .entry-title { font-size: 19px; }
+      .entry-title { font-size: 17px; }
       .img-grid-2 { grid-template-columns: 1fr; }
       .about-portrait { max-width: 200px; }
     }
