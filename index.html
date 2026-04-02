@@ -274,6 +274,7 @@
       body { flex-direction: column; }
       .sidebar { display: none; }
       .main-area { display: block; }
+      .lang-toggle { display: none; }
 
       .mobile-header {
         display: flex;
@@ -358,6 +359,24 @@
       transform: translateX(17px);
     }
     .lang-label { user-select: none; }
+
+    /* Mobile inline version */
+    .lang-toggle-inline {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      padding: 0;
+    }
+    @media (max-width: 800px) {
+      .lang-toggle-inline { display: flex; }
+    }
   </style>
 </head>
 <body>
@@ -373,7 +392,15 @@
   <!-- ══ MOBILE HEADER ══ -->
   <header class="mobile-header">
     <span class="mobile-name">SHANMU SUN 孙山木</span>
-    <button class="menu-btn" onclick="toggleMenu()" data-i18n="menu-btn">Menu</button>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="lang-toggle-inline" onclick="toggleLang()" aria-label="Switch language">
+        <span class="lang-label">中文</span>
+        <div class="toggle-track">
+          <div class="toggle-thumb"></div>
+        </div>
+      </button>
+      <button class="menu-btn" onclick="toggleMenu()" data-i18n="menu-btn">Menu</button>
+    </div>
   </header>
 
   <nav class="mobile-nav" id="mobileNav">
@@ -821,9 +848,9 @@
         const key = el.dataset.i18n;
         if (T[key]) el.innerHTML = T[key][lang];
       });
-      // Toggle button label: show the OTHER language (what you'd switch to)
-      document.getElementById('langLabel').textContent = lang === 'en' ? '中文' : 'EN';
-      document.getElementById('toggleTrack').classList.toggle('zh', lang === 'zh');
+      const label = lang === 'en' ? '中文' : 'EN';
+      document.querySelectorAll('.lang-label').forEach(el => el.textContent = label);
+      document.querySelectorAll('.toggle-track').forEach(el => el.classList.toggle('zh', lang === 'zh'));
     }
 
     function toggleLang() {
