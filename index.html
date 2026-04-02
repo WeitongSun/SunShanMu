@@ -364,15 +364,26 @@
     .lang-toggle-inline {
       display: none;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: none;
       border: none;
       cursor: pointer;
       font-family: var(--font);
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
       padding: 0;
+    }
+    .lang-toggle-inline .toggle-track {
+      width: 32px;
+      height: 18px;
+      border-radius: 9px;
+    }
+    .lang-toggle-inline .toggle-thumb {
+      width: 12px;
+      height: 12px;
+      top: 3px;
+      left: 3px;
+    }
+    .lang-toggle-inline .toggle-track.zh .toggle-thumb {
+      transform: translateX(14px);
     }
     @media (max-width: 800px) {
       .lang-toggle-inline { display: flex; }
@@ -392,12 +403,12 @@
   <!-- ══ MOBILE HEADER ══ -->
   <header class="mobile-header">
     <span class="mobile-name">SHANMU SUN 孙山木</span>
-    <div style="display:flex;align-items:center;gap:12px;">
+    <div style="display:flex;align-items:center;gap:14px;">
       <button class="lang-toggle-inline" onclick="toggleLang()" aria-label="Switch language">
-        <span class="lang-label">中文</span>
         <div class="toggle-track">
           <div class="toggle-thumb"></div>
         </div>
+        <span class="lang-label" style="font-size:10px;letter-spacing:0.06em;color:var(--muted);">中文</span>
       </button>
       <button class="menu-btn" onclick="toggleMenu()" data-i18n="menu-btn">Menu</button>
     </div>
