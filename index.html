@@ -13,7 +13,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sidebar-width: 240px;
+      --sidebar-width: clamp(260px, 22vw, 340px);
       --bg: #ffffff;
       --fg: #1a1a1a;
       --muted: #7a9175;
@@ -45,8 +45,8 @@
       flex-shrink: 0;
       position: sticky;
       top: 0;
-      height: 100vh;
-      overflow-y: auto;
+      align-self: flex-start;
+      min-height: 100vh;
       padding: 64px 32px 44px 40px;
       display: flex;
       flex-direction: column;
