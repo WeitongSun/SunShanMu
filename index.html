@@ -125,10 +125,15 @@
     /* ══════════════════════════════
        MAIN CONTENT
     ══════════════════════════════ */
-    .content {
+    .main-area {
       flex: 1;
-      padding: 64px 60px 120px 60px;
-      max-width: 700px;
+      display: flex;
+      justify-content: center;
+    }
+    .content {
+      width: 100%;
+      max-width: 680px;
+      padding: 64px 40px 120px 40px;
     }
 
     /* ── Work / Writing section ── */
@@ -268,6 +273,7 @@
     @media (max-width: 800px) {
       body { flex-direction: column; }
       .sidebar { display: none; }
+      .main-area { display: block; }
 
       .mobile-header {
         display: flex;
@@ -402,6 +408,7 @@
   </aside>
 
   <!-- ══ MAIN CONTENT ══ -->
+  <div class="main-area">
   <main class="content">
 
     <!-- ─────────────────────────────
@@ -663,6 +670,7 @@
     </section>
 
   </main>
+  </div>
 
   <script>
     function toggleMenu() {
