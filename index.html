@@ -403,15 +403,7 @@
   <!-- ══ MOBILE HEADER ══ -->
   <header class="mobile-header">
     <span class="mobile-name">SHANMU SUN 孙山木</span>
-    <div style="display:flex;align-items:center;gap:14px;">
-      <button class="lang-toggle-inline" onclick="toggleLang()" aria-label="Switch language">
-        <div class="toggle-track">
-          <div class="toggle-thumb"></div>
-        </div>
-        <span class="lang-label" style="font-size:10px;letter-spacing:0.06em;color:var(--muted);">中文</span>
-      </button>
-      <button class="menu-btn" onclick="toggleMenu()" data-i18n="menu-btn">Menu</button>
-    </div>
+    <button class="menu-btn" onclick="toggleMenu()" data-i18n="menu-btn">Menu</button>
   </header>
 
   <nav class="mobile-nav" id="mobileNav">
@@ -449,6 +441,14 @@
       <li><a href="#contact" onclick="closeMenu()" data-i18n="nav-contact">Contact</a></li>
       <li><a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing" target="_blank">CV</a></li>
     </ul>
+    <div style="border-top:1px solid var(--light);padding-top:16px;margin-top:16px;">
+      <button class="lang-toggle-inline" onclick="toggleLang()" aria-label="Switch language">
+        <div class="toggle-track">
+          <div class="toggle-thumb"></div>
+        </div>
+        <span class="lang-label" style="font-size:11px;letter-spacing:0.06em;color:var(--muted);">中文</span>
+      </button>
+    </div>
   </nav>
 
   <!-- ══ SIDEBAR (desktop) ══ -->
@@ -714,10 +714,6 @@
         <h2 class="entry-title">Lab Streaming Layer Framework Research</h2>
         <p class="entry-meta" data-i18n="meta-lsl">2023 · Research Paper · Virtual Reality, Springer</p>
       </div>
-      <div class="img-wrap">
-        <img src="images/lsl/01.jpg" alt="Lab Streaming Layer Framework Research — Springer Virtual Reality">
-      </div>
-      <p class="img-caption" data-i18n="cap-lsl">Published in Virtual Reality, Springer, 2023</p>
       <div class="entry-body" data-i18n="body-lsl">
         <p>Published research on the Lab Streaming Layer framework, exploring real-time biosignal data in XR environments.</p>
         <p><a href="https://link.springer.com/article/10.1007/s10055-023-00799-8" target="_blank">Read on Springer →</a></p>
@@ -836,9 +832,6 @@
       'cap-oops-showcase': { en: 'End-of-session showcase, Dec 17, 2025', zh: '期末展示，2025年12月17日' },
       'cap-oops-blog':     { en: '"I never want anything to work ever again" — written by Rasim Bayramov &amp; Weitong "Shanmu" Sun, SFPC Fall 2025',
                              zh: '《我永远不想让任何事情正常运作》—— Rasim Bayramov &amp; 孙山木撰，SFPC 2025年秋' },
-      'cap-lsl':           { en: 'Published in Virtual Reality, Springer, 2023',
-                             zh: '发表于 Virtual Reality，Springer，2023年' },
-
       'body-ideal-home':   { en: '<p>Ideal Home is an extended-reality (XR) narrative project that explores how immigrant experiences and the evolving concept of home are reshaped through emerging technologies. Central to the story is a ghostly AI avatar that drifts through layered interfaces, landscapes, symbols, and code.</p><p>Combining generative AI, immersive XR environments, and collaborative writing, the project constructs a fragmented, non-linear story world shaped by multiple voices. The artist invited immigrant writers to co-create a text archive based on their experiences of longing, memory, and displacement. A fine-tuned GPT-4 model then rewrote a unified script, blending distinct writing styles and transforming cultural symbols into something unexpected.</p><p>By embedding the script into a game engine, the project blurs the line between oral history and generative fiction, offering an alternative mode of engagement. The AI avatar acts as a narrator and emotional guide, accompanying the player through flickering memory objects, dreamlike spaces, and cultural echoes. Ideal Home becomes a speculative space where collective memory and machine intelligence co-author a new language for belonging.</p><p><a href="https://ars.electronica.art/panic/en/view/self-reflexive-worlds-ideal-home-text-textures-20e38ddb450c81a289b2d2d5313c948f/" target="_blank">View at Ars Electronica →</a></p><p><a href="https://arts.vcu.edu/the-work/ideal-home/" target="_blank">VCUarts documentation →</a></p>',
                              zh: '<p>《理想之家》是一个扩展现实（XR）叙事项目，探索移民经历与"家"的概念如何在新兴技术的重塑下演变。故事的核心是一个幽灵般的 AI 化身，在层叠的界面、景观、符号与代码之间漂游。</p><p>项目结合生成式 AI、沉浸式 XR 环境与协作写作，构建出一个由多重声音共同塑造的碎片化、非线性故事世界。艺术家邀请移民写作者基于各自对思念、记忆与流离的经验共同创作文本档案；经过微调的 GPT-4 模型随后将多种写作风格融合为一个统一的脚本，并将文化符号转化为出乎意料的全新形态。</p><p>通过将脚本嵌入游戏引擎，项目模糊了口述历史与生成式虚构之间的边界，提供另一种参与方式。AI 化身作为叙述者与情感引导者，陪伴玩家穿越闪烁的记忆物件、梦境般的空间与文化回响。《理想之家》成为一个思辨性空间，集体记忆与机器智能在此共同书写一套关于归属的新语言。</p><p><a href="https://ars.electronica.art/panic/en/view/self-reflexive-worlds-ideal-home-text-textures-20e38ddb450c81a289b2d2d5313c948f/" target="_blank">在 Ars Electronica 查看 →</a></p><p><a href="https://arts.vcu.edu/the-work/ideal-home/" target="_blank">VCUarts 文档 →</a></p>' },
       'body-graceful-site':{ en: '<p>A collaborative 24/7 real-time Live Simulation project with Ruiqi Zhang, presented at The Wrong Biennial 2024, Black Brick Project(Brooklyn, NY), INSTINC SPACE(Singapore), Odds&amp;Ends Film Festival(Charlottesville, VA), and others.</p><p><a href="https://screensaversforadyingworld.com/ruiqi-zhang-shanmu-sun" target="_blank">View project →</a></p>',
