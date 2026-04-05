@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Dark background, slightly rounded -->
+  <rect width="32" height="32" rx="6" fill="#1a1a1a"/>
+
+  <!--
+    木 (mù) — the "tree" radical from ShanMu's name.
+    Strokes:
+      ① vertical trunk
+      ② horizontal bar (crosses trunk at ~⅓ from top)
+      ③ left-falling root  → teal
+      ④ right-falling root → teal
+    The two roots use the site's teal accent; the trunk+bar stay white.
+  -->
+
+  <!-- ① Vertical trunk -->
+  <line x1="16" y1="4.5" x2="16" y2="27.5"
+        stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- ② Horizontal bar -->
+  <line x1="6.5" y1="12" x2="25.5" y2="12"
+        stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- ③ Left root (撇) -->
+  <line x1="15.5" y1="12.5" x2="6.5" y2="24.5"
+        stroke="#2DB5A5" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- ④ Right root (捺) -->
+  <line x1="16.5" y1="12.5" x2="25.5" y2="24.5"
+        stroke="#E8157A" stroke-width="2.2" stroke-linecap="round"/>
+</svg>
