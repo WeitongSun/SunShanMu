@@ -278,12 +278,24 @@
         background: var(--bg);
         z-index: 100;
       }
-      .mobile-name { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+      .mobile-name { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .menu-btn {
         background: none; border: none;
         font-size: 13px; cursor: pointer; color: var(--fg);
         font-family: var(--font);
+        flex-shrink: 0;
+        margin-left: 12px;
       }
+      .lang-btn {
+        background: none; border: 1px solid var(--light);
+        font-size: 11px; cursor: pointer; color: var(--muted);
+        font-family: var(--font);
+        padding: 3px 7px;
+        flex-shrink: 0;
+        margin-left: 10px;
+        letter-spacing: 0.04em;
+      }
+      .lang-btn:hover { color: var(--fg); border-color: var(--fg); }
 
       .mobile-nav {
         background: var(--bg);
@@ -309,13 +321,14 @@
 
   <!-- ══ MOBILE HEADER ══ -->
   <header class="mobile-header">
-    <span class="mobile-name">SHANMU SUN 孙山木</span>
+    <span class="mobile-name" id="mobileName">SHANMU SUN 孙山木</span>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">中/EN</button>
     <button class="menu-btn" onclick="toggleMenu()">Menu</button>
   </header>
 
   <nav class="mobile-nav" id="mobileNav">
     <div class="sb-group">
-      <p class="sb-group-label">Works</p>
+      <p class="sb-group-label" data-i18n="works">Works</p>
       <ul class="sb-list">
         <li><a href="#ideal-home"     onclick="closeMenu()">Ideal Home</a></li>
         <li><a href="#graceful-site"  onclick="closeMenu()">The Graceful Site</a></li>
@@ -324,13 +337,13 @@
       </ul>
     </div>
     <div class="sb-group">
-      <p class="sb-group-label">Teaching</p>
+      <p class="sb-group-label" data-i18n="teaching">Teaching</p>
       <ul class="sb-list">
         <li><a href="#oops" onclick="closeMenu()">OOPS! (Off-Purpose Software)</a></li>
       </ul>
     </div>
     <div class="sb-group">
-      <p class="sb-group-label">Writing</p>
+      <p class="sb-group-label" data-i18n="writing">Writing</p>
       <ul class="sb-list">
         <li><a href="#endless-barrier" onclick="closeMenu()">The Endless Barrier in Reading</a></li>
         <li><a href="#emptiness"       onclick="closeMenu()">Speaking Across Emptiness</a></li>
@@ -338,14 +351,14 @@
       </ul>
     </div>
     <div class="sb-group">
-      <p class="sb-group-label">Research</p>
+      <p class="sb-group-label" data-i18n="research">Research</p>
       <ul class="sb-list">
         <li><a href="#lsl" onclick="closeMenu()">Lab Streaming Layer Research</a></li>
       </ul>
     </div>
     <ul class="sb-list" style="border-top:1px solid var(--light);padding-top:16px;margin-top:4px;">
-      <li><a href="#about"   onclick="closeMenu()">About</a></li>
-      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+      <li><a href="#about"   onclick="closeMenu()" data-i18n="about">About</a></li>
+      <li><a href="#contact" onclick="closeMenu()" data-i18n="contact">Contact</a></li>
       <li><a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing" target="_blank">CV</a></li>
     </ul>
   </nav>
@@ -358,7 +371,7 @@
     </div>
 
     <div class="sb-group">
-      <p class="sb-group-label">Works</p>
+      <p class="sb-group-label" data-i18n="works">Works</p>
       <ul class="sb-list">
         <li><a href="#ideal-home">Ideal Home</a></li>
         <li><a href="#graceful-site">The Graceful Site</a></li>
@@ -368,14 +381,14 @@
     </div>
 
     <div class="sb-group">
-      <p class="sb-group-label">Teaching</p>
+      <p class="sb-group-label" data-i18n="teaching">Teaching</p>
       <ul class="sb-list">
         <li><a href="#oops">OOPS! (Off-Purpose Software)</a></li>
       </ul>
     </div>
 
     <div class="sb-group">
-      <p class="sb-group-label">Writing</p>
+      <p class="sb-group-label" data-i18n="writing">Writing</p>
       <ul class="sb-list">
         <li><a href="#endless-barrier">The Endless Barrier in Reading</a></li>
         <li><a href="#emptiness">Speaking Across Emptiness</a></li>
@@ -384,15 +397,15 @@
     </div>
 
     <div class="sb-group">
-      <p class="sb-group-label">Research</p>
+      <p class="sb-group-label" data-i18n="research">Research</p>
       <ul class="sb-list">
         <li><a href="#lsl">Lab Streaming Layer Research</a></li>
       </ul>
     </div>
 
     <ul class="sb-info">
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="about">About</a></li>
+      <li><a href="#contact" data-i18n="contact">Contact</a></li>
       <li><a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing" target="_blank">CV</a></li>
     </ul>
 
@@ -405,7 +418,7 @@
     <!-- ─────────────────────────────
          WORKS
     ───────────────────────────── -->
-    <p class="section-heading">Works</p>
+    <p class="section-heading" data-i18n="works">Works</p>
 
     <!-- Ideal Home -->
     <section class="entry" id="ideal-home">
@@ -467,7 +480,7 @@
     <!-- ─────────────────────────────
          TEACHING
     ───────────────────────────── -->
-    <p class="section-heading">Teaching</p>
+    <p class="section-heading" data-i18n="teaching">Teaching</p>
 
     <!-- OOPS! -->
     <section class="entry" id="oops">
@@ -560,7 +573,7 @@
     <!-- ─────────────────────────────
          WRITING
     ───────────────────────────── -->
-    <p class="section-heading">Writing</p>
+    <p class="section-heading" data-i18n="writing">Writing</p>
 
     <!-- The Endless Barrier in Reading -->
     <section class="entry" id="endless-barrier">
@@ -607,7 +620,7 @@
     <!-- ─────────────────────────────
          RESEARCH
     ───────────────────────────── -->
-    <p class="section-heading">Research</p>
+    <p class="section-heading" data-i18n="research">Research</p>
 
     <!-- LSL Research -->
     <section class="entry" id="lsl">
@@ -628,19 +641,19 @@
     <!-- ─────────────────────────────
          ABOUT
     ───────────────────────────── -->
-    <p class="section-heading" id="about">About</p>
+    <p class="section-heading" id="about" data-i18n="about">About</p>
 
     <section class="entry" style="border-bottom:none; margin-bottom:80px;">
       <div class="about-portrait">
         <img src="images/Artist%20Photo%20%C2%A9Jiayi%20Liang%20(1).png" alt="ShanMu Sun — Photo © Jiayi Liang">
       </div>
       <div class="about-body">
-        <p>I am a Chinese artist and writer, currently based in the United States. I am interested in the intersection of art, literature, and technology.</p>
-        <p>My work often explores themes of identity, culture, and the human experience. I consider myself an experimental artist who explores live simulation, digital storytelling, artificial intelligence, and the methodology of programming languages.</p>
-        <p>My practice explores the complexity of emerging technology and computation as an alternative narrative container.</p>
-        <p>My work has been exhibited internationally at venues such as Ars Electronica (Linz, Austria), Black Brick Project (NYC, US), Instinc (Singapore), ICAVCU (Richmond, VA), and others.</p>
-        <p>Faculty at <a href="https://arts.vcu.edu" target="_blank">VCU Arts</a> &amp; VCU Kinetic Imaging.</p>
-        <p style="margin-top:20px;">
+        <p data-i18n="about-p1">I am a Chinese artist and writer, currently based in the United States. I am interested in the intersection of art, literature, and technology.</p>
+        <p data-i18n="about-p2">My work often explores themes of identity, culture, and the human experience. I consider myself an experimental artist who explores live simulation, digital storytelling, artificial intelligence, and the methodology of programming languages.</p>
+        <p data-i18n="about-p3">My practice explores the complexity of emerging technology and computation as an alternative narrative container.</p>
+        <p data-i18n="about-p4">My work has been exhibited internationally at venues such as Ars Electronica (Linz, Austria), Black Brick Project (NYC, US), Instinc (Singapore), ICAVCU (Richmond, VA), and others.</p>
+        <p data-i18n="about-p5">Faculty at <a href="https://arts.vcu.edu" target="_blank">VCU Arts</a> &amp; VCU Kinetic Imaging.</p>
+        <p style="margin-top:20px;" data-i18n="about-cv">
           <a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing" target="_blank">Download CV →</a>
         </p>
       </div>
@@ -649,7 +662,7 @@
     <!-- ─────────────────────────────
          CONTACT
     ───────────────────────────── -->
-    <p class="section-heading" id="contact">Contact</p>
+    <p class="section-heading" id="contact" data-i18n="contact">Contact</p>
 
     <section class="entry" style="border-bottom:none;">
       <p class="contact-email">
@@ -663,6 +676,56 @@
   </main>
 
   <script>
+    // ══════════════════════════════════════════════════
+    // TRANSLATIONS — edit the "zh" values to update
+    // Chinese text. Leave "en" alone (it matches HTML).
+    // ══════════════════════════════════════════════════
+    var i18n = {
+      en: {
+        'works':    'Works',
+        'teaching': 'Teaching',
+        'writing':  'Writing',
+        'research': 'Research',
+        'about':    'About',
+        'contact':  'Contact',
+        'about-p1': 'I am a Chinese artist and writer, currently based in the United States. I am interested in the intersection of art, literature, and technology.',
+        'about-p2': 'My work often explores themes of identity, culture, and the human experience. I consider myself an experimental artist who explores live simulation, digital storytelling, artificial intelligence, and the methodology of programming languages.',
+        'about-p3': 'My practice explores the complexity of emerging technology and computation as an alternative narrative container.',
+        'about-p4': 'My work has been exhibited internationally at venues such as Ars Electronica (Linz, Austria), Black Brick Project (NYC, US), Instinc (Singapore), ICAVCU (Richmond, VA), and others.',
+        'about-p5': 'Faculty at <a href="https://arts.vcu.edu" target="_blank">VCU Arts</a> &amp; VCU Kinetic Imaging.',
+        'about-cv': '<a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing" target="_blank">Download CV →</a>',
+      },
+      zh: {
+        'works':    '作品',
+        'teaching': '教学',
+        'writing':  '写作',
+        'research': '研究',
+        'about':    '关于',
+        'contact':  '联系',
+        'about-p1': '我是一位中国艺术家与作家，目前居住在美国。我关注艺术、文学与技术的交叉地带。',
+        'about-p2': '我的创作常常探索身份认同、文化与人类经验等主题。我视自己为一位实验艺术家，在实时仿真、数字叙事、人工智能与编程语言方法论之间进行探索。',
+        'about-p3': '我的实践探索新兴技术的复杂性，以及计算作为另一种叙事容器的可能性。',
+        'about-p4': '我的作品曾在多个国际场馆展出，包括 Ars Electronica（奥地利林茨）、Black Brick Project（美国纽约）、Instinc（新加坡）、ICAVCU（弗吉尼亚州里士满）等。',
+        'about-p5': '任教于 <a href="https://arts.vcu.edu" target="_blank">VCU Arts</a> 及 VCU Kinetic Imaging。',
+        'about-cv': '<a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing" target="_blank">下载简历 →</a>',
+      }
+    };
+
+    var currentLang = 'en';
+
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      var t = i18n[currentLang];
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+      var nameEl = document.getElementById('mobileName');
+      var btnEl  = document.getElementById('langBtn');
+      nameEl.textContent = currentLang === 'zh' ? 'SHANMU SUN 孙山木' : 'SHANMU SUN';
+      btnEl.textContent  = currentLang === 'zh' ? '中/EN' : 'EN/中';
+    }
+
     function toggleMenu() {
       document.getElementById('mobileNav').classList.toggle('open');
     }
