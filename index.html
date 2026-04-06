@@ -277,7 +277,7 @@
       body { flex-direction: column; }
       .sidebar { display: none; }
       .main-area { display: block; }
-      .lang-toggle { display: none; }
+      .lang-toggle { display: none !important; }
 
       .mobile-header {
         display: flex;
@@ -291,6 +291,11 @@
         z-index: 100;
       }
       .mobile-name { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+      .mobile-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
       .menu-btn {
         background: none; border: none;
         font-size: 13px; cursor: pointer; color: var(--fg);
@@ -426,7 +431,15 @@
   <!-- ══ MOBILE HEADER ══ -->
   <header class="mobile-header">
     <span class="mobile-name">SHANMU SUN 孙山木</span>
-    <button class="menu-btn" onclick="toggleMenu()" data-i18n="menu-btn">Menu</button>
+    <div class="mobile-header-actions">
+      <button class="lang-toggle-inline" onclick="toggleLang()" aria-label="Switch language">
+        <div class="toggle-track">
+          <div class="toggle-thumb"></div>
+        </div>
+        <span class="lang-label" style="font-size:11px;letter-spacing:0.06em;color:var(--muted);">中文</span>
+      </button>
+      <button class="menu-btn" onclick="toggleMenu()" data-i18n="menu-btn">Menu</button>
+    </div>
   </header>
 
   <nav class="mobile-nav" id="mobileNav">
