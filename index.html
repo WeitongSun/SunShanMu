@@ -317,6 +317,26 @@
     }
 
     /* ══════════════════════════════
+       LOAD & SCROLL ANIMATIONS
+    ══════════════════════════════ */
+
+    /* Give img-wrap overflow:hidden so scale doesn't bleed out */
+    .img-wrap { overflow: hidden; }
+
+    /* All content images share the same easing */
+    .img-wrap img,
+    .img-grid-2 img,
+    .about-portrait img {
+      transition: opacity 1s cubic-bezier(0.33, 0, 0.2, 1),
+                  transform 0.55s cubic-bezier(0.33, 0, 0.2, 1);
+    }
+
+    /* Hover: subtle scale on main (non-grid) images */
+    .img-wrap:hover img {
+      transform: scale(1.025);
+    }
+
+    /* ══════════════════════════════
        LANG TOGGLE
     ══════════════════════════════ */
     .lang-toggle {
@@ -762,6 +782,46 @@
   </div>
 
   <script>
+    // ── Image fade-in on load ────────────────────
+    // Start every content image invisible; reveal it once the browser
+    // has decoded the pixels. Uses requestAnimationFrame for cached
+    // images so the transition still plays (not an instant jump).
+    document.querySelectorAll(
+      '.img-wrap img, .img-grid-2 img, .about-portrait img'
+    ).forEach(img => {
+      img.style.opacity = '0';
+      const show = () => { img.style.opacity = '1'; };
+      if (img.complete && img.naturalWidth > 0) {
+        requestAnimationFrame(() => requestAnimationFrame(show));
+      } else {
+        img.addEventListener('load',  show);
+        img.addEventListener('error', show); // don't hide broken images forever
+      }
+    });
+
+    // ── Section scroll-reveal ────────────────────
+    // Each .entry and .section-heading starts slightly lower and
+    // invisible, then eases into place as it enters the viewport.
+    // Inline styles keep this JS-only (no-JS visitors see everything).
+    const revealEls = document.querySelectorAll('.entry, .section-heading');
+    revealEls.forEach(el => {
+      el.style.opacity   = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition =
+        'opacity 0.65s cubic-bezier(0.33, 0, 0.2, 1), ' +
+        'transform 0.65s cubic-bezier(0.33, 0, 0.2, 1)';
+    });
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity   = '1';
+          e.target.style.transform = 'translateY(0)';
+          revealObs.unobserve(e.target); // fire once only
+        }
+      });
+    }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+    revealEls.forEach(el => revealObs.observe(el));
+
     // ── Menu toggle ──────────────────────────────
     function toggleMenu() {
       document.getElementById('mobileNav').classList.toggle('open');
