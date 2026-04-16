@@ -942,6 +942,10 @@
       currentLang = currentLang === 'en' ? 'zh' : 'en';
       applyLang(currentLang);
     }
+
+    window.addEventListener('load', () => {
+      document.getElementById('about').scrollIntoView({ behavior: 'instant' });
+    });
   </script>
 
 </body>
