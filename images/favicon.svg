@@ -1,30 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <!-- Dark background, slightly rounded -->
-  <rect width="32" height="32" rx="6" fill="#1a1a1a"/>
-
-  <!--
-    木 (mù) — the "tree" radical from ShanMu's name.
-    Strokes:
-      ① vertical trunk
-      ② horizontal bar (crosses trunk at ~⅓ from top)
-      ③ left-falling root  → teal
-      ④ right-falling root → teal
-    The two roots use the site's teal accent; the trunk+bar stay white.
-  -->
-
-  <!-- ① Vertical trunk -->
-  <line x1="16" y1="4.5" x2="16" y2="27.5"
-        stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
-
-  <!-- ② Horizontal bar -->
-  <line x1="6.5" y1="12" x2="25.5" y2="12"
-        stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
-
-  <!-- ③ Left root (撇) -->
-  <line x1="15.5" y1="12.5" x2="6.5" y2="24.5"
-        stroke="#2DB5A5" stroke-width="2.2" stroke-linecap="round"/>
-
-  <!-- ④ Right root (捺) -->
-  <line x1="16.5" y1="12.5" x2="25.5" y2="24.5"
-        stroke="#E8157A" stroke-width="2.2" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34" fill="none">
+  <!-- back layer: charcoal #1A1A1A, offset +1.5,+1.5 -->
+  <path d="M 5 26.5 C 5.5 17.5 10.5 9.5 18 8.5 C 25.5 7.5 29.5 17.5 30 26.5" stroke="#1A1A1A" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <path d="M 18 8.5 C 17.5 14.5 17.3 19.5 17.5 26.5" stroke="#1A1A1A" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <path d="M 11 17.5 C 14.5 16 21.5 16 24 17.5" stroke="#1A1A1A" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- front layer: acid yellow #D8D400, original position -->
+  <path d="M 3.5 25 C 4 16 9 8 16.5 7 C 24 6 28 16 28.5 25" stroke="#D8D400" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <path d="M 16.5 7 C 16 13 15.8 18 16 25" stroke="#D8D400" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <path d="M 9.5 16 C 13 14.5 20 14.5 22.5 16" stroke="#D8D400" stroke-width="3" fill="none" stroke-linecap="round"/>
 </svg>
