@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KINE 354: Creative Code &amp; Electronics — ShanMu Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --fg: #1a1a1a;
+      --muted: #7a9175;
+      --light: #e8e8e8;
+      --accent: #E8157A;
+      --teal: #2DB5A5;
+      --font: 'Space Mono', 'Courier New', Courier, monospace;
+    }
+
+    html { font-size: 14px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── layout ── */
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 40px 120px;
+    }
+
+    /* ── back nav ── */
+    .back-nav {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-nav a { color: var(--muted); }
+    .back-nav a:hover { color: var(--fg); text-decoration: none; }
+
+    /* ── header ── */
+    .course-header {
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--light);
+    }
+    .course-number {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .course-title {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .course-meta {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 6px 20px;
+    }
+    .meta-label {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding-top: 2px;
+      line-height: 1.8;
+    }
+    .meta-value {
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--fg);
+    }
+    .meta-value a { color: var(--accent); text-decoration: underline; }
+
+    /* ── sections ── */
+    .section { margin-bottom: 60px; }
+
+    .section-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--teal);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .body-text p {
+      font-size: 13px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+    }
+    .body-text p:last-child { margin-bottom: 0; }
+    .body-text a { color: var(--accent); text-decoration: underline; }
+    .body-text em { font-style: italic; color: var(--muted); }
+
+    /* ── assessment ── */
+    .assess-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--light);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .assess-row:last-child { border-bottom: none; }
+    .assess-name { color: var(--fg); }
+    .assess-pct {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-left: 24px;
+    }
+
+    /* ── schedule ── */
+    .week-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 0 28px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--light);
+    }
+    .week-row:last-child { border-bottom: none; }
+
+    .week-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.6;
+      padding-top: 2px;
+    }
+    .week-label .dates {
+      display: block;
+      font-weight: 400;
+      font-size: 10px;
+      margin-top: 2px;
+    }
+
+    .week-body { font-size: 12px; line-height: 1.8; }
+    .week-title { font-weight: 700; margin-bottom: 3px; }
+    .week-desc { color: var(--fg); margin-bottom: 3px; }
+    .week-due {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 1px 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+      line-height: 1.6;
+    }
+    .week-note {
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 2px;
+    }
+    .week-row.is-break {
+      background: #f8f8f5;
+    }
+    .week-row.is-break .week-body {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* ── resources ── */
+    .resource-group { margin-bottom: 36px; }
+    .resource-group:last-child { margin-bottom: 0; }
+
+    .resource-heading {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg);
+      margin-bottom: 10px;
+    }
+
+    .resource-list { list-style: none; }
+    .resource-list li {
+      font-size: 12px;
+      line-height: 1.6;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--light);
+    }
+    .resource-list li:last-child { border-bottom: none; }
+    .resource-list a { color: var(--accent); }
+    .resource-list a:hover { text-decoration: underline; }
+    .resource-list .desc {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .hardware-note {
+      font-size: 11px;
+      background: #f8f8f5;
+      border-left: 2px solid var(--teal);
+      padding: 10px 14px;
+      margin-top: 12px;
+      line-height: 1.7;
+    }
+    .hardware-note a { color: var(--accent); }
+
+    /* ── student work gallery ── */
+    .gallery-intro {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    .gallery-section { margin-bottom: 48px; }
+    .gallery-section:last-child { margin-bottom: 0; }
+
+    .gallery-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg);
+      margin-bottom: 4px;
+    }
+    .gallery-subtitle {
+      font-size: 12px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 16px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .sketch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .sketch-item {}
+    .sketch-frame {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--light);
+      display: block;
+      background: #f5f5f5;
+    }
+    .sketch-name {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 5px;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+
+    /* ── footer ── */
+    .page-footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--light);
+      font-size: 11px;
+      color: #bbb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .page-footer a { color: #bbb; }
+    .page-footer a:hover { color: var(--fg); text-decoration: none; }
+
+    /* ── mobile ── */
+    @media (max-width: 640px) {
+      .page { padding: 32px 20px 80px; }
+      .course-title { font-size: 22px; }
+      .course-meta { grid-template-columns: 1fr; gap: 0; }
+      .meta-label { margin-top: 10px; }
+      .week-row { grid-template-columns: 72px 1fr; gap: 0 16px; }
+      .sketch-grid { grid-template-columns: repeat(2, 1fr); }
+      .page-footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+    @media (max-width: 380px) {
+      .sketch-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Back nav -->
+  <nav class="back-nav">
+    <a href="index.html">← ShanMu Sun</a>
+    <span>/</span>
+    <span>Teaching</span>
+  </nav>
+
+  <!-- Header -->
+  <header class="course-header">
+    <p class="course-number">KINE 354 &nbsp;·&nbsp; Department of Kinetic Imaging &nbsp;·&nbsp; Virginia Commonwealth University</p>
+    <h1 class="course-title">Creative Code<br>&amp; Electronics</h1>
+    <div class="course-meta">
+      <span class="meta-label">Semester</span>
+      <span class="meta-value">Spring 2026</span>
+
+      <span class="meta-label">When</span>
+      <span class="meta-value">Tuesday &amp; Thursday &nbsp;·&nbsp; 9:30 am – 12:20 pm</span>
+
+      <span class="meta-label">Where</span>
+      <span class="meta-value">Franklin Terrace, Room 109</span>
+
+      <span class="meta-label">Instructor</span>
+      <span class="meta-value">ShanMu Sun &nbsp;·&nbsp; <a href="mailto:sunw2@vcu.edu">sunw2@vcu.edu</a></span>
+
+      <span class="meta-label">Office Hours</span>
+      <span class="meta-value">Email for appointment</span>
+
+      <span class="meta-label">Credits</span>
+      <span class="meta-value">4 credits &nbsp;·&nbsp; 2 lecture + 4 studio hours</span>
+    </div>
+  </header>
+
+  <!-- Description -->
+  <section class="section">
+    <p class="section-label">Course Description</p>
+    <div class="body-text">
+      <p>An introduction to the concepts and techniques found within programming languages and electronics as applied to digital art making. Basic coding for creative practice, from visuals to sound and interactivity, will be examined, as well as circuitry and hardware components for DIY projects.</p>
+      <p><em>Semester course; 2 lecture and 4 studio hours. 4 credits.</em></p>
+    </div>
+  </section>
+
+  <!-- Learning Outcomes -->
+  <section class="section">
+    <p class="section-label">Learning Outcomes</p>
+    <div class="body-text">
+      <p>Upon successful completion of this course, a student will be able to:</p>
+      <p>
+        Learn introductory computational concepts and terminology ·
+        Apply basic electronics and circuitry for interactive artworks ·
+        Use programming languages within creative coding work ·
+        Work with algorithmic processes for composition across media
+      </p>
+    </div>
+  </section>
+
+  <!-- Assessment -->
+  <section class="section">
+    <p class="section-label">Assessment</p>
+    <div class="assess-row">
+      <span class="assess-name">In-class exercises, quizzes &amp; participation</span>
+      <span class="assess-pct">50%</span>
+    </div>
+    <div class="assess-row">
+      <span class="assess-name">Creative Coding Project (p5.js)</span>
+      <span class="assess-pct">25%</span>
+    </div>
+    <div class="assess-row">
+      <span class="assess-name">Hardware Project (Arduino / Circuit Playground Express)</span>
+      <span class="assess-pct">25%</span>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section class="section">
+    <p class="section-label">Schedule &nbsp;<span style="font-style:italic;color:var(--muted);text-transform:none;letter-spacing:0;font-size:10px;">**weekly topics subject to change**</span></p>
+
+    <div class="week-row">
+      <div class="week-label">Week 1<span class="dates">Jan 13–15</span></div>
+      <div class="week-body">
+        <div class="week-title">Creative Coding &nbsp;/&nbsp; Intro to p5.js</div>
+        <div class="week-desc">What is creative coding? Who are the artists who work with code?</div>
+        <div class="week-desc">p5.js — shapes, drawing, colors, mouseX/mouseY</div>
+        <div class="week-note">↳ Drawing app &amp; Introduce Yourself Due</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 2<span class="dates">Jan 20–22</span></div>
+      <div class="week-body">
+        <div class="week-title">Variables &amp; Animation</div>
+        <div class="week-desc">Draw then code · Variables and operators · Simple Animation</div>
+        <div class="week-note">↳ Quiz 1 · Draw then Code Due</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 3<span class="dates">Jan 27–29</span></div>
+      <div class="week-body">
+        <div class="week-title">Conditional Statements</div>
+        <div class="week-desc">Intro to conditionals · Review &amp; Intro to loops</div>
+        <div class="week-note">↳ Quiz 2 · Quiz 3</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 4<span class="dates">Feb 3–5</span></div>
+      <div class="week-body">
+        <div class="week-title">Loops &amp; Arrays · Iteration and Patterns</div>
+        <div class="week-desc">Loops, arrays · Work on Iteration and Patterns exercise</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 5<span class="dates">Feb 10–12</span></div>
+      <div class="week-body">
+        <div class="week-title">Crit · Sounds &amp; Mouse/Keyboard Events</div>
+        <div class="week-desc">Work day — Iteration and Patterns · Dean Moss artist talk at ICA</div>
+        <div class="week-desc">In-class crit · p5.js Sounds · Keyboard + Mouse Events</div>
+        <div class="week-note">↳ Iteration and Patterns Due</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 6<span class="dates">Feb 17–19</span></div>
+      <div class="week-body">
+        <div class="week-title">Objects</div>
+        <div class="week-desc">p5.js — Objects · Constructor arguments with classes in JavaScript</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 7<span class="dates">Feb 24–26</span></div>
+      <div class="week-body">
+        <div class="week-title">Project I — Proposals</div>
+        <div class="week-desc">Creative Code Project Proposal Presentations</div>
+        <div class="week-desc">No class Thu — Work on Project I</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 8<span class="dates">Mar 3–5</span></div>
+      <div class="week-body">
+        <div class="week-title">Work on Project I</div>
+        <div class="week-desc">Studio time — Instructor in classroom Mon 10am–noon</div>
+        <div class="week-desc">No class Thu — Work on Project I</div>
+      </div>
+    </div>
+
+    <div class="week-row is-break">
+      <div class="week-label" style="color:var(--muted)">Week 9<span class="dates">Mar 10–12</span></div>
+      <div class="week-body">No class — Spring Break</div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 10<span class="dates">Mar 17–19</span></div>
+      <div class="week-body">
+        <div class="week-title">Creative Code Project<span class="week-due">Due</span></div>
+        <div class="week-desc">Studio time Mon · In-class crits Thu</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 11<span class="dates">Mar 24–26</span></div>
+      <div class="week-body">
+        <div class="week-title">Intro to Creative Electronics</div>
+        <div class="week-desc">What is physical computing? What is a microcontroller? How is it used in digital artworks?</div>
+        <div class="week-desc">Arduino "Hello World"</div>
+        <div class="week-note">↳ Order Adafruit Circuit Playground Express ($24.95) if you have not already · Quiz 4</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 12<span class="dates">Mar 31–Apr 2</span></div>
+      <div class="week-body">
+        <div class="week-title">Arduino Sensors · Communication Protocols</div>
+        <div class="week-desc">How do microcontrollers interact with the world? · Open Source Tools and Communities</div>
+        <div class="week-desc">Arduino — Communication Protocols · p5.js + Arduino serial communication</div>
+        <div class="week-note">↳ CPX and Arduino<span class="week-due">Due</span></div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 13<span class="dates">Apr 7–9</span></div>
+      <div class="week-body">
+        <div class="week-title">Arduino &amp; TouchDesigner · Final Project</div>
+        <div class="week-desc">Arduino and TouchDesigner · Final Project Group Discussion</div>
+        <div class="week-desc">Final Project Proposal Presentations — Individual meetings</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Wks 15–16<span class="dates">Apr 14–23</span></div>
+      <div class="week-body">
+        <div class="week-title">Final Project — Work Time</div>
+        <div class="week-desc">No class — Work on final project</div>
+        <div class="week-note">↳ Available for questions by email / Zoom</div>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="week-label">Week 17<span class="dates">Apr 28–30</span></div>
+      <div class="week-body">
+        <div class="week-title">Final Project<span class="week-due">Due</span></div>
+        <div class="week-desc">Work on final project Tue · In-class crits Thu</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Resources -->
+  <section class="section">
+    <p class="section-label">Resources &amp; Tools</p>
+
+    <div class="resource-group">
+      <p class="resource-heading">p5.js — Creative Coding</p>
+      <ul class="resource-list">
+        <li>
+          <a href="https://p5js.org/" target="_blank">p5js.org</a> — Documentation and reference
+        </li>
+        <li>
+          <a href="https://editor.p5js.org/" target="_blank">editor.p5js.org</a> — Web editor, no install needed
+          <span class="desc">Write and run p5.js sketches directly in the browser</span>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/c/TheCodingTrain" target="_blank">The Coding Train</a> — Video tutorials by Daniel Shiffman
+          <span class="desc">Beginner-friendly series on p5.js, creative coding, and algorithms</span>
+        </li>
+        <li>
+          <a href="https://p5js.org/libraries/" target="_blank">p5.js Libraries</a> — p5.sound, p5.Riso, and more
+        </li>
+      </ul>
+    </div>
+
+    <div class="resource-group">
+      <p class="resource-heading">Arduino — Physical Computing</p>
+      <ul class="resource-list">
+        <li>
+          <a href="https://www.arduino.cc/" target="_blank">arduino.cc</a> — Main site and community
+        </li>
+        <li>
+          <a href="https://www.arduino.cc/en/software" target="_blank">Arduino IDE</a> — Download the development environment
+        </li>
+        <li>
+          <a href="https://www.arduino.cc/en/Guide" target="_blank">Getting Started with Arduino</a>
+        </li>
+        <li>
+          <a href="https://reference.arduino.cc/reference/en/" target="_blank">Arduino Language Reference</a>
+        </li>
+      </ul>
+      <div class="hardware-note">
+        <strong>Required Hardware:</strong> Adafruit Circuit Playground Express<br>
+        <a href="https://www.adafruit.com/product/3333" target="_blank">adafruit.com/product/3333</a> &nbsp;·&nbsp; $24.95
+      </div>
+    </div>
+
+    <div class="resource-group">
+      <p class="resource-heading">Required Reading</p>
+      <ul class="resource-list">
+        <li>
+          Arslan, Engin. <em>Learn JavaScript with P5.js: Coding for Visual Learners.</em> Apress, 2018.
+          <span class="desc">Available as e-book from VCU Library</span>
+        </li>
+        <li>
+          Hughes, J. M. <em>Arduino.</em> O'Reilly Media, 2016.
+          <span class="desc">Available as e-book from VCU Library</span>
+        </li>
+        <li>
+          Maeda, John. <em>Creative Code.</em> Thames &amp; Hudson, 2004.
+        </li>
+        <li>
+          Blum, Jeremy. <em>Exploring Arduino: Tools and Techniques for Engineering Wizardry.</em> 2013.
+        </li>
+      </ul>
+    </div>
+
+    <div class="resource-group">
+      <p class="resource-heading">Context &amp; Community</p>
+      <ul class="resource-list">
+        <li>
+          <a href="https://sfpc.study/" target="_blank">School for Poetic Computation (SFPC)</a>
+          <span class="desc">Artist-run school exploring intersections of code, hardware, theory, and poetics</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Student Work -->
+  <section class="section">
+    <p class="section-label">Student Work — Spring 2026</p>
+    <p class="gallery-intro">Selected work from KINE 354 students. Each sketch is live — click to interact.</p>
+
+    <!-- Project 1 -->
+    <div class="gallery-section">
+      <p class="gallery-title">Project 1 — Interactive Sketch</p>
+      <p class="gallery-subtitle">Create an interactive animation, narrative, or game using p5.js</p>
+      <div class="sketch-grid">
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/ridgleyak/full/duTc16_CE" title="Ariela Ridgley" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Ariela Ridgley</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/blendernoob64/full/t2etEtTu8" title="Christopher Elszy" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Christopher Elszy</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/AmadiArts66/full/Mm8uZXXGE" title="Jordan Pollard" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Jordan Pollard</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/juliana_gh/full/3B6pqF76l" title="Juliana Hinson" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Juliana Hinson</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/mgercken/full/MeXQnUpkh" title="Maggie Gercken" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Maggie Gercken</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/bellpv/full/6f4f0tpa6" title="Paige Bell" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Paige Bell</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/OttoFesperman/full/PmXHCO6Xs" title="Otto Fesperman" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Otto Fesperman</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/graysoncarter/full/ofKVW3lJo" title="Grayson Carter" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Grayson Carter</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/westjm/full/W614tSsEq" title="James West" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">James West</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/Jitong/full/2j75KlyVu" title="Jitong Li" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Jitong Li</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/lainon/full/acntAOJdO" title="Leo Coogan" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Leo Coogan</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/altamirandalj/full/jAFKjOAZ7" title="Leticia Altamiranda" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Leticia Altamiranda</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/mckayam/full/l0-PTVzOB" title="Ailidh McKay" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Ailidh McKay</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/Chetto/full/vLmLYs1_X" title="Camerin McManus" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Camerin McManus</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/iammeepkid/full/wBn-o2DHC" title="Carter Collins" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Carter Collins</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/rushkm2/full/yFP97uIy9" title="Katrina Rush" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Katrina Rush</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/rowey/full/vlZw5RMTB" title="Yesinia Rowe" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Yesinia Rowe</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/anawojo/full/wv7MvNuIt" title="Anaïs Wojtysiak" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Anaïs Wojtysiak</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/messickar/full/MbzH2pD_0" title="Andrew Messick" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Andrew Messick</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/brockbadillo/full/VwAa6SQiF" title="Brock Badillo" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Brock Badillo</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/haadih/full/ZMPiytxfv" title="Haadi" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Haadi</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/pletchermf/full/uYKHmbx24" title="Marlena Pletcher" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Marlena Pletcher</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/Milog/full/HNNmkaD67" title="Milo Giannini" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Milo Giannini</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/greeneggsandhimbo/full/SalH7ANZH" title="Minuet Curry" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Minuet Curry</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/rowand06/full/SLISUPDss" title="Rowan Donovan" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Rowan Donovan</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/mackererrc/full/9OHlpXfWN" title="Ryan Mackerer" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Ryan Mackerer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pattern exercise -->
+    <div class="gallery-section">
+      <p class="gallery-title">Exercise — Iteration &amp; Pattern</p>
+      <p class="gallery-subtitle">Write p5.js code to generate a tiling pattern or textural composition using loops</p>
+      <div class="sketch-grid">
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/bellpv/full/tFW6ptrx9" title="Paige Bell" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Paige Bell</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/juliana_gh/full/1p1ZPRuWy" title="Juliana Hinson" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Juliana Hinson</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/AmadiJordan/full/OYKq0QYWz" title="Jordan Pollard" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Jordan Pollard</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/ridgleyak/full/-GdUavWpL" title="Ariela Ridgley" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Ariela Ridgley</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/valentinj/full/HnFYax4Vb" title="Joe Valentin" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Joe Valentin</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/iammeepkid/full/HJLfy9Zq8" title="Carter Collins" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Carter Collins</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/huynhat5/full/Y1rVDACMr" title="An Huynh" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">An Huynh</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/mckayam/full/c0uEtzDiN" title="Ailidh McKay" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Ailidh McKay</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/Chetto/full/d9nBtr8iT" title="Camerin McManus" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Camerin McManus</div>
+        </div>
+        <div class="sketch-item">
+          <iframe class="sketch-frame" src="https://editor.p5js.org/rowey/full/4Iv6wAfAV" title="Yesinia Rowe" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="sketch-name">Yesinia Rowe</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <span>KINE 354 &nbsp;·&nbsp; VCU Kinetic Imaging &nbsp;·&nbsp; Spring 2026</span>
+    <a href="index.html">← shanmu.zip</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
