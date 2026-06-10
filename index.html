@@ -13,6 +13,93 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    /* ═══════════════════════════
+       FLOATING HOMEPAGE
+    ═══════════════════════════ */
+    /* Sidebar stays above float-world */
+    .sidebar { z-index: 20; }
+
+    #float-world {
+      position: fixed;
+      inset: 0;
+      z-index: 15;
+      pointer-events: none;
+      display: none;
+    }
+    #three-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    #float-images {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .float-item {
+      position: absolute;
+      display: block;
+      pointer-events: auto;
+      cursor: pointer;
+      transition: opacity 0.2s, filter 0.2s;
+      filter: drop-shadow(0 3px 14px rgba(0,0,0,0.10));
+      text-decoration: none;
+    }
+    .float-item img {
+      width: 100%;
+      display: block;
+      border: 1px solid rgba(26,26,26,0.07);
+    }
+    .float-item:hover {
+      opacity: 1 !important;
+      filter: drop-shadow(0 6px 22px rgba(232,21,122,0.28));
+      z-index: 50 !important;
+    }
+    /* Hint label */
+    #float-hint {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 16;
+      font-family: var(--font, monospace);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted, #7a9175);
+      pointer-events: none;
+      animation: hint-fade 4s ease-out 2s forwards;
+      opacity: 0;
+    }
+    @keyframes hint-fade {
+      0%   { opacity: 0; }
+      15%  { opacity: 1; }
+      70%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    /* Hide main content when floating */
+    body.float-mode .content > section,
+    body.float-mode .content > p.section-heading {
+      visibility: hidden;
+    }
+    body.float-mode .main-area { overflow: hidden; }
+
+    /* Logo becomes clickable always */
+    .sidebar-name { cursor: pointer; user-select: none; }
+    .mobile-name  { cursor: pointer; user-select: none; }
+
+    /* Drift keyframe variants */
+    @keyframes fd1 { 0%,100%{transform:translate(0,0) rotate(-1.5deg)} 50%{transform:translate(26px,-17px) rotate(1.8deg)} }
+    @keyframes fd2 { 0%,100%{transform:translate(0,0) rotate(1deg)}    50%{transform:translate(-21px,23px) rotate(-2deg)}   }
+    @keyframes fd3 { 0%,100%{transform:translate(0,0) rotate(-0.8deg)} 50%{transform:translate(15px,19px)  rotate(2.2deg)}  }
+    @keyframes fd4 { 0%,100%{transform:translate(0,0) rotate(1.8deg)}  50%{transform:translate(-27px,-14px) rotate(-1.5deg)} }
+    @keyframes fd5 { 0%,100%{transform:translate(0,0) rotate(-2deg)}   50%{transform:translate(21px,27px)  rotate(0.8deg)}  }
+    @keyframes fd6 { 0%,100%{transform:translate(0,0) rotate(0.5deg)}  50%{transform:translate(-17px,-24px) rotate(-1.2deg)} }
+  </style>
 </head>
 <body>
 
@@ -141,6 +228,12 @@
   <!-- ══ MAIN CONTENT ══ -->
   <div class="main-area">
   <main class="content">
+
+    <!-- ══ FLOATING HOMEPAGE ══ -->
+    <div id="float-world">
+      <canvas id="three-canvas"></canvas>
+      <div id="float-images"></div>
+    </div>
 
     <!-- ─────────────────────────────
          WORKS
@@ -658,6 +751,293 @@
   </div>
 
   <script src="main.js" defer></script>
+
+  <!-- ═══════════════════════════════════════════════════
+       FLOATING HOMEPAGE — Three.js + drifting images
+  ═══════════════════════════════════════════════════ -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Media items: image + target section ── */
+    var MEDIA = [
+      { src: 'images/ideal-home/SUN_Q2A8078B.png',          href: '#ideal-home'     },
+      { src: 'images/ideal-home/iH.png',                     href: '#ideal-home'     },
+      { src: 'images/graceful-site/BP1.png',                 href: '#graceful-site'  },
+      { src: 'images/graceful-site/The%20Graceful%20Site_1.png', href: '#graceful-site' },
+      { src: 'images/sense/01.jpg',                          href: '#sense'          },
+      { src: 'images/shimmering/01.jpg',                     href: '#shimmering'     },
+      { src: 'images/hyperdog/install.jpg',                  href: '#hyperdog'       },
+      { src: 'images/the-green-common/install.jpg',          href: '#green-common'   },
+      { src: 'images/oops/ig1.png',                          href: '#oops'           },
+      { src: 'images/oops/sfpc-blog.jpg',                    href: '#oops'           },
+      { src: 'images/writing/endless-barrier.jpg',           href: '#endless-barrier'},
+      { src: 'images/writing/emptiness.jpg',                 href: '#emptiness'      },
+    ];
+
+    var DRIFTS = ['fd1','fd2','fd3','fd4','fd5','fd6'];
+
+    /* ── State ── */
+    var isFloat = false;
+    var threeRenderer, threeCamera, threeScene, rafId;
+    var meshes = [];
+
+    /* ─────────────────────────────────────────────
+       Enter / exit float mode
+    ───────────────────────────────────────────── */
+    function enterFloat() {
+      isFloat = true;
+      document.body.classList.add('float-mode');
+      var fw = document.getElementById('float-world');
+      fw.style.display = 'block';
+      buildFloatItems();
+      startThree();
+      showHint();
+    }
+
+    function exitFloat(targetHash) {
+      isFloat = false;
+      document.body.classList.remove('float-mode');
+      document.getElementById('float-world').style.display = 'none';
+      stopThree();
+      if (targetHash) {
+        var el = document.querySelector(targetHash);
+        if (el) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth' }); }, 60);
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+       Floating image items
+    ───────────────────────────────────────────── */
+    function rnd(min, max) { return min + Math.random() * (max - min); }
+
+    function buildFloatItems() {
+      var container = document.getElementById('float-images');
+      container.innerHTML = '';
+      var placed = [];
+
+      MEDIA.forEach(function (item) {
+        var a = document.createElement('a');
+        a.className = 'float-item';
+        a.href = item.href;
+
+        /* size: 120–260px wide */
+        var w = rnd(120, 260);
+
+        /* position: try up to 20 times to avoid heavy overlap */
+        var left, top, tries = 0;
+        do {
+          left = rnd(2, 84);
+          top  = rnd(3, 78);
+          tries++;
+        } while (tries < 20 && placed.some(function (p) {
+          return Math.abs(p.l - left) < 16 && Math.abs(p.t - top) < 16;
+        }));
+        placed.push({ l: left, t: top });
+
+        var anim    = DRIFTS[Math.floor(Math.random() * DRIFTS.length)];
+        var dur     = rnd(10, 22).toFixed(1);
+        var delay   = (-rnd(0, 18)).toFixed(1);
+        var opacity = rnd(0.62, 0.90).toFixed(2);
+        var zz      = Math.floor(rnd(15, 25));
+
+        a.style.cssText = [
+          'width:'     + w.toFixed(0) + 'px',
+          'left:'      + left.toFixed(1) + '%',
+          'top:'       + top.toFixed(1)  + '%',
+          'animation:' + anim + ' ' + dur + 's ease-in-out ' + delay + 's infinite',
+          'opacity:'   + opacity,
+          'z-index:'   + zz,
+        ].join(';');
+
+        var img = document.createElement('img');
+        img.src = item.src;
+        img.loading = 'lazy';
+        img.draggable = false;
+        a.appendChild(img);
+
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          exitFloat(item.href);
+        });
+
+        container.appendChild(a);
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       Hint label
+    ───────────────────────────────────────────── */
+    function showHint() {
+      var old = document.getElementById('float-hint');
+      if (old) old.remove();
+      var h = document.createElement('p');
+      h.id = 'float-hint';
+      h.textContent = 'click image to explore · click name to return';
+      document.body.appendChild(h);
+      /* re-trigger animation */
+      void h.offsetWidth;
+      h.style.animation = 'hint-fade 5s ease-out 0.5s forwards';
+    }
+
+    /* ─────────────────────────────────────────────
+       Three.js — procedural geometry
+    ───────────────────────────────────────────── */
+    function initThree() {
+      if (!window.THREE) return;
+      var canvas = document.getElementById('three-canvas');
+
+      threeRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      threeRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      threeRenderer.setClearColor(0x000000, 0);
+      threeRenderer.setSize(window.innerWidth, window.innerHeight);
+
+      threeCamera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
+      threeCamera.position.z = 12;
+
+      threeScene = new THREE.Scene();
+
+      /* Lighting */
+      threeScene.add(new THREE.AmbientLight(0xffffff, 0.65));
+      var d1 = new THREE.DirectionalLight(0xffffff, 0.85);
+      d1.position.set(4, 6, 5);
+      threeScene.add(d1);
+      var d2 = new THREE.DirectionalLight(0xE8157A, 0.45);
+      d2.position.set(-5, -3, 3);
+      threeScene.add(d2);
+
+      /* Palette: accent pink, teal, sage, dark */
+      var palette = [0xE8157A, 0x2DB5A5, 0x7a9175, 0x2DB5A5, 0xE8157A, 0x1a1a1a, 0xc4d4b8];
+
+      /* Geometries (r128 API) */
+      var geos = [
+        new THREE.TorusKnotGeometry(0.55, 0.18, 120, 16),
+        new THREE.IcosahedronGeometry(0.72, 1),
+        new THREE.TorusGeometry(0.62, 0.22, 16, 64),
+        new THREE.OctahedronGeometry(0.78),
+        new THREE.DodecahedronGeometry(0.62),
+        new THREE.TetrahedronGeometry(0.85),
+        new THREE.TorusKnotGeometry(0.48, 0.13, 80, 8, 2, 3),
+      ];
+
+      geos.forEach(function (geo, i) {
+        var wire = (i % 2 === 0);
+        var mat = new THREE.MeshPhongMaterial({
+          color:       palette[i % palette.length],
+          wireframe:   wire,
+          transparent: true,
+          opacity:     wire ? 0.80 : 0.50,
+          shininess:   45,
+        });
+        var mesh = new THREE.Mesh(geo, mat);
+
+        mesh.position.set(
+          rnd(-7, 7),
+          rnd(-4, 4),
+          rnd(-3, 1)
+        );
+        mesh.userData.rs = {
+          x: rnd(-0.007, 0.007),
+          y: rnd(-0.011, 0.011),
+          z: rnd(-0.006, 0.006),
+        };
+        mesh.userData.drift = {
+          ox:    mesh.position.x,
+          oy:    mesh.position.y,
+          phase: rnd(0, Math.PI * 2),
+          freq:  rnd(0.22, 0.55),
+          amp:   rnd(0.5, 1.2),
+        };
+
+        threeScene.add(mesh);
+        meshes.push(mesh);
+      });
+    }
+
+    var animT0 = null;
+    function startThree() {
+      if (!threeRenderer || rafId) return;
+      animT0 = null;
+      function loop(t) {
+        rafId = requestAnimationFrame(loop);
+        if (!animT0) animT0 = t;
+        var e = (t - animT0) / 1000;
+        meshes.forEach(function (m) {
+          m.rotation.x += m.userData.rs.x;
+          m.rotation.y += m.userData.rs.y;
+          m.rotation.z += m.userData.rs.z;
+          var d = m.userData.drift;
+          m.position.x = d.ox + Math.sin(e * d.freq + d.phase) * d.amp;
+          m.position.y = d.oy + Math.cos(e * d.freq * 0.68 + d.phase) * d.amp * 0.65;
+        });
+        threeRenderer.render(threeScene, threeCamera);
+      }
+      rafId = requestAnimationFrame(loop);
+    }
+
+    function stopThree() {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    }
+
+    function resizeThree() {
+      if (!threeRenderer) return;
+      threeRenderer.setSize(window.innerWidth, window.innerHeight);
+      if (threeCamera) {
+        threeCamera.aspect = window.innerWidth / window.innerHeight;
+        threeCamera.updateProjectionMatrix();
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+       Wire up navigation
+    ───────────────────────────────────────────── */
+    function wireNav() {
+      /* All sidebar + mobile nav anchor links → exit float */
+      document.querySelectorAll('.sidebar a[href^="#"], .mobile-nav a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          if (isFloat) {
+            e.preventDefault();
+            e.stopPropagation();
+            exitFloat(link.getAttribute('href'));
+          }
+        }, true);
+      });
+
+      /* SHANMU SUN (desktop sidebar) → enter float */
+      var sbn = document.querySelector('.sidebar-name');
+      if (sbn) {
+        sbn.addEventListener('click', function () {
+          if (!isFloat) enterFloat();
+        });
+      }
+
+      /* SHANMU SUN (mobile header) → enter float */
+      var mn = document.querySelector('.mobile-name');
+      if (mn) {
+        mn.addEventListener('click', function () {
+          if (!isFloat) enterFloat();
+        });
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+       Boot
+    ───────────────────────────────────────────── */
+    function boot() {
+      initThree();
+      wireNav();
+      window.addEventListener('resize', resizeThree);
+      enterFloat();  /* start in float mode */
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+
+  })();
+  </script>
 
 </body>
 </html>
