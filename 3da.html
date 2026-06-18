@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Computer Art — ShanMu Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --fg: #1a1a1a;
+      --muted: #7a9175;
+      --light: #e8e8e8;
+      --accent: #E8157A;
+      --teal: #2DB5A5;
+      --font: 'Space Mono', 'Courier New', Courier, monospace;
+      --sidebar-w: 192px;
+    }
+
+    html { font-size: 13px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ══ SIDEBAR ══ */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      align-self: flex-start;
+      min-height: 100vh;
+      padding: 28px 20px 40px 24px;
+      border-right: 1px solid var(--light);
+      font-size: 12px;
+      line-height: 1.6;
+      z-index: 20;
+    }
+
+    .sb-course { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.4; margin-bottom: 4px; }
+    .sb-course a { color: var(--fg); }
+    .sb-course a:hover { color: var(--accent); text-decoration: none; }
+    .sb-semester { font-size: 11px; color: var(--muted); margin-bottom: 24px; }
+
+    .sb-nav { list-style: none; margin-bottom: 24px; }
+    .sb-nav li { margin-bottom: 1px; }
+    .sb-nav a { display: block; font-size: 12px; color: var(--fg); padding: 3px 0; }
+    .sb-nav a:hover, .sb-nav a.active { color: var(--accent); text-decoration: none; }
+
+    .sb-sub { list-style: none; padding-left: 12px; margin-top: 1px; }
+    .sb-sub a { font-size: 11px; color: var(--muted); }
+    .sb-sub a:hover { color: var(--accent); text-decoration: none; }
+
+    .sb-divider { border: none; border-top: 1px solid var(--light); margin: 16px 0; }
+
+    .sb-bottom { margin-top: auto; font-size: 11px; }
+    .sb-bottom a { color: var(--muted); display: block; margin-bottom: 3px; }
+    .sb-bottom a:hover { color: var(--fg); text-decoration: none; }
+
+    /* ══ MAIN ══ */
+    .main { flex: 1; min-width: 0; padding: 28px 36px 100px 36px; }
+
+    /* ══ COURSE TITLE STRIP ══ */
+    .course-strip { border-bottom: 1px solid var(--light); padding-bottom: 20px; margin-bottom: 28px; }
+    .course-kine { font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--teal); margin-bottom: 6px; }
+    .course-name { font-size: 22px; font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
+    .course-meta-row { display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 11px; color: var(--muted); }
+    .course-meta-row span { white-space: nowrap; }
+    .course-meta-row a { color: var(--accent); text-decoration: underline; }
+
+    /* ══ CARD ══ */
+    .card-label {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--teal); padding: 10px 14px 8px;
+      border-bottom: 1px solid var(--light); background: #fafafa;
+    }
+    .card-body { padding: 14px 14px; }
+    .card-body p { font-size: 12px; line-height: 1.85; margin-bottom: 10px; }
+    .card-body p:last-child { margin-bottom: 0; }
+    .card-body em { font-style: italic; color: var(--muted); }
+    .card-body a { color: var(--accent); text-decoration: underline; }
+
+    /* ══ ASSESS TABLE ══ */
+    .assess-row { display: flex; justify-content: space-between; font-size: 12px; padding: 6px 0; border-bottom: 1px solid var(--light); line-height: 1.5; }
+    .assess-row:last-child { border-bottom: none; }
+    .assess-pct { color: var(--accent); font-weight: 700; flex-shrink: 0; margin-left: 16px; }
+
+    /* ══ SCHEDULE ══ */
+    .week-row {
+      display: grid; grid-template-columns: 88px 1fr;
+      gap: 0 16px; padding: 10px 14px;
+      border-bottom: 1px solid var(--light);
+      font-size: 12px; line-height: 1.7;
+    }
+    .week-row:last-child { border-bottom: none; }
+    .week-row.is-break { background: #f9f9f6; }
+    .week-left {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); font-weight: 700; line-height: 1.5; padding-top: 2px;
+    }
+    .week-left .dates { display: block; font-weight: 400; margin-top: 2px; letter-spacing: 0; text-transform: none; font-size: 10px; }
+    .week-title { font-weight: 700; }
+    .week-desc { color: var(--fg); }
+    .week-note { font-size: 11px; color: var(--muted); font-style: italic; }
+    .week-due {
+      display: inline-block; background: var(--accent); color: #fff;
+      font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 1px 5px; margin-left: 5px; vertical-align: middle; line-height: 1.6;
+    }
+
+    /* ══ RESOURCES ══ */
+    .res-group { border-bottom: 1px solid var(--light); padding: 12px 14px; }
+    .res-group:last-child { border-bottom: none; padding-bottom: 14px; }
+    .res-group-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg); margin-bottom: 8px; }
+    .res-list { list-style: none; }
+    .res-list li { font-size: 12px; line-height: 1.7; padding: 2px 0; }
+    .res-list a { color: var(--accent); }
+    .res-list a:hover { text-decoration: underline; }
+    .res-list .desc { display: block; font-size: 11px; color: var(--muted); }
+
+    /* ══ STUDENT WORK ══ */
+    .gallery-section { padding: 14px 14px 18px; border-bottom: 1px solid var(--light); }
+    .gallery-section:last-child { border-bottom: none; }
+    .gallery-section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg); margin-bottom: 3px; }
+    .gallery-section-sub { font-size: 11px; color: var(--muted); font-style: italic; margin-bottom: 12px; }
+
+    /* Monument Sketchfab grid */
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .model-card { position: relative; }
+
+    .model-frame {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--light);
+      display: block;
+      background: #f5f5f5;
+    }
+
+    .model-card:hover .model-frame {
+      border-color: var(--teal);
+      transition: border-color 0.2s;
+    }
+
+    .model-name {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 5px;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .model-name a { color: var(--muted); }
+    .model-name a:hover { color: var(--accent); text-decoration: none; }
+
+    /* World Building link cards */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .video-card {
+      border: 1px solid var(--light);
+      padding: 16px 18px;
+    }
+
+    .video-card:hover {
+      border-color: var(--teal);
+    }
+
+    .video-team {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 6px;
+    }
+
+    .video-members {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .video-link {
+      font-size: 11px;
+      color: var(--teal);
+    }
+
+    .video-link:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Final project table */
+    .final-list {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    .final-list td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--light);
+      vertical-align: middle;
+    }
+    .final-list td:first-child { color: var(--fg); width: 32%; }
+    .final-list td:nth-child(2) { color: var(--muted); font-style: italic; width: 32%; }
+    .final-list td:last-child { color: var(--muted); width: 36%; }
+    .final-list a { color: var(--teal); }
+    .final-list a:hover { color: var(--accent); text-decoration: none; }
+    .final-list tr:last-child td { border-bottom: none; }
+
+    /* ══ SECTION SEPARATOR ══ */
+    .section-sep {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--teal); padding: 10px 0 8px;
+      border-bottom: 1px solid var(--light); margin-bottom: 0;
+    }
+
+    /* ══ LAYOUT BLOCKS ══ */
+    .block { border: 1px solid var(--light); margin-bottom: 16px; }
+
+    /* ══ MOBILE ══ */
+    @media (max-width: 720px) {
+      body { flex-direction: column; }
+      .sidebar { position: static; min-height: auto; width: 100%; border-right: none; border-bottom: 1px solid var(--light); padding: 20px 20px 16px; }
+      .sb-nav { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-bottom: 12px; }
+      .sb-sub { display: none; }
+      .main { padding: 20px 16px 60px; }
+      .model-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-grid { grid-template-columns: 1fr; }
+      .course-name { font-size: 18px; }
+    }
+
+    @media (max-width: 420px) {
+      .model-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ SIDEBAR ══ -->
+  <nav class="sidebar">
+    <div class="sb-course"><a href="index.html">ShanMu Sun</a></div>
+    <div class="sb-semester">3DA · Course Page</div>
+
+    <ul class="sb-nav">
+      <li><a href="#info">Info</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li>
+        <a href="#resources">Resources</a>
+        <ul class="sb-sub">
+          <li><a href="#res-blender">Blender</a></li>
+          <li><a href="#res-ar">AR Tools</a></li>
+          <li><a href="#res-reading">Reading</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#student-work">Student Work</a>
+        <ul class="sb-sub">
+          <li><a href="#monument">Building Your Monument</a></li>
+          <li><a href="#worldbuilding">World Building</a></li>
+          <li><a href="#final">3D not 3D</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <hr class="sb-divider">
+
+    <div class="sb-bottom">
+      <a href="https://www.blender.org/" target="_blank">blender.org ↗</a>
+      <a href="https://sketchfab.com/" target="_blank">sketchfab.com ↗</a>
+      <a href="https://www.kivicube.com/" target="_blank">kivicube.com ↗</a>
+    </div>
+  </nav>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- Course strip -->
+    <div class="course-strip">
+      <p class="course-kine">Department of Kinetic Imaging · VCU</p>
+      <h1 class="course-name">3D Computer Art</h1>
+      <div class="course-meta-row">
+        <span>KINE 384-901</span>
+        <span>Spring 2026</span>
+        <span>Tu &amp; Th &nbsp;4:00 – 6:50 pm</span>
+        <span>Franklin Terrace 307</span>
+        <span>ShanMu Sun &nbsp;·&nbsp; <a href="mailto:sunw2@vcu.edu">sunw2@vcu.edu</a></span>
+        <span>Office hours by appointment</span>
+      </div>
+    </div>
+
+    <!-- ── INFO ── -->
+    <p class="section-sep" id="info">Info</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--light);margin-bottom:16px;">
+
+      <!-- Description -->
+      <div style="border-right:1px solid var(--light);">
+        <div class="card-label">Description</div>
+        <div class="card-body">
+          <p>A comprehensive introduction to the use of the computer for modeling, rendering, and animating
+            three-dimensional objects and environments.</p>
+          <p>Students learn the basic principles, aesthetic, and concepts of 3D computer art and animation using
+            Blender as a means of self-expression and conceptual experimentation.</p>
+          <p><em>2 lecture + 4 studio hours. 4 credits.</em></p>
+        </div>
+      </div>
+
+      <!-- Outcomes + Assessment -->
+      <div>
+        <div class="card-label">Learning Outcomes</div>
+        <div class="card-body" style="border-bottom:1px solid var(--light);">
+          <p>Students explore the aesthetic of 3D objects, space, and motion; creative applications of 3D
+            technology; and engage in critical discussions on 3D art works.</p>
+        </div>
+        <div class="card-label">Assessment</div>
+        <div class="card-body">
+          <div class="assess-row"><span>Participation / Research</span><span class="assess-pct">10%</span></div>
+          <div class="assess-row"><span>Assignments / Exercises</span><span class="assess-pct">20%</span></div>
+          <div class="assess-row"><span>Project I — Building Your Monument</span><span class="assess-pct">15%</span></div>
+          <div class="assess-row"><span>Project II — World Building</span><span class="assess-pct">25%</span></div>
+          <div class="assess-row"><span>Final — 3D not 3D</span><span class="assess-pct">30%</span></div>
+        </div>
+      </div>
+
+    </div><!-- /info grid -->
+
+    <!-- ── SCHEDULE ── -->
+    <p class="section-sep" id="schedule">Schedule</p>
+
+    <div class="block" style="margin-bottom:16px;">
+      <div class="week-row">
+        <div class="week-left">Week 1<span class="dates">Jan 13 / 15</span></div>
+        <div class="week-right">
+          <div class="week-title">What is 3D Computer Art?</div>
+          <div class="week-desc">Intro to Blender — interface, primitive shapes, boolean, polygon components, render.<br>
+            <span class="week-note">Assignment: Make an avatar with primitive shapes.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 2<span class="dates">Jan 20 / 22</span></div>
+        <div class="week-right">
+          <div class="week-title">UV + Shading / Library Tour</div>
+          <div class="week-desc">UV unwrapping, texture painting.<br>
+            <span class="week-note">Avatar assignment due before next class.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 3<span class="dates">Jan 27 / 29</span></div>
+        <div class="week-right">
+          <div class="week-title">Sculpting + Lighting</div>
+          <div class="week-desc">Sculpting in Blender — Fish assignment.<br>
+            Lighting + Render — Lighting Challenge.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 4<span class="dates">Feb 3 / 5</span></div>
+        <div class="week-right">
+          <div class="week-title">Modifier + Edit Mode</div>
+          <div class="week-desc">Project I introduced — Building Your Monument.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 5<span class="dates">Feb 10 / 12</span></div>
+        <div class="week-right">
+          <div class="week-title">AR Tools / Work Day</div>
+          <div class="week-desc">Kivicube, Blippar; Project I work session.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 6<span class="dates">Feb 17 / 19</span></div>
+        <div class="week-right">
+          <div class="week-title">Project I Critique <span class="week-due">due</span></div>
+          <div class="week-desc">Work day + Mixed &amp; Immersive Reality Studies minor info share.<br>
+            In-class critiques.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 7<span class="dates">Feb 24 / 26</span></div>
+        <div class="week-right">
+          <div class="week-title">World Building + Project II Intro</div>
+          <div class="week-desc">Narrative, camera work, animating shapes — keyframe, hierarchy, graph editor.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 8<span class="dates">Mar 3 / 5</span></div>
+        <div class="week-right">
+          <div class="week-title">World Building — Artist Talks</div>
+          <div class="week-desc">Guest artist talk on Zoom (Mar 3) + in-person artist talk (Mar 5).</div>
+        </div>
+      </div>
+
+      <div class="week-row is-break">
+        <div class="week-left">Week 9<span class="dates">Mar 10 / 12</span></div>
+        <div class="week-right">
+          <div class="week-title">Spring Break</div>
+          <div class="week-desc week-note">No class.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 10–11<span class="dates">Mar 17–26</span></div>
+        <div class="week-right">
+          <div class="week-title">World Building Work Days</div>
+          <div class="week-desc">Production work sessions for Project II.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 12<span class="dates">Mar 31 / Apr 2</span></div>
+        <div class="week-right">
+          <div class="week-title">Project II Critique <span class="week-due">due</span></div>
+          <div class="week-desc">In-class critiques + intro to Blender × Unity.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 13<span class="dates">Apr 7 / 9</span></div>
+        <div class="week-right">
+          <div class="week-title">Unity XR + Final Project</div>
+          <div class="week-desc">Final project description introduced — 3D not 3D.<br>
+            Final project proposal presentations &amp; individual/group meetings.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 14–15<span class="dates">Apr 14–23</span></div>
+        <div class="week-right">
+          <div class="week-title">Final Work Days</div>
+          <div class="week-desc">Open studio work sessions.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-left">Week 16<span class="dates">Apr 28 / 30</span></div>
+        <div class="week-right">
+          <div class="week-title">Final Project Due <span class="week-due">due</span></div>
+          <div class="week-desc">In-class final critiques.</div>
+        </div>
+      </div>
+    </div><!-- /schedule -->
+
+    <!-- ── RESOURCES ── -->
+    <p class="section-sep" id="resources">Resources</p>
+
+    <div class="block" style="margin-bottom:16px;">
+
+      <div class="res-group" id="res-blender">
+        <div class="res-group-title">Blender</div>
+        <ul class="res-list">
+          <li><a href="https://www.blender.org/" target="_blank">blender.org</a>
+            <span class="desc">Free, open-source 3D creation suite used throughout the course.</span>
+          </li>
+          <li><a href="https://www.youtube.com/watch?v=nIoXOplUvAw" target="_blank">Blender Beginner Donut Tutorial — Andrew Price</a>
+            <span class="desc">Canonical Blender intro: UV unwrapping, shading, and rendering.</span>
+          </li>
+          <li><a href="https://www.youtube.com/watch?v=1jHUY3qoBu8" target="_blank">Mastering Blender Basics: Edit Mode</a></li>
+          <li><a href="https://www.youtube.com/watch?v=0RGnXgdWScY" target="_blank">Modifiers for Beginners</a></li>
+          <li><a href="https://www.youtube.com/watch?v=aVpMU2W3wiw" target="_blank">How to Use Curves for Beginners</a></li>
+          <li><a href="https://www.mixamo.com/" target="_blank">Mixamo — Adobe</a>
+            <span class="desc">Auto-rigging and animation library for 3D characters; used in World Building.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="res-group" id="res-ar">
+        <div class="res-group-title">AR Tools</div>
+        <ul class="res-list">
+          <li><a href="https://www.kivicube.com/" target="_blank">Kivicube</a>
+            <span class="desc">Browser-based AR platform. Upload FBX to view your monument in the real world.</span>
+          </li>
+          <li><a href="https://blipps.blippar.com/" target="_blank">Blippar</a>
+            <span class="desc">Alternative AR publishing platform.</span>
+          </li>
+          <li><a href="https://sketchfab.com/" target="_blank">Sketchfab</a>
+            <span class="desc">Upload and share 3D models with interactive web viewer.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="res-group" id="res-reading">
+        <div class="res-group-title">Reading &amp; References</div>
+        <ul class="res-list">
+          <li><a href="https://manovich.net/content/04-projects/034-the-poetics-of-augmented-space/31_article_2002.pdf" target="_blank">"The Poetics of Augmented Space" — Lev Manovich, 2005</a></li>
+          <li><em>The Language of New Media</em>, "Navigable Space" — Lev Manovich, 2001</li>
+          <li><a href="https://worldto.live/" target="_blank">Ian Cheng — worldto.live</a></li>
+          <li><a href="https://jakobkudsksteensen.com/project/aquaphobia/" target="_blank">Aquaphobia — Jakob Kudsk Steensen</a></li>
+          <li><a href="https://vimeo.com/542297837" target="_blank">DROP CITY (Vimeo)</a></li>
+          <li><a href="https://vimeo.com/dashaus" target="_blank">Das Haus (Vimeo)</a></li>
+        </ul>
+      </div>
+
+    </div><!-- /resources -->
+
+    <!-- ── STUDENT WORK ── -->
+    <p class="section-sep" id="student-work">Student Work</p>
+
+    <div class="block" style="margin-bottom:16px;">
+
+      <!-- Building Your Monument -->
+      <div class="gallery-section" id="monument">
+        <div class="gallery-section-title">Project I — Building Your Monument</div>
+        <div class="gallery-section-sub">3D sculpture in Blender · displayed via Sketchfab / AR / 3D print · Spring 2026</div>
+
+        <div class="model-grid">
+
+          <!-- Madison Stout -->
+          <div class="model-card">
+            <img class="model-frame" src="images/3da/madison-monument.png" alt="Madison Stout — Monument" style="object-fit:cover;">
+            <div class="model-name">Madison Stout</div>
+          </div>
+
+        </div><!-- /model-grid -->
+      </div><!-- /#monument -->
+
+      <!-- World Building -->
+      <div class="gallery-section" id="worldbuilding">
+        <div class="gallery-section-title">Project II — World Building</div>
+        <div class="gallery-section-sub">3D animated short film in Blender · group project · Spring 2026</div>
+
+        <div class="video-grid">
+
+          <!-- Team Blueberry Pie -->
+          <div class="video-card">
+            <div class="video-team">Team Blueberry Pie</div>
+            <div class="video-members">Anaïs Wojtysiak, Diego Estrada, Eric Haskell, Grant Parsons, Sophia Monine, Zana Tibbs</div>
+            <a class="video-link" href="https://drive.google.com/file/d/1u0qqCGK4I2DwCzYyW845V2j9ofk6Odrq/view?usp=sharing" target="_blank" rel="noopener">Watch on Google Drive →</a>
+          </div>
+
+          <!-- Team Us -->
+          <div class="video-card">
+            <div class="video-team">Team Us</div>
+            <div class="video-members">Cas Georgeson, Charlie VanFossen, Madison Stout, Morgan Jones, Robyn Todd</div>
+            <a class="video-link" href="https://drive.google.com/file/d/1eNSvkgymiDxKTJMKuOjz-nMN4N2SZ3LC/view?usp=sharing" target="_blank" rel="noopener">Watch on Google Drive →</a>
+          </div>
+
+        </div><!-- /video-grid -->
+      </div><!-- /#worldbuilding -->
+
+      <!-- 3D not 3D — Final -->
+      <div class="gallery-section" id="final">
+        <div class="gallery-section-title">Final — 3D not 3D</div>
+        <div class="gallery-section-sub">Installation / projection / animation — individual or group · Spring 2026</div>
+
+        <table class="final-list">
+          <tr>
+            <td>Anaïs Wojtysiak</td>
+            <td><em>La Lluvia</em></td>
+            <td><a href="https://drive.google.com/file/d/1LKL5hT5OEFE--jzrOuxz_MFgQw_uySBt/view?usp=sharing" target="_blank" rel="noopener">Watch on Google Drive →</a></td>
+          </tr>
+          <tr>
+            <td>Cas Georgeson</td>
+            <td><em>In '05</em></td>
+            <td><a href="https://drive.google.com/file/d/1Pbc0BF3j8iPZSl2-fJMc-aJkI6-3zz-B/view?usp=sharing" target="_blank" rel="noopener">Watch on Google Drive →</a></td>
+          </tr>
+        </table>
+      </div><!-- /#final -->
+
+    </div><!-- /student work block -->
+
+  </main>
+
+</body>
+</html>
