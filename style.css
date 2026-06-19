@@ -69,6 +69,15 @@ a:hover { text-decoration: underline; }
   color: var(--teal);
   margin-bottom: 8px;
 }
+a.sb-group-label {
+  transition: color 0.3s ease;
+}
+a.sb-group-label:hover {
+  color: var(--accent);
+}
+a.sb-group-label.active {
+  color: #D8D400; /* Acid yellow from favicon */
+}
 .sb-list { list-style: none; padding-left: 12px; }
 .sb-list li { margin-bottom: 7px; }
 .sb-list a {
