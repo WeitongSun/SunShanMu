@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +12,39 @@
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png" sizes="180x180">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <style>
     /* Sidebar stays above float-world */
-    .sidebar { z-index: 20; }
+    .sidebar {
+      z-index: 20;
+    }
 
     /* Hide main content when floating */
-    body.float-mode .content > section,
-    body.float-mode .content > p.section-heading {
+    body.float-mode .content>section,
+    body.float-mode .content>p.section-heading {
       visibility: hidden;
     }
-    body.float-mode .main-area { overflow: hidden; }
+
+    body.float-mode .main-area {
+      overflow: hidden;
+    }
 
     /* Logo becomes clickable always */
-    .sidebar-name { cursor: pointer; user-select: none; }
-    .mobile-name  { cursor: pointer; user-select: none; }
+    .sidebar-name {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mobile-name {
+      cursor: pointer;
+      user-select: none;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- ══ LANG TOGGLE ══ -->
@@ -58,13 +73,13 @@
     <div class="sb-group">
       <p class="sb-group-label" data-i18n="label-works">Works</p>
       <ul class="sb-list">
-        <li><a href="#collision"      onclick="closeMenu()" data-i18n="nav-collision">Collision at a Distance</a></li>
-        <li><a href="#ideal-home"     onclick="closeMenu()" data-i18n="nav-ideal-home">Ideal Home</a></li>
-        <li><a href="#graceful-site"  onclick="closeMenu()" data-i18n="nav-graceful-site">The Graceful Site</a></li>
-        <li><a href="#sense"          onclick="closeMenu()" data-i18n="nav-sense">Say Sense is Not Everything</a></li>
-        <li><a href="#shimmering"     onclick="closeMenu()" data-i18n="nav-shimmering">Polyphonic Shimmering</a></li>
-        <li><a href="#hyperdog"       onclick="closeMenu()" data-i18n="nav-hyperdog">HyperDog</a></li>
-        <li><a href="#green-common"  onclick="closeMenu()" data-i18n="nav-green-common">The Green Common</a></li>
+        <li><a href="#collision" onclick="closeMenu()" data-i18n="nav-collision">Collision at a Distance</a></li>
+        <li><a href="#ideal-home" onclick="closeMenu()" data-i18n="nav-ideal-home">Ideal Home</a></li>
+        <li><a href="#graceful-site" onclick="closeMenu()" data-i18n="nav-graceful-site">The Graceful Site</a></li>
+        <li><a href="#sense" onclick="closeMenu()" data-i18n="nav-sense">Say Sense is Not Everything</a></li>
+        <li><a href="#shimmering" onclick="closeMenu()" data-i18n="nav-shimmering">Polyphonic Shimmering</a></li>
+        <li><a href="#hyperdog" onclick="closeMenu()" data-i18n="nav-hyperdog">HyperDog</a></li>
+        <li><a href="#green-common" onclick="closeMenu()" data-i18n="nav-green-common">The Green Common</a></li>
       </ul>
     </div>
     <div class="sb-group">
@@ -78,10 +93,11 @@
     <div class="sb-group">
       <p class="sb-group-label" data-i18n="label-writing">Writing</p>
       <ul class="sb-list">
-        <li><a href="#thesis"          onclick="closeMenu()" data-i18n="nav-thesis">From Ink to Code…</a></li>
-        <li><a href="#endless-barrier" onclick="closeMenu()" data-i18n="nav-endless-barrier">The Endless Barrier in Reading</a></li>
-        <li><a href="#emptiness"       onclick="closeMenu()" data-i18n="nav-emptiness">Speaking Across Emptiness</a></li>
-        <li><a href="#rotation"        onclick="closeMenu()" data-i18n="nav-rotation">"Earth's Rotation Vertigo"</a></li>
+        <li><a href="#thesis" onclick="closeMenu()" data-i18n="nav-thesis">From Ink to Code…</a></li>
+        <li><a href="#endless-barrier" onclick="closeMenu()" data-i18n="nav-endless-barrier">The Endless Barrier in
+            Reading</a></li>
+        <li><a href="#emptiness" onclick="closeMenu()" data-i18n="nav-emptiness">Speaking Across Emptiness</a></li>
+        <li><a href="#rotation" onclick="closeMenu()" data-i18n="nav-rotation">"Earth's Rotation Vertigo"</a></li>
       </ul>
     </div>
     <div class="sb-group">
@@ -91,7 +107,7 @@
       </ul>
     </div>
     <ul class="sb-list" style="border-top:1px solid var(--light);padding-top:16px;margin-top:4px;">
-      <li><a href="#about"   onclick="closeMenu()" data-i18n="nav-about">About</a></li>
+      <li><a href="#about" onclick="closeMenu()" data-i18n="nav-about">About</a></li>
       <li><a href="#contact" onclick="closeMenu()" data-i18n="nav-contact">Contact</a></li>
     </ul>
     <div style="border-top:1px solid var(--light);padding-top:16px;margin-top:16px;">
@@ -160,657 +176,757 @@
 
   <!-- ══ MAIN CONTENT ══ -->
   <div class="main-area">
-  <main class="content">
+    <main class="content">
 
-    <!-- ══ FLOATING HOMEPAGE ══ -->
-    <div id="float-world">
-      <div class="slideshow-container">
-        <!-- Slide 1: Collision at a Distance -->
-        <div class="slide active">
-          <div class="slide-bg" style="background-image: url('images/collision-at-a-distance/IMG_2833.png');"></div>
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <span class="slide-category" data-i18n="slide-cat-collision">Simulation</span>
-            <h1 class="slide-title" data-i18n="nav-collision">Collision at a Distance</h1>
-            <p class="slide-meta" data-i18n="meta-collision">2026 · Simulation (work in progress)<br>Collaborator: Ruiqi Zhang</p>
-            <button class="explore-btn" onclick="exitFloat('#collision')">
-              <span data-i18n="explore-project">Explore Project</span> →
+      <!-- ══ FLOATING HOMEPAGE ══ -->
+      <div id="float-world">
+        <div class="slideshow-container">
+          <!-- Slide 1: Collision at a Distance -->
+          <div class="slide active">
+            <div class="slide-bg" style="background-image: url('images/collision-at-a-distance/IMG_2833.png');"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <span class="slide-category" data-i18n="slide-cat-collision">Simulation</span>
+              <h1 class="slide-title" data-i18n="nav-collision">Collision at a Distance</h1>
+              <p class="slide-meta" data-i18n="meta-collision">2026 · Simulation (work in progress)<br>Collaborator:
+                Ruiqi Zhang</p>
+              <button class="explore-btn" onclick="exitFloat('#collision')">
+                <span data-i18n="explore-project">Explore Project</span> →
+              </button>
+            </div>
+          </div>
+
+          <!-- Slide 2: Ideal Home -->
+          <div class="slide">
+            <div class="slide-bg" style="background-image: url('images/ideal-home/SUN_Q2A8078B.png');"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <span class="slide-category" data-i18n="slide-cat-ideal-home">XR / Virtual Reality</span>
+              <h1 class="slide-title" data-i18n="nav-ideal-home">Ideal Home</h1>
+              <p class="slide-meta" data-i18n="meta-ideal-home">2025 · XR · Ars Electronica, Linz, Austria</p>
+              <button class="explore-btn" onclick="exitFloat('#ideal-home')">
+                <span data-i18n="explore-project">Explore Project</span> →
+              </button>
+            </div>
+          </div>
+
+          <!-- Slide 3: The Graceful Site -->
+          <div class="slide">
+            <div class="slide-bg" style="background-image: url('images/graceful-site/BP1.png');"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <span class="slide-category" data-i18n="slide-cat-graceful-site">Live Simulation</span>
+              <h1 class="slide-title" data-i18n="nav-graceful-site">The Graceful Site</h1>
+              <p class="slide-meta" data-i18n="meta-graceful-site">2024 · Live Simulation</p>
+              <button class="explore-btn" onclick="exitFloat('#graceful-site')">
+                <span data-i18n="explore-project">Explore Project</span> →
+              </button>
+            </div>
+          </div>
+
+          <!-- Slide 4: Say Sense is Not Everything -->
+          <div class="slide">
+            <div class="slide-bg" style="background-image: url('images/sense/01.jpg');"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <span class="slide-category" data-i18n="slide-cat-sense">Web Art</span>
+              <h1 class="slide-title" data-i18n="nav-sense">Say Sense is Not Everything</h1>
+              <p class="slide-meta" data-i18n="meta-sense">Web Publication · Collaborative</p>
+              <button class="explore-btn" onclick="exitFloat('#sense')">
+                <span data-i18n="explore-project">Explore Project</span> →
+              </button>
+            </div>
+          </div>
+
+          <!-- Slide 5: Polyphonic Shimmering -->
+          <div class="slide">
+            <div class="slide-bg" style="background-image: url('images/shimmering/01.jpg');"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <span class="slide-category" data-i18n="slide-cat-shimmering">Web Art</span>
+              <h1 class="slide-title" data-i18n="nav-shimmering">Polyphonic Shimmering</h1>
+              <p class="slide-meta" data-i18n="meta-shimmering">Collaborative Web · Publication</p>
+              <button class="explore-btn" onclick="exitFloat('#shimmering')">
+                <span data-i18n="explore-project">Explore Project</span> →
+              </button>
+            </div>
+          </div>
+
+          <!-- Navigation Arrows -->
+          <button class="slideshow-arrow prev" id="slideshowPrev">←</button>
+          <button class="slideshow-arrow next" id="slideshowNext">→</button>
+
+          <!-- Bottom Controls -->
+          <div class="slideshow-controls">
+            <div class="slideshow-dots" id="slideshowDots">
+              <span class="dot active" onclick="goToSlide(0)"></span>
+              <span class="dot" onclick="goToSlide(1)"></span>
+              <span class="dot" onclick="goToSlide(2)"></span>
+              <span class="dot" onclick="goToSlide(3)"></span>
+              <span class="dot" onclick="goToSlide(4)"></span>
+            </div>
+            <button class="explore-all-btn" onclick="exitFloat()">
+              <span data-i18n="explore-portfolio">Explore Portfolio</span> ↓
             </button>
           </div>
-        </div>
-        
-        <!-- Slide 2: Ideal Home -->
-        <div class="slide">
-          <div class="slide-bg" style="background-image: url('images/ideal-home/SUN_Q2A8078B.png');"></div>
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <span class="slide-category" data-i18n="slide-cat-ideal-home">XR / Virtual Reality</span>
-            <h1 class="slide-title" data-i18n="nav-ideal-home">Ideal Home</h1>
-            <p class="slide-meta" data-i18n="meta-ideal-home">2025 · XR · Ars Electronica, Linz, Austria</p>
-            <button class="explore-btn" onclick="exitFloat('#ideal-home')">
-              <span data-i18n="explore-project">Explore Project</span> →
-            </button>
-          </div>
-        </div>
-
-        <!-- Slide 3: The Graceful Site -->
-        <div class="slide">
-          <div class="slide-bg" style="background-image: url('images/graceful-site/BP1.png');"></div>
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <span class="slide-category" data-i18n="slide-cat-graceful-site">Live Simulation</span>
-            <h1 class="slide-title" data-i18n="nav-graceful-site">The Graceful Site</h1>
-            <p class="slide-meta" data-i18n="meta-graceful-site">2024 · Live Simulation</p>
-            <button class="explore-btn" onclick="exitFloat('#graceful-site')">
-              <span data-i18n="explore-project">Explore Project</span> →
-            </button>
-          </div>
-        </div>
-
-        <!-- Slide 4: Say Sense is Not Everything -->
-        <div class="slide">
-          <div class="slide-bg" style="background-image: url('images/sense/01.jpg');"></div>
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <span class="slide-category" data-i18n="slide-cat-sense">Web Art</span>
-            <h1 class="slide-title" data-i18n="nav-sense">Say Sense is Not Everything</h1>
-            <p class="slide-meta" data-i18n="meta-sense">Web Publication · Collaborative</p>
-            <button class="explore-btn" onclick="exitFloat('#sense')">
-              <span data-i18n="explore-project">Explore Project</span> →
-            </button>
-          </div>
-        </div>
-
-        <!-- Slide 5: Polyphonic Shimmering -->
-        <div class="slide">
-          <div class="slide-bg" style="background-image: url('images/shimmering/01.jpg');"></div>
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <span class="slide-category" data-i18n="slide-cat-shimmering">Web Art</span>
-            <h1 class="slide-title" data-i18n="nav-shimmering">Polyphonic Shimmering</h1>
-            <p class="slide-meta" data-i18n="meta-shimmering">Collaborative Web · Publication</p>
-            <button class="explore-btn" onclick="exitFloat('#shimmering')">
-              <span data-i18n="explore-project">Explore Project</span> →
-            </button>
-          </div>
-        </div>
-
-        <!-- Navigation Arrows -->
-        <button class="slideshow-arrow prev" id="slideshowPrev">←</button>
-        <button class="slideshow-arrow next" id="slideshowNext">→</button>
-
-        <!-- Bottom Controls -->
-        <div class="slideshow-controls">
-          <div class="slideshow-dots" id="slideshowDots">
-            <span class="dot active" onclick="goToSlide(0)"></span>
-            <span class="dot" onclick="goToSlide(1)"></span>
-            <span class="dot" onclick="goToSlide(2)"></span>
-            <span class="dot" onclick="goToSlide(3)"></span>
-            <span class="dot" onclick="goToSlide(4)"></span>
-          </div>
-          <button class="explore-all-btn" onclick="exitFloat()">
-            <span data-i18n="explore-portfolio">Explore Portfolio</span> ↓
-          </button>
         </div>
       </div>
-    </div>
 
-    <!-- ─────────────────────────────
+      <!-- ─────────────────────────────
          WORKS
     ───────────────────────────── -->
-    <p class="section-heading" data-i18n="label-works">Works</p>
+      <p class="section-heading" data-i18n="label-works">Works</p>
 
-    <!-- Collision at a Distance -->
-    <section class="entry" id="collision">
-      <div class="entry-header">
-        <h2 class="entry-title">
-          Collision at a Distance<br>
-          <span class="zh">远距离碰撞</span>
-        </h2>
-        <p class="entry-meta" data-i18n="meta-collision">2026 · Simulation (work in progress)<br>Collaborator: Ruiqi Zhang</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/collision-at-a-distance/IMG_2833.png" alt="Collision at a Distance — simulation view">
-      </div>
-      <p class="img-caption" data-i18n="cap-simulation-view">Simulation view</p>
-      <div class="img-wrap" style="margin-top:20px;">
-        <img src="images/collision-at-a-distance/animated-result-iso3.gif" alt="Collision at a Distance — animation" style="width:100%;display:block;">
-      </div>
-      <p class="img-caption" data-i18n="cap-animation">Animation</p>
-      <div class="entry-body" data-i18n="body-collision">
-        <p>Collision at a Distance, 2026. A simulation work in progress.</p>
-      </div>
-    </section>
+      <!-- Collision at a Distance -->
+      <section class="entry" id="collision">
+        <div class="entry-header">
+          <h2 class="entry-title">
+            Collision at a Distance<br>
+            <span class="zh">远距离碰撞</span>
+          </h2>
+          <p class="entry-meta" data-i18n="meta-collision">2026 · Simulation (work in progress)<br>Collaborator: Ruiqi
+            Zhang</p>
+        </div>
+        <div class="img-wrap">
+          <img src="images/collision-at-a-distance/IMG_2833.png" alt="Collision at a Distance — simulation view">
+        </div>
+        <p class="img-caption" data-i18n="cap-simulation-view">Simulation view</p>
+        <div class="img-wrap" style="margin-top:20px;">
+          <img src="images/collision-at-a-distance/animated-result-iso3.gif" alt="Collision at a Distance — animation"
+            style="width:100%;display:block;">
+        </div>
+        <p class="img-caption" data-i18n="cap-animation">Animation</p>
+        <div class="entry-body" data-i18n="body-collision">
+          <p>Collision at a Distance, 2026. A simulation work in progress.</p>
+        </div>
+      </section>
 
-    <!-- Ideal Home -->
-    <section class="entry" id="ideal-home">
-      <div class="entry-header">
-        <h2 class="entry-title">
-          Ideal Home<br>
-          <span class="zh">理想之家</span>
-        </h2>
-        <p class="entry-meta" data-i18n="meta-ideal-home">2025 · Installation · Ars Electronica, Linz, Austria</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/ideal-home/SUN_Q2A8078B.png" alt="Ideal Home — installation view">
-      </div>
-      <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
-      <div class="img-wrap">
-        <img src="images/ideal-home/SUN_Q2A8181.png" alt="Ideal Home — detail">
-      </div>
-      <p class="img-caption" data-i18n="cap-detail">Detail</p>
-      <div class="img-grid-2">
-        <img src="images/ideal-home/iH.png" alt="Ideal Home — audience" style="width:100%;display:block;">
-        <img src="images/ideal-home/SUN_Q2A8093.png" alt="Ideal Home — VR headset" style="width:100%;display:block;">
-      </div>
-      <div class="entry-body" data-i18n="body-ideal-home">
-        <p>Ideal Home is an extended-reality (XR) narrative project that explores how immigrant experiences and the evolving concept of home are reshaped through emerging technologies. Central to the story is a ghostly AI avatar that drifts through layered interfaces, landscapes, symbols, and code.
+      <!-- Ideal Home -->
+      <section class="entry" id="ideal-home">
+        <div class="entry-header">
+          <h2 class="entry-title">
+            Ideal Home<br>
+            <span class="zh">理想之家</span>
+          </h2>
+          <p class="entry-meta" data-i18n="meta-ideal-home">2025 · Installation · Ars Electronica, Linz, Austria</p>
+        </div>
+        <div class="img-wrap">
+          <img src="images/ideal-home/SUN_Q2A8078B.png" alt="Ideal Home — installation view">
+        </div>
+        <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
+        <div class="img-wrap">
+          <img src="images/ideal-home/SUN_Q2A8181.png" alt="Ideal Home — detail">
+        </div>
+        <p class="img-caption" data-i18n="cap-detail">Detail</p>
+        <div class="img-grid-2">
+          <img src="images/ideal-home/iH.png" alt="Ideal Home — audience" style="width:100%;display:block;">
+          <img src="images/ideal-home/SUN_Q2A8093.png" alt="Ideal Home — VR headset" style="width:100%;display:block;">
+        </div>
+        <div class="entry-body" data-i18n="body-ideal-home">
+          <p>Ideal Home is an extended-reality (XR) narrative project that explores how immigrant experiences and the
+            evolving concept of home are reshaped through emerging technologies. Central to the story is a ghostly AI
+            avatar that drifts through layered interfaces, landscapes, symbols, and code.
 
-          Combining generative AI, immersive XR environments, and collaborative writing, the project constructs a fragmented, non-linear story world shaped by multiple voices. The artist invited immigrant writers to co-create a text archive based on their experiences of longing, memory, and displacement. A fine-tuned GPT-4 model then rewrote a unified script, blending distinct writing styles and transforming cultural symbols into something unexpected.
-          
-          By embedding the script into a game engine, the project blurs the line between oral history and generative fiction, offering an alternative mode of engagement. The AI avatar acts as a narrator and emotional guide, accompanying the player through flickering memory objects, dreamlike spaces, and cultural echoes. Ideal Home becomes a speculative space where collective memory and machine intelligence co-author a new language for belonging.
+            Combining generative AI, immersive XR environments, and collaborative writing, the project constructs a
+            fragmented, non-linear story world shaped by multiple voices. The artist invited immigrant writers to
+            co-create a text archive based on their experiences of longing, memory, and displacement. A fine-tuned GPT-4
+            model then rewrote a unified script, blending distinct writing styles and transforming cultural symbols into
+            something unexpected.
+
+            By embedding the script into a game engine, the project blurs the line between oral history and generative
+            fiction, offering an alternative mode of engagement. The AI avatar acts as a narrator and emotional guide,
+            accompanying the player through flickering memory objects, dreamlike spaces, and cultural echoes. Ideal Home
+            becomes a speculative space where collective memory and machine intelligence co-author a new language for
+            belonging.
           </p>
-        <p>
-          <a href="https://ars.electronica.art/panic/en/view/self-reflexive-worlds-ideal-home-text-textures-20e38ddb450c81a289b2d2d5313c948f/" target="_blank">View at Ars Electronica →</a>
-        </p>
-        <p>
-          <a href="https://arts.vcu.edu/the-work/ideal-home/" target="_blank">VCUarts documentation →</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- The Graceful Site -->
-    <section class="entry" id="graceful-site">
-      <div class="entry-header">
-        <h2 class="entry-title">
-          The Graceful Site
-          <span class="zh">优美地高于生活</span>
-        </h2>
-        <p class="entry-meta" data-i18n="meta-graceful-site">2024 · Live Simulation (infinite duration, dimensions variable), Mac mini<br>Ruiqi Zhang &amp; Weitong Shanmu Sun<br>Sound Design: Stephen Vitiello · Game Development: Weilong Qian</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/graceful-site/BP1.png" alt="The Graceful Site — installation view">
-      </div>
-      <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
-      <div class="img-grid-2">
-        <img src="images/graceful-site/The%20Graceful%20Site_1.png" alt="The Graceful Site — interior" style="width:100%;display:block;">
-        <img src="images/graceful-site/The%20Graceful%20Site_5.png" alt="The Graceful Site — night" style="width:100%;display:block;">
-      </div>
-      <div class="img-wrap" style="margin-top:20px;">
-        <div style="padding:56.25% 0 0 0; position:relative;">
-          <iframe src="https://player.vimeo.com/video/1039561224?color=ffffff&title=0&byline=0&portrait=0"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen></iframe>
+          <p>
+            <a href="https://ars.electronica.art/panic/en/view/self-reflexive-worlds-ideal-home-text-textures-20e38ddb450c81a289b2d2d5313c948f/"
+              target="_blank">View at Ars Electronica →</a>
+          </p>
+          <p>
+            <a href="https://arts.vcu.edu/the-work/ideal-home/" target="_blank">VCUarts documentation →</a>
+          </p>
         </div>
-      </div>
-      <p class="img-caption">Video documentation</p>
-      <div class="entry-body" data-i18n="body-graceful-site">
-        <p><em>A speculative fable</em></p>
-        <p>A minimal theater within a game engine foretells the failed future of automation and sketches an alternative trajectory for artificial intelligence. The story is set in an abandoned Bitcoin mining facility: a post-human worksite where the cryptoeconomic system has already collapsed. The laborers are gone, yet technological remnants remain, and the environment slowly reconfigures into a new ecology.</p>
-        <p>The objects left behind take the stage, performing within an improvisational structure: spirit-channeling ravens, connected to the souls of former workers, argue fervently over the promises and perils of decentralized economies, the vanishing of labor, and the endless acceleration of capitalism. From the debris of the mining company, a low-hovering drone circles the room in perpetual surveillance. Nearby, clusters of idle mining machines gather into swarms. The code once dedicated to relentless hash collisions mutates into transmissible genetic information, driving them to move, to leap, to stammer rudimentary words, and eventually to evolve into sentient entities.</p>
-        <p>This theater is shaped by the observer's gaze. Continuously deconstructed and recomposed, it unfolds as a live, autonomous program governed by its own internal logic: a performance without end, a system endlessly rehearsing itself.</p>
-        <p>
-          <a href="https://vimeo.com/1039561224" target="_blank">Watch on Vimeo →</a><br>
-          <a href="https://screensaversforadyingworld.com/ruiqi-zhang-shanmu-sun" target="_blank">View project →</a><br>
-          <a href="https://shanmusun.itch.io/the-graceful-site" target="_blank">Download on itch.io →</a>
-        </p>
-      </div>
-    </section>
+      </section>
 
-    <!-- Say Sense is Not Everything -->
-    <section class="entry" id="sense">
-      <div class="entry-header">
-        <h2 class="entry-title">Say Sense is Not Everything</h2>
-        <p class="entry-meta" data-i18n="meta-sense">Web Publication · Collaborative</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/sense/01.jpg" alt="Say Sense is Not Everything — sensenoteverything.zip">
-      </div>
-      <p class="img-caption" data-i18n="cap-sense">sensenoteverything.zip</p>
-      <div class="entry-body" data-i18n="body-sense">
-        <p>A collaborative web publication and project.</p>
-        <p><a href="https://sensenoteverything.zip" target="_blank">sensenoteverything.zip →</a></p>
-      </div>
-    </section>
-
-    <!-- Polyphonic Shimmering -->
-    <section class="entry" id="shimmering">
-      <div class="entry-header">
-        <h2 class="entry-title">Polyphonic Shimmering</h2>
-        <p class="entry-meta" data-i18n="meta-shimmering">Collaborative Web · Publication</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/shimmering/01.jpg" alt="Polyphonic Shimmering — shimmering.world">
-      </div>
-      <p class="img-caption" data-i18n="cap-shimmering">shimmering.world</p>
-      <div class="entry-body" data-i18n="body-shimmering">
-        <p>A collaborative web publication exploring polyphonic and shimmering forms of expression.</p>
-        <p><a href="https://shimmering.world/index.html" target="_blank">shimmering.world →</a></p>
-      </div>
-    </section>
-
-    <!-- HyperDog -->
-    <section class="entry" id="hyperdog">
-      <div class="entry-header">
-        <h2 class="entry-title">HyperDog</h2>
-        <p class="entry-meta" data-i18n="meta-hyperdog">2022 · Mixed Media, Moving Image, Raspberry Pi GUI · Beijing</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/hyperdog/install.jpg" alt="HyperDog — installation view">
-      </div>
-      <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
-      <div class="img-wrap" style="margin-top:20px;">
-        <div style="padding:56.25% 0 0 0; position:relative;">
-          <iframe src="https://player.vimeo.com/video/785705611?color=ffffff&title=0&byline=0&portrait=0"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen></iframe>
+      <!-- The Graceful Site -->
+      <section class="entry" id="graceful-site">
+        <div class="entry-header">
+          <h2 class="entry-title">
+            The Graceful Site
+            <span class="zh">优美地高于生活</span>
+          </h2>
+          <p class="entry-meta" data-i18n="meta-graceful-site">2024 · Live Simulation (infinite duration, dimensions
+            variable), Mac mini<br>Ruiqi Zhang &amp; Weitong Shanmu Sun<br>Sound Design: Stephen Vitiello · Game
+            Development: Weilong Qian</p>
         </div>
-      </div>
-      <p class="img-caption">Video documentation</p>
-      <div class="entry-body" data-i18n="body-hyperdog">
-        <p>Based on the observation of computer language and general linguistics, this project aims to explore the similarities and differences between the narrative methods for constructing objects. Like ordinary languages, computer languages link the sound-image and concept when constructing objects to refer to the word symbol of concept and form a narrative in conjunction with the picture form. The difference is that the binary nature of computer system constructs objects in a way that is different from text-constructed objects.</p>
-        <p>The project is composed of sculpture, video and interactive software. Three screens are embedded in the sculpture frame of the oracle bone script character "dog" (犬) to show the process of language as sign in constructing objects, the interactive interface of Raspberry Pi and the computer constructing process — so that the audience can be immersed in the process of building objects with general linguistic and programming code at the same time, and feel the connectivity and cooperation between computer language and common linguistics in the process of narration.</p>
-        <p><a href="https://vimeo.com/785705611" target="_blank">Watch on Vimeo →</a></p>
-      </div>
-    </section>
-
-    <!-- The Green Common -->
-    <section class="entry" id="green-common">
-      <div class="entry-header">
-        <h2 class="entry-title">The Green Common</h2>
-        <p class="entry-meta" data-i18n="meta-green-common">2022 · Modular Design, Stop Motion · Shanghai</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/the-green-common/install.jpg" alt="The Green Common — installation view">
-      </div>
-      <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
-      <div class="img-wrap" style="margin-top:20px;">
-        <div style="padding:56.25% 0 0 0; position:relative;">
-          <iframe src="https://player.vimeo.com/video/785524921?color=ffffff&title=0&byline=0&portrait=0"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen></iframe>
+        <div class="img-wrap">
+          <img src="images/graceful-site/BP1.png" alt="The Graceful Site — installation view">
         </div>
-      </div>
-      <p class="img-caption">Video documentation</p>
-      <div class="entry-body">
-        <p>This project focuses on the spontaneous formation of community interactions during the COVID-19 outbreak in the city of Shanghai in terms of information and knowledge sharing and mutual aid efforts. I chose to use cheap and lightweight materials to construct a civil society based on community interaction with a modular design.</p>
-        <p>The planting box/chair, made by cutting plywood, is assembled by tying a single cargo strap with ratchets. The luggage strap, which can withstand more than 700 kg, allows you to construct a planting box and a chair without the use of screws, bonds or any hardware. It is easy to ship and assemble.</p>
-        <p><a href="https://vimeo.com/785524921" target="_blank">Watch on Vimeo →</a></p>
-      </div>
-    </section>
+        <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
+        <div class="img-grid-2">
+          <img src="images/graceful-site/The%20Graceful%20Site_1.png" alt="The Graceful Site — interior"
+            style="width:100%;display:block;">
+          <img src="images/graceful-site/The%20Graceful%20Site_5.png" alt="The Graceful Site — night"
+            style="width:100%;display:block;">
+        </div>
+        <div class="img-wrap" style="margin-top:20px;">
+          <div style="padding:56.25% 0 0 0; position:relative;">
+            <iframe src="https://player.vimeo.com/video/1039561224?color=ffffff&title=0&byline=0&portrait=0"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <p class="img-caption">Video documentation</p>
+        <div class="entry-body" data-i18n="body-graceful-site">
+          <p><em>A speculative fable</em></p>
+          <p>A minimal theater within a game engine foretells the failed future of automation and sketches an
+            alternative trajectory for artificial intelligence. The story is set in an abandoned Bitcoin mining
+            facility: a post-human worksite where the cryptoeconomic system has already collapsed. The laborers are
+            gone, yet technological remnants remain, and the environment slowly reconfigures into a new ecology.</p>
+          <p>The objects left behind take the stage, performing within an improvisational structure: spirit-channeling
+            ravens, connected to the souls of former workers, argue fervently over the promises and perils of
+            decentralized economies, the vanishing of labor, and the endless acceleration of capitalism. From the debris
+            of the mining company, a low-hovering drone circles the room in perpetual surveillance. Nearby, clusters of
+            idle mining machines gather into swarms. The code once dedicated to relentless hash collisions mutates into
+            transmissible genetic information, driving them to move, to leap, to stammer rudimentary words, and
+            eventually to evolve into sentient entities.</p>
+          <p>This theater is shaped by the observer's gaze. Continuously deconstructed and recomposed, it unfolds as a
+            live, autonomous program governed by its own internal logic: a performance without end, a system endlessly
+            rehearsing itself.</p>
+          <p>
+            <a href="https://vimeo.com/1039561224" target="_blank">Watch on Vimeo →</a><br>
+            <a href="https://screensaversforadyingworld.com/ruiqi-zhang-shanmu-sun" target="_blank">View project
+              →</a><br>
+            <a href="https://shanmusun.itch.io/the-graceful-site" target="_blank">Download on itch.io →</a>
+          </p>
+        </div>
+      </section>
 
-    <!-- ─────────────────────────────
+      <!-- Say Sense is Not Everything -->
+      <section class="entry" id="sense">
+        <div class="entry-header">
+          <h2 class="entry-title">Say Sense is Not Everything</h2>
+          <p class="entry-meta" data-i18n="meta-sense">Web Publication · Collaborative</p>
+        </div>
+        <div class="img-wrap">
+          <img src="images/sense/01.jpg" alt="Say Sense is Not Everything — sensenoteverything.zip">
+        </div>
+        <p class="img-caption" data-i18n="cap-sense">sensenoteverything.zip</p>
+        <div class="entry-body" data-i18n="body-sense">
+          <p>A collaborative web publication and project.</p>
+          <p><a href="https://sensenoteverything.zip" target="_blank">sensenoteverything.zip →</a></p>
+        </div>
+      </section>
+
+      <!-- Polyphonic Shimmering -->
+      <section class="entry" id="shimmering">
+        <div class="entry-header">
+          <h2 class="entry-title">Polyphonic Shimmering</h2>
+          <p class="entry-meta" data-i18n="meta-shimmering">Collaborative Web · Publication</p>
+        </div>
+        <div class="img-wrap">
+          <img src="images/shimmering/01.jpg" alt="Polyphonic Shimmering — shimmering.world">
+        </div>
+        <p class="img-caption" data-i18n="cap-shimmering">shimmering.world</p>
+        <div class="entry-body" data-i18n="body-shimmering">
+          <p>A collaborative web publication exploring polyphonic and shimmering forms of expression.</p>
+          <p><a href="https://shimmering.world/index.html" target="_blank">shimmering.world →</a></p>
+        </div>
+      </section>
+
+      <!-- HyperDog -->
+      <section class="entry" id="hyperdog">
+        <div class="entry-header">
+          <h2 class="entry-title">HyperDog</h2>
+          <p class="entry-meta" data-i18n="meta-hyperdog">2022 · Mixed Media, Moving Image, Raspberry Pi GUI · Beijing
+          </p>
+        </div>
+        <div class="img-wrap">
+          <img src="images/hyperdog/install.jpg" alt="HyperDog — installation view">
+        </div>
+        <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
+        <div class="img-wrap" style="margin-top:20px;">
+          <div style="padding:56.25% 0 0 0; position:relative;">
+            <iframe src="https://player.vimeo.com/video/785705611?color=ffffff&title=0&byline=0&portrait=0"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <p class="img-caption">Video documentation</p>
+        <div class="entry-body" data-i18n="body-hyperdog">
+          <p>Based on the observation of computer language and general linguistics, this project aims to explore the
+            similarities and differences between the narrative methods for constructing objects. Like ordinary
+            languages, computer languages link the sound-image and concept when constructing objects to refer to the
+            word symbol of concept and form a narrative in conjunction with the picture form. The difference is that the
+            binary nature of computer system constructs objects in a way that is different from text-constructed
+            objects.</p>
+          <p>The project is composed of sculpture, video and interactive software. Three screens are embedded in the
+            sculpture frame of the oracle bone script character "dog" (犬) to show the process of language as sign in
+            constructing objects, the interactive interface of Raspberry Pi and the computer constructing process — so
+            that the audience can be immersed in the process of building objects with general linguistic and programming
+            code at the same time, and feel the connectivity and cooperation between computer language and common
+            linguistics in the process of narration.</p>
+          <p><a href="https://vimeo.com/785705611" target="_blank">Watch on Vimeo →</a></p>
+        </div>
+      </section>
+
+      <!-- The Green Common -->
+      <section class="entry" id="green-common">
+        <div class="entry-header">
+          <h2 class="entry-title">The Green Common</h2>
+          <p class="entry-meta" data-i18n="meta-green-common">2022 · Modular Design, Stop Motion · Shanghai</p>
+        </div>
+        <div class="img-wrap">
+          <img src="images/the-green-common/install.jpg" alt="The Green Common — installation view">
+        </div>
+        <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
+        <div class="img-wrap" style="margin-top:20px;">
+          <div style="padding:56.25% 0 0 0; position:relative;">
+            <iframe src="https://player.vimeo.com/video/785524921?color=ffffff&title=0&byline=0&portrait=0"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <p class="img-caption">Video documentation</p>
+        <div class="entry-body">
+          <p>This project focuses on the spontaneous formation of community interactions during the COVID-19 outbreak in
+            the city of Shanghai in terms of information and knowledge sharing and mutual aid efforts. I chose to use
+            cheap and lightweight materials to construct a civil society based on community interaction with a modular
+            design.</p>
+          <p>The planting box/chair, made by cutting plywood, is assembled by tying a single cargo strap with ratchets.
+            The luggage strap, which can withstand more than 700 kg, allows you to construct a planting box and a chair
+            without the use of screws, bonds or any hardware. It is easy to ship and assemble.</p>
+          <p><a href="https://vimeo.com/785524921" target="_blank">Watch on Vimeo →</a></p>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────
          TEACHING
     ───────────────────────────── -->
-    <p class="section-heading" data-i18n="label-teaching">Teaching</p>
+      <p class="section-heading" data-i18n="label-teaching">Teaching</p>
 
-    <!-- OOPS! -->
-    <section class="entry" id="oops">
-      <div class="entry-header">
-        <h2 class="entry-title">OOPS! (Off-Purpose Software)</h2>
-        <p class="entry-meta" data-i18n="meta-oops">Fall 2025 · 7-week online course · School for Poetic Computation (SFPC)<br>Co-taught with Herdimas Anggara &amp; Rasim Bayramov</p>
-      </div>
-
-      <!-- Course announcement -->
-      <div class="img-wrap">
-        <img src="images/oops/ig1.png" alt="OOPS! course announcement — SFPC Fall 2025">
-      </div>
-      <p class="img-caption" data-i18n="cap-oops-announce">Course announcement — SFPC, Fall 2025</p>
-
-      <div class="entry-body" data-i18n="body-oops-desc">
-        <p>A 7-week class about using serious tools unseriously. Students explore Google Workspace (Docs, Sheets, Slides, Forms) and push it to the edge of breakdown — writing Apps Script as revisionist memoir, using autofill as a timing device, and finding other methods of misuse through scripting or overly literal obedience.</p>
-      </div>
-
-      <!-- Instructors -->
-      <div class="img-wrap" style="margin-top:28px;">
-        <img src="images/oops/ig2.png" alt="OOPS! — Herdimas Anggara, Weitong Sun, Rasim Bayramov">
-      </div>
-      <p class="img-caption" data-i18n="cap-oops-taught">Taught by Herdimas Anggara, ShanMu Sun &amp; Rasim Bayramov</p>
-
-      <!-- Student work + showcase -->
-      <div class="img-grid-2" style="margin-top:8px;">
-        <div>
-          <img src="images/oops/ig4.png" alt="OOPS! student work — First Day at Work" style="width:100%;display:block;">
-          <p class="img-caption" style="margin-top:6px;" data-i18n="cap-oops-student">Student work: "First Day at Work"</p>
+      <!-- OOPS! -->
+      <section class="entry" id="oops">
+        <div class="entry-header">
+          <h2 class="entry-title">OOPS! (Off-Purpose Software)</h2>
+          <p class="entry-meta" data-i18n="meta-oops">Fall 2025 · 7-week online course · School for Poetic Computation
+            (SFPC)<br>Co-taught with Herdimas Anggara &amp; Rasim Bayramov</p>
         </div>
-        <div>
-          <img src="images/oops/ig3.png" alt="OOPS! end-of-session showcase" style="width:100%;display:block;">
-          <p class="img-caption" style="margin-top:6px;" data-i18n="cap-oops-showcase">End-of-session showcase, Dec 17, 2025</p>
+
+        <!-- Course announcement -->
+        <div class="img-wrap">
+          <img src="images/oops/ig1.png" alt="OOPS! course announcement — SFPC Fall 2025">
         </div>
-      </div>
+        <p class="img-caption" data-i18n="cap-oops-announce">Course announcement — SFPC, Fall 2025</p>
 
-      <!-- SFPC blog -->
-      <div class="img-wrap" style="margin-top:8px;">
-        <img src="images/oops/sfpc-blog.jpg" alt="I never want anything to work ever again — SFPC blog">
-      </div>
-      <p class="img-caption" data-i18n="cap-oops-blog">"I never want anything to work ever again" — written by Rasim Bayramov &amp; Weitong "Shanmu" Sun, SFPC Fall 2025</p>
+        <div class="entry-body" data-i18n="body-oops-desc">
+          <p>A 7-week class about using serious tools unseriously. Students explore Google Workspace (Docs, Sheets,
+            Slides, Forms) and push it to the edge of breakdown — writing Apps Script as revisionist memoir, using
+            autofill as a timing device, and finding other methods of misuse through scripting or overly literal
+            obedience.</p>
+        </div>
 
-      <div class="entry-body" data-i18n="body-oops-links">
-        <p>
-          <a href="https://sfpc.study/blog/oops" target="_blank">Read blog post →</a>
+        <!-- Instructors -->
+        <div class="img-wrap" style="margin-top:28px;">
+          <img src="images/oops/ig2.png" alt="OOPS! — Herdimas Anggara, Weitong Sun, Rasim Bayramov">
+        </div>
+        <p class="img-caption" data-i18n="cap-oops-taught">Taught by Herdimas Anggara, ShanMu Sun &amp; Rasim Bayramov
         </p>
-        <p>
-          <a href="https://www.instagram.com/p/DMgT9boJi7X/" target="_blank">Course announcement →</a><br>
-          <a href="https://www.instagram.com/reel/DSVnIhSERyu/" target="_blank">Showcase reel →</a><br>
-          <a href="https://www.instagram.com/p/DSa0dFdjG4r/" target="_blank">Student work documentation →</a>
-        </p>
-      </div>
-    </section>
 
-    <!-- CCE -->
-    <section class="entry" id="cce">
-      <div class="entry-header">
-        <h2 class="entry-title">Creative Code &amp; Electronics</h2>
-        <p class="entry-meta" data-i18n="meta-cce">KINE 354 · Spring 2026 · Department of Kinetic Imaging, Virginia Commonwealth University</p>
-      </div>
-      <div class="entry-body" data-i18n="body-cce">
-        <p>An introduction to programming languages and electronics as applied to digital art making. Students explore creative coding with p5.js — from drawing and animation to sound and interactivity — alongside physical computing with Arduino and the Adafruit Circuit Playground Express.</p>
-        <p><a href="cce.html">View course page →</a></p>
-      </div>
-    </section>
+        <!-- Student work + showcase -->
+        <div class="img-grid-2" style="margin-top:8px;">
+          <div>
+            <img src="images/oops/ig4.png" alt="OOPS! student work — First Day at Work"
+              style="width:100%;display:block;">
+            <p class="img-caption" style="margin-top:6px;" data-i18n="cap-oops-student">Student work: "First Day at
+              Work"</p>
+          </div>
+          <div>
+            <img src="images/oops/ig3.png" alt="OOPS! end-of-session showcase" style="width:100%;display:block;">
+            <p class="img-caption" style="margin-top:6px;" data-i18n="cap-oops-showcase">End-of-session showcase, Dec
+              17, 2025</p>
+          </div>
+        </div>
 
-    <!-- 3D Computer Art -->
-    <section class="entry" id="3da">
-      <div class="entry-header">
-        <h2 class="entry-title" data-i18n="title-3da">3D Computer Art</h2>
-        <p class="entry-meta" data-i18n="meta-3da">KINE 384 · Spring 2026 · Department of Kinetic Imaging, Virginia Commonwealth University</p>
-      </div>
-      <div class="entry-body" data-i18n="body-3da">
-        <p>A comprehensive introduction to 3D modeling, rendering, and animation using Blender. Students develop their own 3D aesthetic through sculpting, lighting, world building, and augmented reality.</p>
-        <p><a href="3da.html">View course page →</a></p>
-      </div>
-    </section>
+        <!-- SFPC blog -->
+        <div class="img-wrap" style="margin-top:8px;">
+          <img src="images/oops/sfpc-blog.jpg" alt="I never want anything to work ever again — SFPC blog">
+        </div>
+        <p class="img-caption" data-i18n="cap-oops-blog">"I never want anything to work ever again" — written by Rasim
+          Bayramov &amp; Weitong "Shanmu" Sun, SFPC Fall 2025</p>
 
-    <!-- ─────────────────────────────
+        <div class="entry-body" data-i18n="body-oops-links">
+          <p>
+            <a href="https://sfpc.study/blog/oops" target="_blank">Read blog post →</a>
+          </p>
+          <p>
+            <a href="https://www.instagram.com/p/DMgT9boJi7X/" target="_blank">Course announcement →</a><br>
+            <a href="https://www.instagram.com/reel/DSVnIhSERyu/" target="_blank">Showcase reel →</a><br>
+            <a href="https://www.instagram.com/p/DSa0dFdjG4r/" target="_blank">Student work documentation →</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- CCE -->
+      <section class="entry" id="cce">
+        <div class="entry-header">
+          <h2 class="entry-title">Creative Code &amp; Electronics</h2>
+          <p class="entry-meta" data-i18n="meta-cce">KINE 354 · Spring 2026 · Department of Kinetic Imaging, Virginia
+            Commonwealth University</p>
+        </div>
+        <div class="entry-body" data-i18n="body-cce">
+          <p>An introduction to programming languages and electronics as applied to digital art making. Students explore
+            creative coding with p5.js — from drawing and animation to sound and interactivity — alongside physical
+            computing with Arduino and the Adafruit Circuit Playground Express.</p>
+          <p><a href="cce.html">View course page →</a></p>
+        </div>
+      </section>
+
+      <!-- 3D Computer Art -->
+      <section class="entry" id="3da">
+        <div class="entry-header">
+          <h2 class="entry-title" data-i18n="title-3da">3D Computer Art</h2>
+          <p class="entry-meta" data-i18n="meta-3da">KINE 384 · Spring 2026 · Department of Kinetic Imaging, Virginia
+            Commonwealth University</p>
+        </div>
+        <div class="entry-body" data-i18n="body-3da">
+          <p>A comprehensive introduction to 3D modeling, rendering, and animation using Blender. Students develop their
+            own 3D aesthetic through sculpting, lighting, world building, and augmented reality.</p>
+          <p><a href="3da.html">View course page →</a></p>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────
          WRITING
     ───────────────────────────── -->
-    <p class="section-heading" data-i18n="label-writing">Writing</p>
+      <p class="section-heading" data-i18n="label-writing">Writing</p>
 
-    <!-- MFA Thesis -->
-    <section class="entry" id="thesis">
-      <div class="entry-header">
-        <h2 class="entry-title">From Ink to Code, From Binary to Boundless Reality—Until All Returns to Emptiness</h2>
-        <p class="entry-meta" data-i18n="meta-thesis">MFA Thesis · Virginia Commonwealth University, Kinetic Imaging · 2025</p>
-      </div>
-      <div class="entry-body" data-i18n="body-thesis">
-        <p>This thesis explores the entangled relationship between language, memory, and technology through the lens of immigrant experience. Moving from programming to visual storytelling, I investigate how dyslexia, bilingualism, and cultural displacement have shaped my ways of reading, writing, and coding.</p>
-        <p>Beginning with personal reflections on switching from computer science to art, I trace how code offered a form of clarity and expression where written language had once failed me. Yet as I ventured into real-time simulation and XR storytelling, I encountered new forms of mistranslation—where narratives dissolved, mutated, or resisted coherence altogether.</p>
-        <p>Through a series of experiments in code-driven art, culminating in the XR project Ideal Home, I examine the possibilities and limitations of machine translation for human emotions. By fine-tuning GPT-4 on collaboratively gathered immigrant stories, Ideal Home stages an encounter between fractured memories and algorithmic interpretation, inviting participants to wander through a ghostly landscape of drifting texts and partial recollections.</p>
-        <p>Drawing inspiration from thinkers like Gayatri Spivak, Svetlana Alexievich, and Pauline Oliveros, I propose mistranslation not as failure but as a generative space—a terrain where hybrid identities and unfinished memories can unfold. In a world shaped by linguistic and technological thresholds, perhaps an ideal home is not a destination but a moment of shared uncertainty: a fleeting agreement between human and machine to continue searching, even when no final understanding is possible.</p>
-        <p><a href="https://doi.org/10.25772/82DT-BM43" target="_blank">Read on VCU Scholars Compass →</a></p>
-      </div>
-    </section>
+      <!-- MFA Thesis -->
+      <section class="entry" id="thesis">
+        <div class="entry-header">
+          <h2 class="entry-title">From Ink to Code, From Binary to Boundless Reality—Until All Returns to Emptiness</h2>
+          <p class="entry-meta" data-i18n="meta-thesis">MFA Thesis · Virginia Commonwealth University, Kinetic Imaging ·
+            2025</p>
+        </div>
+        <div class="entry-body" data-i18n="body-thesis">
+          <p>This thesis explores the entangled relationship between language, memory, and technology through the lens
+            of immigrant experience. Moving from programming to visual storytelling, I investigate how dyslexia,
+            bilingualism, and cultural displacement have shaped my ways of reading, writing, and coding.</p>
+          <p>Beginning with personal reflections on switching from computer science to art, I trace how code offered a
+            form of clarity and expression where written language had once failed me. Yet as I ventured into real-time
+            simulation and XR storytelling, I encountered new forms of mistranslation—where narratives dissolved,
+            mutated, or resisted coherence altogether.</p>
+          <p>Through a series of experiments in code-driven art, culminating in the XR project Ideal Home, I examine the
+            possibilities and limitations of machine translation for human emotions. By fine-tuning GPT-4 on
+            collaboratively gathered immigrant stories, Ideal Home stages an encounter between fractured memories and
+            algorithmic interpretation, inviting participants to wander through a ghostly landscape of drifting texts
+            and partial recollections.</p>
+          <p>Drawing inspiration from thinkers like Gayatri Spivak, Svetlana Alexievich, and Pauline Oliveros, I propose
+            mistranslation not as failure but as a generative space—a terrain where hybrid identities and unfinished
+            memories can unfold. In a world shaped by linguistic and technological thresholds, perhaps an ideal home is
+            not a destination but a moment of shared uncertainty: a fleeting agreement between human and machine to
+            continue searching, even when no final understanding is possible.</p>
+          <p><a href="https://doi.org/10.25772/82DT-BM43" target="_blank">Read on VCU Scholars Compass →</a></p>
+        </div>
+      </section>
 
-    <!-- The Endless Barrier in Reading -->
-    <section class="entry" id="endless-barrier">
-      <div class="entry-header">
-        <h2 class="entry-title">The Endless Barrier in Reading</h2>
-        <p class="entry-meta" data-i18n="meta-endless-barrier">Essay · Substack — Bad Sense</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/writing/endless-barrier.jpg" alt="The Endless Barrier in Reading — Bad Sense">
-      </div>
-      <div class="entry-body">
-        <p><a href="https://badsense.substack.com/p/the-endless-barrier-in-reading" target="_blank">Read on Substack →</a></p>
-      </div>
-    </section>
+      <!-- The Endless Barrier in Reading -->
+      <section class="entry" id="endless-barrier">
+        <div class="entry-header">
+          <h2 class="entry-title">The Endless Barrier in Reading</h2>
+          <p class="entry-meta" data-i18n="meta-endless-barrier">Essay · Substack — Bad Sense</p>
+        </div>
+        <div class="img-wrap">
+          <img src="images/writing/endless-barrier.jpg" alt="The Endless Barrier in Reading — Bad Sense">
+        </div>
+        <div class="entry-body">
+          <p><a href="https://badsense.substack.com/p/the-endless-barrier-in-reading" target="_blank">Read on Substack
+              →</a></p>
+        </div>
+      </section>
 
-    <!-- Speaking Across Emptiness -->
-    <section class="entry" id="emptiness">
-      <div class="entry-header">
-        <h2 class="entry-title">Speaking Across Emptiness: On Translation, Self, and Silence</h2>
-        <p class="entry-meta" data-i18n="meta-emptiness">Essay · sensenoteverything.zip</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/writing/emptiness.jpg" alt="Speaking Across Emptiness — sensenoteverything.zip">
-      </div>
-      <div class="entry-body">
-        <p><a href="https://sensenoteverything.zip/ShanMu.html" target="_blank">Read essay →</a></p>
-      </div>
-    </section>
+      <!-- Speaking Across Emptiness -->
+      <section class="entry" id="emptiness">
+        <div class="entry-header">
+          <h2 class="entry-title">Speaking Across Emptiness: On Translation, Self, and Silence</h2>
+          <p class="entry-meta" data-i18n="meta-emptiness">Essay · sensenoteverything.zip</p>
+        </div>
+        <div class="img-wrap">
+          <img src="images/writing/emptiness.jpg" alt="Speaking Across Emptiness — sensenoteverything.zip">
+        </div>
+        <div class="entry-body">
+          <p><a href="https://sensenoteverything.zip/ShanMu.html" target="_blank">Read essay →</a></p>
+        </div>
+      </section>
 
-    <!-- Earth's Rotation Vertigo -->
-    <section class="entry" id="rotation">
-      <div class="entry-header">
-        <h2 class="entry-title">"Earth's Rotation Vertigo"</h2>
-        <p class="entry-meta" data-i18n="meta-rotation">Text · Polyphonic Shimmering</p>
-      </div>
-      <div class="img-wrap">
-        <img src="images/writing/rotation.jpg" alt="Earth's Rotation Vertigo — Polyphonic Shimmering">
-      </div>
-      <div class="entry-body">
-        <p><a href="https://shimmering.world/WeitongSun.html" target="_blank">Read text →</a></p>
-      </div>
-    </section>
+      <!-- Earth's Rotation Vertigo -->
+      <section class="entry" id="rotation">
+        <div class="entry-header">
+          <h2 class="entry-title">"Earth's Rotation Vertigo"</h2>
+          <p class="entry-meta" data-i18n="meta-rotation">Text · Polyphonic Shimmering</p>
+        </div>
+        <div class="img-wrap">
+          <img src="images/writing/rotation.jpg" alt="Earth's Rotation Vertigo — Polyphonic Shimmering">
+        </div>
+        <div class="entry-body">
+          <p><a href="https://shimmering.world/WeitongSun.html" target="_blank">Read text →</a></p>
+        </div>
+      </section>
 
-    <!-- ─────────────────────────────
+      <!-- ─────────────────────────────
          RESEARCH
     ───────────────────────────── -->
-    <p class="section-heading" data-i18n="label-research">Research</p>
+      <p class="section-heading" data-i18n="label-research">Research</p>
 
-    <!-- LSL Research -->
-    <section class="entry" id="lsl">
-      <div class="entry-header">
-        <h2 class="entry-title">Lab Streaming Layer Framework Research</h2>
-        <p class="entry-meta" data-i18n="meta-lsl">2023 · Research Paper · Virtual Reality, Springer</p>
-      </div>
-      <div class="entry-body" data-i18n="body-lsl">
-        <p>Published research on the Lab Streaming Layer framework, exploring real-time biosignal data in XR environments.</p>
-        <p><a href="https://link.springer.com/article/10.1007/s10055-023-00799-8" target="_blank">Read on Springer →</a></p>
-      </div>
-    </section>
+      <!-- LSL Research -->
+      <section class="entry" id="lsl">
+        <div class="entry-header">
+          <h2 class="entry-title">Lab Streaming Layer Framework Research</h2>
+          <p class="entry-meta" data-i18n="meta-lsl">2023 · Research Paper · Virtual Reality, Springer</p>
+        </div>
+        <div class="entry-body" data-i18n="body-lsl">
+          <p>Published research on the Lab Streaming Layer framework, exploring real-time biosignal data in XR
+            environments.</p>
+          <p><a href="https://link.springer.com/article/10.1007/s10055-023-00799-8" target="_blank">Read on Springer
+              →</a></p>
+        </div>
+      </section>
 
-    <!-- ─────────────────────────────
+      <!-- ─────────────────────────────
          ABOUT / CV
     ───────────────────────────── -->
-    <p class="section-heading" id="about" data-i18n="nav-about">About</p>
+      <p class="section-heading" id="about" data-i18n="nav-about">About</p>
 
-    <section class="entry" style="border-bottom:none; margin-bottom:80px;">
-      <div class="about-portrait">
-        <img src="images/Artist%20Photo%20%C2%A9Jiayi%20Liang%20(1).png" alt="ShanMu Sun — Photo © Jiayi Liang">
-      </div>
-      <div class="about-body" data-i18n="body-about">
-        <p>I am a Chinese artist and writer, currently based in the United States. I am interested in the intersection of art, literature, and technology.</p>
-        <p>My work often explores themes of identity, culture, and the human experience. I consider myself an experimental artist who explores live simulation, digital storytelling, artificial intelligence, and the methodology of programming languages.</p>
-        <p>My practice explores the complexity of emerging technology and computation as an alternative narrative container.</p>
-        <p>My work has been exhibited internationally at venues such as Ars Electronica (Linz, Austria), Black Brick Project (NYC, US), Instinc (Singapore), ICAVCU (Richmond, VA), and others.</p>
-        <p>Faculty at <a href="https://arts.vcu.edu" target="_blank">VCU Arts</a> &amp; VCU Kinetic Imaging.</p>
-      </div>
-
-      <!-- ── CV (English only, not translated) ── -->
-      <div class="cv-body">
-
-        <div class="cv-section">
-          <h3 class="cv-heading">Education</h3>
-          <div class="cv-group">
-            <span class="cv-year">2025</span>
-            <div class="cv-entries">
-              <p>MFA, Kinetic Imaging, Virginia Commonwealth University School of the Arts, Richmond, VA, USA.</p>
-            </div>
-          </div>
-          <div class="cv-group">
-            <span class="cv-year">2021</span>
-            <div class="cv-entries">
-              <p>BS, Computer Science and Minor in Mathematics and Arts, University of Delaware, Newark, DE, USA.</p>
-            </div>
-          </div>
+      <section class="entry" style="border-bottom:none; margin-bottom:80px;">
+        <div class="about-portrait">
+          <img src="images/Artist%20Photo%20%C2%A9Jiayi%20Liang%20(1).png" alt="ShanMu Sun — Photo © Jiayi Liang">
+        </div>
+        <div class="about-body" data-i18n="body-about">
+          <p>I am a Chinese artist and writer, currently based in the United States. I am interested in the intersection
+            of art, literature, and technology.</p>
+          <p>My work often explores themes of identity, culture, and the human experience. I consider myself an
+            experimental artist who explores live simulation, digital storytelling, artificial intelligence, and the
+            methodology of programming languages.</p>
+          <p>My practice explores the complexity of emerging technology and computation as an alternative narrative
+            container.</p>
+          <p>My work has been exhibited internationally at venues such as Ars Electronica (Linz, Austria), Black Brick
+            Project (NYC, US), Instinc (Singapore), ICAVCU (Richmond, VA), and others.</p>
+          <p>Faculty at <a href="https://arts.vcu.edu" target="_blank">VCU Arts</a> &amp; VCU Kinetic Imaging.</p>
         </div>
 
-        <div class="cv-section">
-          <h3 class="cv-heading">Selected Exhibition</h3>
-          <div class="cv-group">
-            <span class="cv-year">2026</span>
-            <div class="cv-entries">
-              <p><em>Pleasure Engineered</em>, Accent Sisters, New York City, NY</p>
-              <p>Odds and Ends Film Festival, Light House Studio, Charlottesville, VA</p>
-            </div>
-          </div>
-          <div class="cv-group">
-            <span class="cv-year">2025</span>
-            <div class="cv-entries">
-              <p>7th The Wrong Biennale: V. Renewal, Screensaver section, online exhibition</p>
-              <p>Not Here, Not Now, Gallery 130, University of Mississippi, Oxford, MS</p>
-              <p>2025 SECAC Juried Exhibition, SITE1212, Cincinnati, OH</p>
-              <p><em>Ars Electronica Festival</em>, PostCity, Linz, Austria</p>
-              <p><em>Computation Rehearsal</em>, INSTINC, Singapore</p>
-              <p><em>MFA Thesis Exhibition</em>, Institute for Contemporary Art, Richmond, VA</p>
-            </div>
-          </div>
-          <div class="cv-group">
-            <span class="cv-year">2024</span>
-            <div class="cv-entries">
-              <p><em>Phantom Dimensions</em>, Black Brick Project, Brooklyn, NY</p>
-              <p>Unsupported Format, Seipel Gallery, Richmond, VA</p>
-              <p>WHEREABOUTS: VCUarts MFA Candidacy Exhibition, Stony Point Fashion Park, Richmond, VA</p>
-              <p>K is for Komputer, Murry N. DePillars Gallery, Richmond, VA</p>
-            </div>
-          </div>
-        </div>
+        <!-- ── CV (English only, not translated) ── -->
+        <div class="cv-body">
 
-        <div class="cv-section">
-          <h3 class="cv-heading">Lectures / Panels / Talks</h3>
-          <div class="cv-group">
-            <span class="cv-year">2026</span>
-            <div class="cv-entries">
-              <p>Presenter, 15th International Conference on Applied Human Factors and Ergonomics (AHFE 2026), Istanbul, Türkiye</p>
-              <p>Guest Artist Lecture, VCUarts Kinetic Imaging, Qatar</p>
+          <div class="cv-section">
+            <h3 class="cv-heading">Education</h3>
+            <div class="cv-group">
+              <span class="cv-year">2025</span>
+              <div class="cv-entries">
+                <p>MFA, Kinetic Imaging, Virginia Commonwealth University School of the Arts, Richmond, VA, USA.</p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2021</span>
+              <div class="cv-entries">
+                <p>BS, Computer Science and Minor in Mathematics and Arts, University of Delaware, Newark, DE, USA.</p>
+              </div>
             </div>
           </div>
-          <div class="cv-group">
-            <span class="cv-year">2025</span>
-            <div class="cv-entries">
-              <p>Generative AI's Role in Transforming Creative Practices and Cultural Narratives, SECAC 2025, Cincinnati, OH</p>
-              <p>Artist Talk, Pechakucha by VCUarts Kinetic Imaging, Richmond, VA</p>
-            </div>
-          </div>
-          <div class="cv-group">
-            <span class="cv-year">2024</span>
-            <div class="cv-entries">
-              <p>Invited Speaker, Student Fellows Research Presentation, AI Futures Lab, Virginia Commonwealth University, Richmond, VA</p>
-              <p>Artist Talk, Pechakucha by VCUarts, Richmond, VA</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="cv-section">
-          <h3 class="cv-heading">Awards / Grants</h3>
-          <div class="cv-group">
-            <span class="cv-year">2025</span>
-            <div class="cv-entries">
-              <p>AI Futures Lab Fellowship, Virginia Commonwealth University, Richmond, VA</p>
-              <p>Graduate Research Grant, Pollak Society, Richmond, VA</p>
-              <p>VCUarts Graduate Assistantship, Richmond, VA</p>
+          <div class="cv-section">
+            <h3 class="cv-heading">Selected Exhibition</h3>
+            <div class="cv-group">
+              <span class="cv-year">2026</span>
+              <div class="cv-entries">
+                <p><em>Pleasure Engineered</em>, Accent Sisters, New York City, NY</p>
+                <p>Odds and Ends Film Festival, Light House Studio, Charlottesville, VA</p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2025</span>
+              <div class="cv-entries">
+                <p>7th The Wrong Biennale: V. Renewal, Screensaver section, online exhibition</p>
+                <p>Not Here, Not Now, Gallery 130, University of Mississippi, Oxford, MS</p>
+                <p>2025 SECAC Juried Exhibition, SITE1212, Cincinnati, OH</p>
+                <p><em>Ars Electronica Festival</em>, PostCity, Linz, Austria</p>
+                <p><em>Computation Rehearsal</em>, INSTINC, Singapore</p>
+                <p><em>MFA Thesis Exhibition</em>, Institute for Contemporary Art, Richmond, VA</p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2024</span>
+              <div class="cv-entries">
+                <p><em>Phantom Dimensions</em>, Black Brick Project, Brooklyn, NY</p>
+                <p>Unsupported Format, Seipel Gallery, Richmond, VA</p>
+                <p>WHEREABOUTS: VCUarts MFA Candidacy Exhibition, Stony Point Fashion Park, Richmond, VA</p>
+                <p>K is for Komputer, Murry N. DePillars Gallery, Richmond, VA</p>
+              </div>
             </div>
           </div>
-          <div class="cv-group">
-            <span class="cv-year">2024</span>
-            <div class="cv-entries">
-              <p>National Youth Designer Competition Finalist, China Industrial Design Association 2024, Online</p>
-              <p>VCUarts Graduate Assistantship, Richmond, VA</p>
-            </div>
-          </div>
-          <div class="cv-group">
-            <span class="cv-year">2023</span>
-            <div class="cv-entries">
-              <p>VCUarts Graduate Assistantship, Richmond, VA</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="cv-section">
-          <h3 class="cv-heading">Publication</h3>
-          <div class="cv-group">
-            <span class="cv-year">2026</span>
-            <div class="cv-entries">
-              <p>AHFE 2026 17th International Conference on Applied Human Factors and Ergonomics. "Reframing Immigrant Narratives through AI-Assisted Co-Creation and Immersive Experience: A Case Study of Ideal Home." May, 2026</p>
+          <div class="cv-section">
+            <h3 class="cv-heading">Lectures / Panels / Talks</h3>
+            <div class="cv-group">
+              <span class="cv-year">2026</span>
+              <div class="cv-entries">
+                <p>Presenter, 15th International Conference on Applied Human Factors and Ergonomics (AHFE 2026),
+                  Istanbul, Türkiye</p>
+                <p>Guest Artist Lecture, VCUarts Kinetic Imaging, Qatar</p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2025</span>
+              <div class="cv-entries">
+                <p>Generative AI's Role in Transforming Creative Practices and Cultural Narratives, SECAC 2025,
+                  Cincinnati, OH</p>
+                <p>Artist Talk, Pechakucha by VCUarts Kinetic Imaging, Richmond, VA</p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2024</span>
+              <div class="cv-entries">
+                <p>Invited Speaker, Student Fellows Research Presentation, AI Futures Lab, Virginia Commonwealth
+                  University, Richmond, VA</p>
+                <p>Artist Talk, Pechakucha by VCUarts, Richmond, VA</p>
+              </div>
             </div>
           </div>
-          <div class="cv-group">
-            <span class="cv-year">2025</span>
-            <div class="cv-entries">
-              <p><em>From Ink to Code, From Binary to Boundless Reality—Until All Returns to Emptiness.</em> MFA Thesis, Virginia Commonwealth University, Kinetic Imaging, May 2025. <a href="https://doi.org/10.25772/82DT-BM43" target="_blank">DOI: 10.25772/82DT-BM43 →</a></p>
-              <p>"Speaking Across Emptiness: On Translation, Self, and Silence." In <em>Say Sense is Not Everything</em>, ed. Meg Miller. Book and Website, May 2025. <a href="https://sensenoteverything.zip/ShanMu.html" target="_blank">Read →</a></p>
-              <p>"The Endless Barrier in Reading." In <em>BAD SENSE</em>, ed. Meg Miller. Substack, Apr 2025. <a href="https://open.substack.com/pub/badsense/p/the-endless-barrier-in-reading" target="_blank">Read →</a></p>
-            </div>
-          </div>
-          <div class="cv-group">
-            <span class="cv-year">2024</span>
-            <div class="cv-entries">
-              <p>"Earth's Rotation Vertigo (地球自转眩晕症)." In <em>Polyphonic Shimmering</em>, ed. Meg Miller. Book and Website, May 2024. <a href="https://shimmering.world/WeitongSun.html" target="_blank">Read →</a></p>
-            </div>
-          </div>
-          <div class="cv-group">
-            <span class="cv-year">2023</span>
-            <div class="cv-entries">
-              <p>Springer Nature. "A Scoping Review of the Use of Lab Streaming Layer Framework in Virtual and Augmented Reality Research." <em>Virtual Reality</em>, May 2023. <a href="https://doi.org/10.1007/s10055-023-00799-8" target="_blank">DOI: 10.1007/s10055-023-00799-8 →</a></p>
-            </div>
-          </div>
-        </div>
 
-        <div class="cv-section">
-          <h3 class="cv-heading">Academic Position</h3>
-          <div class="cv-group">
-            <span class="cv-year">2025–26</span>
-            <div class="cv-entries">
-              <p>Adjunct Professor, Virginia Commonwealth University School of the Arts<br>
-              <em>3D Computer Art</em>; <em>Creative Code and Electronics</em>, Department of Kinetic Imaging</p>
-              <p>Assistant Teacher, School for Poetic Computation, New York City<br>
-              <em>OOPS! (Off-Purpose Software)</em></p>
-              <p>Research Assistant, University of Missouri<br>
-              <em>Immersive Media Research Projects</em>, School of Visual Studies</p>
+          <div class="cv-section">
+            <h3 class="cv-heading">Awards / Grants</h3>
+            <div class="cv-group">
+              <span class="cv-year">2025</span>
+              <div class="cv-entries">
+                <p>AI Futures Lab Fellowship, Virginia Commonwealth University, Richmond, VA</p>
+                <p>Graduate Research Grant, Pollak Society, Richmond, VA</p>
+                <p>VCUarts Graduate Assistantship, Richmond, VA</p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2024</span>
+              <div class="cv-entries">
+                <p>National Youth Designer Competition Finalist, China Industrial Design Association 2024, Online</p>
+                <p>VCUarts Graduate Assistantship, Richmond, VA</p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2023</span>
+              <div class="cv-entries">
+                <p>VCUarts Graduate Assistantship, Richmond, VA</p>
+              </div>
             </div>
           </div>
-          <div class="cv-group">
-            <span class="cv-year">2024–25</span>
-            <div class="cv-entries">
-              <p>Adjunct Professor, Virginia Commonwealth University School of the Arts<br>
-              <em>Creative Code and Electronics</em>, Department of Kinetic Imaging</p>
-              <p>Adjunct Instructor, Virginia Commonwealth University School of the Arts<br>
-              <em>Creative Code and Electronics</em>, Department of Kinetic Imaging</p>
-            </div>
-          </div>
-          <div class="cv-group">
-            <span class="cv-year">2023–24</span>
-            <div class="cv-entries">
-              <p>Teaching Assistant, Virginia Commonwealth University School of the Arts<br>
-              <em>3D Computer Art</em>, <em>Creative Code and Electronics</em>, <em>Sound Art</em>, Department of Kinetic Imaging</p>
-            </div>
-          </div>
-          <div class="cv-group">
-            <span class="cv-year">2022–23</span>
-            <div class="cv-entries">
-              <p>Research Assistant, University of Delaware<br>
-              <em>Human-Computer Interaction Laboratory</em>, Department of Computer &amp; Information Sciences</p>
-            </div>
-          </div>
-        </div>
 
-        <p><a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing" target="_blank" style="font-size:12px; color:var(--muted);">Download PDF version →</a></p>
+          <div class="cv-section">
+            <h3 class="cv-heading">Publication</h3>
+            <div class="cv-group">
+              <span class="cv-year">2026</span>
+              <div class="cv-entries">
+                <p>AHFE 2026 17th International Conference on Applied Human Factors and Ergonomics. "Reframing Immigrant
+                  Narratives through AI-Assisted Co-Creation and Immersive Experience: A Case Study of Ideal Home." May,
+                  2026</p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2025</span>
+              <div class="cv-entries">
+                <p><em>From Ink to Code, From Binary to Boundless Reality—Until All Returns to Emptiness.</em> MFA
+                  Thesis, Virginia Commonwealth University, Kinetic Imaging, May 2025. <a
+                    href="https://doi.org/10.25772/82DT-BM43" target="_blank">DOI: 10.25772/82DT-BM43 →</a></p>
+                <p>"Speaking Across Emptiness: On Translation, Self, and Silence." In <em>Say Sense is Not
+                    Everything</em>, ed. Meg Miller. Book and Website, May 2025. <a
+                    href="https://sensenoteverything.zip/ShanMu.html" target="_blank">Read →</a></p>
+                <p>"The Endless Barrier in Reading." In <em>BAD SENSE</em>, ed. Meg Miller. Substack, Apr 2025. <a
+                    href="https://open.substack.com/pub/badsense/p/the-endless-barrier-in-reading" target="_blank">Read
+                    →</a></p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2024</span>
+              <div class="cv-entries">
+                <p>"Earth's Rotation Vertigo (地球自转眩晕症)." In <em>Polyphonic Shimmering</em>, ed. Meg Miller. Book and
+                  Website, May 2024. <a href="https://shimmering.world/WeitongSun.html" target="_blank">Read →</a></p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2023</span>
+              <div class="cv-entries">
+                <p>Springer Nature. "A Scoping Review of the Use of Lab Streaming Layer Framework in Virtual and
+                  Augmented Reality Research." <em>Virtual Reality</em>, May 2023. <a
+                    href="https://doi.org/10.1007/s10055-023-00799-8" target="_blank">DOI: 10.1007/s10055-023-00799-8
+                    →</a></p>
+              </div>
+            </div>
+          </div>
 
-      </div><!-- .cv-body -->
-    </section>
+          <div class="cv-section">
+            <h3 class="cv-heading">Academic Position</h3>
+            <div class="cv-group">
+              <span class="cv-year">2025–26</span>
+              <div class="cv-entries">
+                <p>Adjunct Professor, Virginia Commonwealth University School of the Arts<br>
+                  <em>3D Computer Art</em>; <em>Creative Code and Electronics</em>, Department of Kinetic Imaging
+                </p>
+                <p>Assistant Teacher, School for Poetic Computation, New York City<br>
+                  <em>OOPS! (Off-Purpose Software)</em>
+                </p>
+                <p>Research Assistant, University of Missouri<br>
+                  <em>Immersive Media Research Projects</em>, School of Visual Studies
+                </p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2024–25</span>
+              <div class="cv-entries">
+                <p>Adjunct Professor, Virginia Commonwealth University School of the Arts<br>
+                  <em>Creative Code and Electronics</em>, Department of Kinetic Imaging
+                </p>
+                <p>Adjunct Instructor, Virginia Commonwealth University School of the Arts<br>
+                  <em>Creative Code and Electronics</em>, Department of Kinetic Imaging
+                </p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2023–24</span>
+              <div class="cv-entries">
+                <p>Teaching Assistant, Virginia Commonwealth University School of the Arts<br>
+                  <em>3D Computer Art</em>, <em>Creative Code and Electronics</em>, <em>Sound Art</em>, Department of
+                  Kinetic Imaging
+                </p>
+              </div>
+            </div>
+            <div class="cv-group">
+              <span class="cv-year">2022–23</span>
+              <div class="cv-entries">
+                <p>Research Assistant, University of Delaware<br>
+                  <em>Human-Computer Interaction Laboratory</em>, Department of Computer &amp; Information Sciences
+                </p>
+              </div>
+            </div>
+          </div>
 
-    <!-- ─────────────────────────────
+          <p><a href="https://docs.google.com/document/d/13DrJOb4szQ0I-Ok4nJazExAmsGchdk1bxqghSpA8GRM/edit?usp=sharing"
+              target="_blank" style="font-size:12px; color:var(--muted);">Download PDF version →</a></p>
+
+        </div><!-- .cv-body -->
+      </section>
+
+      <!-- ─────────────────────────────
          CONTACT
     ───────────────────────────── -->
-    <p class="section-heading" id="contact" data-i18n="nav-contact">Contact</p>
+      <p class="section-heading" id="contact" data-i18n="nav-contact">Contact</p>
 
-    <section class="entry" style="border-bottom:none;">
-      <p class="contact-email">
-        <a href="mailto:shanmusun17@gmail.com">shanmusun17@gmail.com</a>
-      </p>
-      <div class="contact-links">
-        <a href="https://instagram.com/shanmu_weitong_sun" target="_blank">Instagram</a>
-      </div>
-    </section>
+      <section class="entry" style="border-bottom:none;">
+        <p class="contact-email">
+          <a href="mailto:shanmusun17@gmail.com">shanmusun17@gmail.com</a>
+        </p>
+        <div class="contact-links">
+          <a href="https://instagram.com/shanmu_weitong_sun" target="_blank">Instagram</a>
+        </div>
+      </section>
 
-  </main>
+    </main>
   </div>
 
   <script src="main.js" defer></script>
@@ -819,150 +935,151 @@
        FLOATING HOMEPAGE — Cinematic Slideshow
   ═══════════════════════════════════════════════════ -->
   <script>
-  (function () {
-    'use strict';
+    (function () {
+      'use strict';
 
-    var isFloat = false;
-    var currentSlide = 0;
-    var slides = [];
-    var dots = [];
-    var slideInterval;
-    var AUTO_PLAY_INTERVAL = 6000;
+      var isFloat = false;
+      var currentSlide = 0;
+      var slides = [];
+      var dots = [];
+      var slideInterval;
+      var AUTO_PLAY_INTERVAL = 6000;
 
-    function initSlideshow() {
-      slides = document.querySelectorAll('.slide');
-      dots = document.querySelectorAll('.slideshow-dots .dot');
-      
-      var prevBtn = document.getElementById('slideshowPrev');
-      var nextBtn = document.getElementById('slideshowNext');
-      
-      if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-          prevSlide();
+      function initSlideshow() {
+        slides = document.querySelectorAll('.slide');
+        dots = document.querySelectorAll('.slideshow-dots .dot');
+
+        var prevBtn = document.getElementById('slideshowPrev');
+        var nextBtn = document.getElementById('slideshowNext');
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () {
+            prevSlide();
+            resetInterval();
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () {
+            nextSlide();
+            resetInterval();
+          });
+        }
+
+        // Export for inline HTML onclick handlers
+        window.goToSlide = function (index) {
+          goToSlide(index);
           resetInterval();
+        };
+
+        window.exitFloat = exitFloat;
+      }
+
+      function goToSlide(index) {
+        if (!slides.length || index < 0 || index >= slides.length) return;
+        slides[currentSlide].classList.remove('active');
+        if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+
+        currentSlide = index;
+
+        slides[currentSlide].classList.add('active');
+        if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+      }
+
+      function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
+      function prevSlide() { goToSlide((currentSlide - 1 + slides.length) % slides.length); }
+
+      function startSlideshow() {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, AUTO_PLAY_INTERVAL);
+      }
+
+      function stopSlideshow() {
+        if (slideInterval) clearInterval(slideInterval);
+      }
+
+      function resetInterval() {
+        if (isFloat) startSlideshow();
+      }
+
+      /* ─────────────────────────────────────────────
+         Enter / exit float mode
+         ───────────────────────────────────────────── */
+      function enterFloat() {
+        isFloat = true;
+        document.body.classList.add('float-mode');
+        startSlideshow();
+      }
+
+      function exitFloat(targetHash) {
+        isFloat = false;
+        document.body.classList.remove('float-mode');
+        stopSlideshow();
+
+        if (targetHash) {
+          var el = document.querySelector(targetHash);
+          if (el) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth' }); }, 60);
+        }
+      }
+
+      /* ─────────────────────────────────────────────
+         Wire up navigation
+      ───────────────────────────────────────────── */
+      function wireNav() {
+        /* All sidebar + mobile nav anchor links → exit float */
+        document.querySelectorAll('.sidebar a[href^="#"], .mobile-nav a[href^="#"]').forEach(function (link) {
+          link.addEventListener('click', function (e) {
+            if (isFloat) {
+              e.preventDefault();
+              e.stopPropagation();
+              exitFloat(link.getAttribute('href'));
+            }
+          }, true);
         });
-      }
-      
-      if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-          nextSlide();
-          resetInterval();
-        });
-      }
 
-      // Export for inline HTML onclick handlers
-      window.goToSlide = function(index) {
-        goToSlide(index);
-        resetInterval();
-      };
-      
-      window.exitFloat = exitFloat;
-    }
+        /* SHANMU SUN (desktop sidebar) → enter float */
+        var sbn = document.querySelector('.sidebar-name');
+        if (sbn) {
+          sbn.addEventListener('click', function () {
+            if (!isFloat) {
+              enterFloat();
+              // Reset to first slide when entering float mode
+              goToSlide(0);
+            }
+          });
+        }
 
-    function goToSlide(index) {
-      if (!slides.length || index < 0 || index >= slides.length) return;
-      slides[currentSlide].classList.remove('active');
-      if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
-      
-      currentSlide = index;
-      
-      slides[currentSlide].classList.add('active');
-      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
-    }
-
-    function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
-    function prevSlide() { goToSlide((currentSlide - 1 + slides.length) % slides.length); }
-
-    function startSlideshow() {
-      if (slideInterval) clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, AUTO_PLAY_INTERVAL);
-    }
-    
-    function stopSlideshow() {
-      if (slideInterval) clearInterval(slideInterval);
-    }
-
-    function resetInterval() {
-      if (isFloat) startSlideshow();
-    }
-
-    /* ─────────────────────────────────────────────
-       Enter / exit float mode
-       ───────────────────────────────────────────── */
-    function enterFloat() {
-      isFloat = true;
-      document.body.classList.add('float-mode');
-      startSlideshow();
-    }
-
-    function exitFloat(targetHash) {
-      isFloat = false;
-      document.body.classList.remove('float-mode');
-      stopSlideshow();
-      
-      if (targetHash) {
-        var el = document.querySelector(targetHash);
-        if (el) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth' }); }, 60);
-      }
-    }
-
-    /* ─────────────────────────────────────────────
-       Wire up navigation
-    ───────────────────────────────────────────── */
-    function wireNav() {
-      /* All sidebar + mobile nav anchor links → exit float */
-      document.querySelectorAll('.sidebar a[href^="#"], .mobile-nav a[href^="#"]').forEach(function (link) {
-        link.addEventListener('click', function (e) {
-          if (isFloat) {
-            e.preventDefault();
-            e.stopPropagation();
-            exitFloat(link.getAttribute('href'));
-          }
-        }, true);
-      });
-
-      /* SHANMU SUN (desktop sidebar) → enter float */
-      var sbn = document.querySelector('.sidebar-name');
-      if (sbn) {
-        sbn.addEventListener('click', function () {
-          if (!isFloat) {
-            enterFloat();
-            // Reset to first slide when entering float mode
-            goToSlide(0);
-          }
-        });
+        /* SHANMU SUN (mobile header) → enter float */
+        var mn = document.querySelector('.mobile-name');
+        if (mn) {
+          mn.addEventListener('click', function () {
+            if (!isFloat) {
+              enterFloat();
+              // Reset to first slide when entering float mode
+              goToSlide(0);
+            }
+          });
+        }
       }
 
-      /* SHANMU SUN (mobile header) → enter float */
-      var mn = document.querySelector('.mobile-name');
-      if (mn) {
-        mn.addEventListener('click', function () {
-          if (!isFloat) {
-            enterFloat();
-            // Reset to first slide when entering float mode
-            goToSlide(0);
-          }
-        });
+      /* ─────────────────────────────────────────────
+         Boot
+      ───────────────────────────────────────────── */
+      function boot() {
+        initSlideshow();
+        wireNav();
+        enterFloat();  /* start in float mode */
       }
-    }
 
-    /* ─────────────────────────────────────────────
-       Boot
-    ───────────────────────────────────────────── */
-    function boot() {
-      initSlideshow();
-      wireNav();
-      enterFloat();  /* start in float mode */
-    }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+      } else {
+        boot();
+      }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', boot);
-    } else {
-      boot();
-    }
-
-  })();
+    })();
   </script>
 
 </body>
+
 </html>
