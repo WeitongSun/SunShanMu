@@ -57,7 +57,7 @@
 
   <!-- ══ MOBILE HEADER ══ -->
   <header class="mobile-header">
-    <span class="mobile-name">SHANMU SUN 孙山木</span>
+    <a href="#home" class="mobile-name" style="text-decoration:none; color:inherit;">SHANMU SUN <span class="zh">孙山木</span></a>
     <div class="mobile-header-actions">
       <button class="lang-toggle-inline" onclick="toggleLang()" aria-label="Switch language">
         <div class="toggle-track">
@@ -83,34 +83,16 @@
       </ul>
     </div>
     <div class="sb-group">
-      <p class="sb-group-label" data-i18n="label-teaching">Teaching</p>
-      <ul class="sb-list">
-        <li><a href="#oops" onclick="closeMenu()" data-i18n="nav-oops">OOPS! (Off-Purpose Software)</a></li>
-        <li><a href="#cce" onclick="closeMenu()" data-i18n="nav-cce">Creative Code &amp; Electronics</a></li>
-        <li><a href="#3da" onclick="closeMenu()" data-i18n="nav-3da">3D Computer Art</a></li>
-      </ul>
+      <a href="#teaching" onclick="closeMenu()" class="sb-group-label" data-i18n="label-teaching" style="display:block; text-decoration:none;">Teaching</a>
     </div>
     <div class="sb-group">
-      <p class="sb-group-label" data-i18n="label-writing">Writing</p>
-      <ul class="sb-list">
-        <li><a href="#thesis" onclick="closeMenu()" data-i18n="nav-thesis">From Ink to Code…</a></li>
-        <li><a href="#endless-barrier" onclick="closeMenu()" data-i18n="nav-endless-barrier">The Endless Barrier in
-            Reading</a></li>
-        <li><a href="#emptiness" onclick="closeMenu()" data-i18n="nav-emptiness">Speaking Across Emptiness</a></li>
-        <li><a href="#rotation" onclick="closeMenu()" data-i18n="nav-rotation">"Earth's Rotation Vertigo"</a></li>
-      </ul>
+      <a href="#writing" onclick="closeMenu()" class="sb-group-label" data-i18n="label-writing" style="display:block; text-decoration:none;">Writing</a>
     </div>
-    <div class="sb-group">
-      <p class="sb-group-label" data-i18n="label-research">Research</p>
-      <ul class="sb-list">
-        <li><a href="#lsl" onclick="closeMenu()" data-i18n="nav-lsl">Lab Streaming Layer Research</a></li>
-      </ul>
-    </div>
-    <ul class="sb-list" style="border-top:1px solid var(--light);padding-top:16px;margin-top:4px;">
+    <ul class="sb-list" style="padding-top:16px;margin-top:4px;">
       <li><a href="#about" onclick="closeMenu()" data-i18n="nav-about">About</a></li>
       <li><a href="#contact" onclick="closeMenu()" data-i18n="nav-contact">Contact</a></li>
     </ul>
-    <div style="border-top:1px solid var(--light);padding-top:16px;margin-top:16px;">
+    <div style="padding-top:16px;margin-top:16px;">
       <button class="lang-toggle-inline" onclick="toggleLang()" aria-label="Switch language">
         <div class="toggle-track">
           <div class="toggle-thumb"></div>
@@ -122,10 +104,10 @@
 
   <!-- ══ SIDEBAR (desktop) ══ -->
   <aside class="sidebar">
-    <div class="sidebar-name">
+    <a href="#home" class="sidebar-name" style="text-decoration:none; color:inherit; display:block;">
       SHANMU SUN
       <span class="zh">孙山木</span>
-    </div>
+    </a>
 
     <div class="sb-group">
       <p class="sb-group-label" data-i18n="label-works">Works</p>
@@ -141,29 +123,11 @@
     </div>
 
     <div class="sb-group">
-      <p class="sb-group-label" data-i18n="label-teaching">Teaching</p>
-      <ul class="sb-list">
-        <li><a href="#oops" data-i18n="nav-oops">OOPS! (Off-Purpose Software)</a></li>
-        <li><a href="#cce" data-i18n="nav-cce">Creative Code &amp; Electronics</a></li>
-        <li><a href="#3da" data-i18n="nav-3da">3D Computer Art</a></li>
-      </ul>
+      <a href="#teaching" class="sb-group-label" data-i18n="label-teaching" style="display:block; text-decoration:none;">Teaching</a>
     </div>
 
     <div class="sb-group">
-      <p class="sb-group-label" data-i18n="label-writing">Writing</p>
-      <ul class="sb-list">
-        <li><a href="#thesis" data-i18n="nav-thesis">From Ink to Code…</a></li>
-        <li><a href="#endless-barrier" data-i18n="nav-endless-barrier">The Endless Barrier in Reading</a></li>
-        <li><a href="#emptiness" data-i18n="nav-emptiness">Speaking Across Emptiness</a></li>
-        <li><a href="#rotation" data-i18n="nav-rotation">"Earth's Rotation Vertigo"</a></li>
-      </ul>
-    </div>
-
-    <div class="sb-group">
-      <p class="sb-group-label" data-i18n="label-research">Research</p>
-      <ul class="sb-list">
-        <li><a href="#lsl" data-i18n="nav-lsl">Lab Streaming Layer Research</a></li>
-      </ul>
+      <a href="#writing" class="sb-group-label" data-i18n="label-writing" style="display:block; text-decoration:none;">Writing</a>
     </div>
 
     <ul class="sb-info">
@@ -178,107 +142,32 @@
   <div class="main-area">
     <main class="content">
 
-      <!-- ══ FLOATING HOMEPAGE ══ -->
-      <div id="float-world">
-        <div class="slideshow-container">
-          <!-- Slide 1: Collision at a Distance -->
-          <div class="slide active">
-            <div class="slide-bg" style="background-image: url('images/collision-at-a-distance/IMG_2833.png');"></div>
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-              <span class="slide-category" data-i18n="slide-cat-collision">Simulation</span>
-              <h1 class="slide-title" data-i18n="nav-collision">Collision at a Distance</h1>
-              <p class="slide-meta" data-i18n="meta-collision">2026 · Simulation (work in progress)<br>Collaborator:
-                Ruiqi Zhang</p>
-              <button class="explore-btn" onclick="exitFloat('#collision')">
-                <span data-i18n="explore-project">Explore Project</span> →
-              </button>
-            </div>
+      <!-- HOME / GENERATIVE 3D -->
+            <!-- ── Home / Tour Slideshow ── -->
+      <section class="view active" id="home" style="display:block;">
+        <div class="home-tour">
+          <div class="home-slideshow">
+            <img class="home-slide active" src="images/ideal-home/SUN_Q2A8078B.png" alt="Ideal Home">
+            <img class="home-slide" src="images/ideal-home/SUN_Q2A8181.png" alt="Ideal Home Detail">
+            <img class="home-slide" src="images/ideal-home/iH.png" alt="Ideal Home Audience">
           </div>
-
-          <!-- Slide 2: Ideal Home -->
-          <div class="slide">
-            <div class="slide-bg" style="background-image: url('images/ideal-home/SUN_Q2A8078B.png');"></div>
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-              <span class="slide-category" data-i18n="slide-cat-ideal-home">XR / Virtual Reality</span>
-              <h1 class="slide-title" data-i18n="nav-ideal-home">Ideal Home</h1>
-              <p class="slide-meta" data-i18n="meta-ideal-home">2025 · XR · Ars Electronica, Linz, Austria</p>
-              <button class="explore-btn" onclick="exitFloat('#ideal-home')">
-                <span data-i18n="explore-project">Explore Project</span> →
-              </button>
-            </div>
-          </div>
-
-          <!-- Slide 3: The Graceful Site -->
-          <div class="slide">
-            <div class="slide-bg" style="background-image: url('images/graceful-site/BP1.png');"></div>
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-              <span class="slide-category" data-i18n="slide-cat-graceful-site">Live Simulation</span>
-              <h1 class="slide-title" data-i18n="nav-graceful-site">The Graceful Site</h1>
-              <p class="slide-meta" data-i18n="meta-graceful-site">2024 · Live Simulation</p>
-              <button class="explore-btn" onclick="exitFloat('#graceful-site')">
-                <span data-i18n="explore-project">Explore Project</span> →
-              </button>
-            </div>
-          </div>
-
-          <!-- Slide 4: Say Sense is Not Everything -->
-          <div class="slide">
-            <div class="slide-bg" style="background-image: url('images/sense/01.jpg');"></div>
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-              <span class="slide-category" data-i18n="slide-cat-sense">Web Art</span>
-              <h1 class="slide-title" data-i18n="nav-sense">Say Sense is Not Everything</h1>
-              <p class="slide-meta" data-i18n="meta-sense">Web Publication · Collaborative</p>
-              <button class="explore-btn" onclick="exitFloat('#sense')">
-                <span data-i18n="explore-project">Explore Project</span> →
-              </button>
-            </div>
-          </div>
-
-          <!-- Slide 5: Polyphonic Shimmering -->
-          <div class="slide">
-            <div class="slide-bg" style="background-image: url('images/shimmering/01.jpg');"></div>
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-              <span class="slide-category" data-i18n="slide-cat-shimmering">Web Art</span>
-              <h1 class="slide-title" data-i18n="nav-shimmering">Polyphonic Shimmering</h1>
-              <p class="slide-meta" data-i18n="meta-shimmering">Collaborative Web · Publication</p>
-              <button class="explore-btn" onclick="exitFloat('#shimmering')">
-                <span data-i18n="explore-project">Explore Project</span> →
-              </button>
-            </div>
-          </div>
-
-          <!-- Navigation Arrows -->
-          <button class="slideshow-arrow prev" id="slideshowPrev">←</button>
-          <button class="slideshow-arrow next" id="slideshowNext">→</button>
-
-          <!-- Bottom Controls -->
-          <div class="slideshow-controls">
-            <div class="slideshow-dots" id="slideshowDots">
-              <span class="dot active" onclick="goToSlide(0)"></span>
-              <span class="dot" onclick="goToSlide(1)"></span>
-              <span class="dot" onclick="goToSlide(2)"></span>
-              <span class="dot" onclick="goToSlide(3)"></span>
-              <span class="dot" onclick="goToSlide(4)"></span>
-            </div>
-            <button class="explore-all-btn" onclick="exitFloat()">
-              <span data-i18n="explore-portfolio">Explore Portfolio</span> ↓
-            </button>
+          <div class="home-news" style="margin-top: 40px; font-size: 14px; color: var(--text);">
+            <p><strong>CURRENTLY ON TOUR</strong><br>
+            <em>Ideal Home</em><br>
+            Ars Electronica Festival, Linz, Austria<br>
+            2025</p>
           </div>
         </div>
-      </div>
+      </section>
+
 
       <!-- ─────────────────────────────
          WORKS
     ───────────────────────────── -->
-      <p class="section-heading" data-i18n="label-works">Works</p>
+      
 
       <!-- Collision at a Distance -->
-      <section class="entry" id="collision">
+      <section class="entry view" id="collision">
         <div class="entry-header">
           <h2 class="entry-title">
             Collision at a Distance<br>
@@ -287,11 +176,11 @@
           <p class="entry-meta" data-i18n="meta-collision">2026 · Simulation (work in progress)<br>Collaborator: Ruiqi
             Zhang</p>
         </div>
-        <div class="img-wrap">
+                <div class="img-wrap" style="margin-bottom: 40px;">
           <img src="images/collision-at-a-distance/IMG_2833.png" alt="Collision at a Distance — simulation view">
         </div>
         <p class="img-caption" data-i18n="cap-simulation-view">Simulation view</p>
-        <div class="img-wrap" style="margin-top:20px;">
+        <div class="img-wrap" style="margin-top:40px; margin-bottom: 40px;">
           <img src="images/collision-at-a-distance/animated-result-iso3.gif" alt="Collision at a Distance — animation"
             style="width:100%;display:block;">
         </div>
@@ -302,7 +191,7 @@
       </section>
 
       <!-- Ideal Home -->
-      <section class="entry" id="ideal-home">
+      <section class="entry view" id="ideal-home">
         <div class="entry-header">
           <h2 class="entry-title">
             Ideal Home<br>
@@ -310,16 +199,18 @@
           </h2>
           <p class="entry-meta" data-i18n="meta-ideal-home">2025 · Installation · Ars Electronica, Linz, Austria</p>
         </div>
-        <div class="img-wrap">
+                <div class="img-wrap" style="margin-bottom: 40px;">
           <img src="images/ideal-home/SUN_Q2A8078B.png" alt="Ideal Home — installation view">
         </div>
         <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
-        <div class="img-wrap">
+        <div class="img-wrap" style="margin-bottom: 40px;">
           <img src="images/ideal-home/SUN_Q2A8181.png" alt="Ideal Home — detail">
         </div>
         <p class="img-caption" data-i18n="cap-detail">Detail</p>
-        <div class="img-grid-2">
+        <div class="img-wrap" style="margin-bottom: 40px;">
           <img src="images/ideal-home/iH.png" alt="Ideal Home — audience" style="width:100%;display:block;">
+        </div>
+        <div class="img-wrap" style="margin-bottom: 40px;">
           <img src="images/ideal-home/SUN_Q2A8093.png" alt="Ideal Home — VR headset" style="width:100%;display:block;">
         </div>
         <div class="entry-body" data-i18n="body-ideal-home">
@@ -350,7 +241,7 @@
       </section>
 
       <!-- The Graceful Site -->
-      <section class="entry" id="graceful-site">
+      <section class="entry view" id="graceful-site">
         <div class="entry-header">
           <h2 class="entry-title">
             The Graceful Site
@@ -360,15 +251,15 @@
             variable), Mac mini<br>Ruiqi Zhang &amp; Weitong Shanmu Sun<br>Sound Design: Stephen Vitiello · Game
             Development: Weilong Qian</p>
         </div>
-        <div class="img-wrap">
+                <div class="img-wrap" style="margin-bottom: 40px;">
           <img src="images/graceful-site/BP1.png" alt="The Graceful Site — installation view">
         </div>
         <p class="img-caption" data-i18n="cap-install-view">Installation view</p>
-        <div class="img-grid-2">
-          <img src="images/graceful-site/The%20Graceful%20Site_1.png" alt="The Graceful Site — interior"
-            style="width:100%;display:block;">
-          <img src="images/graceful-site/The%20Graceful%20Site_5.png" alt="The Graceful Site — night"
-            style="width:100%;display:block;">
+        <div class="img-wrap" style="margin-bottom: 40px;">
+          <img src="images/graceful-site/The%20Graceful%20Site_1.png" alt="The Graceful Site — interior" style="width:100%;display:block;">
+        </div>
+        <div class="img-wrap" style="margin-bottom: 40px;">
+          <img src="images/graceful-site/The%20Graceful%20Site_5.png" alt="The Graceful Site — night" style="width:100%;display:block;">
         </div>
         <div class="img-wrap" style="margin-top:20px;">
           <div style="padding:56.25% 0 0 0; position:relative;">
@@ -404,7 +295,7 @@
       </section>
 
       <!-- Say Sense is Not Everything -->
-      <section class="entry" id="sense">
+      <section class="entry view" id="sense">
         <div class="entry-header">
           <h2 class="entry-title">Say Sense is Not Everything</h2>
           <p class="entry-meta" data-i18n="meta-sense">Web Publication · Collaborative</p>
@@ -420,7 +311,7 @@
       </section>
 
       <!-- Polyphonic Shimmering -->
-      <section class="entry" id="shimmering">
+      <section class="entry view" id="shimmering">
         <div class="entry-header">
           <h2 class="entry-title">Polyphonic Shimmering</h2>
           <p class="entry-meta" data-i18n="meta-shimmering">Collaborative Web · Publication</p>
@@ -436,7 +327,7 @@
       </section>
 
       <!-- HyperDog -->
-      <section class="entry" id="hyperdog">
+      <section class="entry view" id="hyperdog">
         <div class="entry-header">
           <h2 class="entry-title">HyperDog</h2>
           <p class="entry-meta" data-i18n="meta-hyperdog">2022 · Mixed Media, Moving Image, Raspberry Pi GUI · Beijing
@@ -472,7 +363,7 @@
       </section>
 
       <!-- The Green Common -->
-      <section class="entry" id="green-common">
+      <section class="entry view" id="green-common">
         <div class="entry-header">
           <h2 class="entry-title">The Green Common</h2>
           <p class="entry-meta" data-i18n="meta-green-common">2022 · Modular Design, Stop Motion · Shanghai</p>
@@ -504,106 +395,79 @@
       <!-- ─────────────────────────────
          TEACHING
     ───────────────────────────── -->
-      <p class="section-heading" data-i18n="label-teaching">Teaching</p>
-
-      <!-- OOPS! -->
-      <section class="entry" id="oops">
-        <div class="entry-header">
-          <h2 class="entry-title">OOPS! (Off-Purpose Software)</h2>
-          <p class="entry-meta" data-i18n="meta-oops">Fall 2025 · 7-week online course · School for Poetic Computation
-            (SFPC)<br>Co-taught with Herdimas Anggara &amp; Rasim Bayramov</p>
-        </div>
-
-        <!-- Course announcement -->
-        <div class="img-wrap">
-          <img src="images/oops/ig1.png" alt="OOPS! course announcement — SFPC Fall 2025">
-        </div>
-        <p class="img-caption" data-i18n="cap-oops-announce">Course announcement — SFPC, Fall 2025</p>
-
-        <div class="entry-body" data-i18n="body-oops-desc">
-          <p>A 7-week class about using serious tools unseriously. Students explore Google Workspace (Docs, Sheets,
-            Slides, Forms) and push it to the edge of breakdown — writing Apps Script as revisionist memoir, using
-            autofill as a timing device, and finding other methods of misuse through scripting or overly literal
-            obedience.</p>
-        </div>
-
-        <!-- Instructors -->
-        <div class="img-wrap" style="margin-top:28px;">
-          <img src="images/oops/ig2.png" alt="OOPS! — Herdimas Anggara, Weitong Sun, Rasim Bayramov">
-        </div>
-        <p class="img-caption" data-i18n="cap-oops-taught">Taught by Herdimas Anggara, ShanMu Sun &amp; Rasim Bayramov
-        </p>
-
-        <!-- Student work + showcase -->
-        <div class="img-grid-2" style="margin-top:8px;">
-          <div>
-            <img src="images/oops/ig4.png" alt="OOPS! student work — First Day at Work"
-              style="width:100%;display:block;">
-            <p class="img-caption" style="margin-top:6px;" data-i18n="cap-oops-student">Student work: "First Day at
-              Work"</p>
+            <section class="view" id="teaching">
+        <p class="section-heading" data-i18n="label-teaching">Teaching</p>
+        
+        <div class="table-list">
+          <div class="table-row">
+            <div class="table-col-label">Course (BFA)</div>
+            <div class="table-col-links">
+              <a href="cce.html" class="table-link">→ Creative Code & Electronics</a>
+              <a href="3da.html" class="table-link">→ 3D Computer Art</a>
+            </div>
           </div>
-          <div>
-            <img src="images/oops/ig3.png" alt="OOPS! end-of-session showcase" style="width:100%;display:block;">
-            <p class="img-caption" style="margin-top:6px;" data-i18n="cap-oops-showcase">End-of-session showcase, Dec
-              17, 2025</p>
+          <div class="table-row">
+            <div class="table-col-label">Workshop</div>
+            <div class="table-col-links">
+              <a href="#oops" class="table-link">→ OOPS! (Off-Purpose Software)</a>
+            </div>
           </div>
         </div>
-
-        <!-- SFPC blog -->
-        <div class="img-wrap" style="margin-top:8px;">
-          <img src="images/oops/sfpc-blog.jpg" alt="I never want anything to work ever again — SFPC blog">
-        </div>
-        <p class="img-caption" data-i18n="cap-oops-blog">"I never want anything to work ever again" — written by Rasim
-          Bayramov &amp; Weitong "Shanmu" Sun, SFPC Fall 2025</p>
-
-        <div class="entry-body" data-i18n="body-oops-links">
-          <p>
-            <a href="https://sfpc.study/blog/oops" target="_blank">Read blog post →</a>
-          </p>
-          <p>
-            <a href="https://www.instagram.com/p/DMgT9boJi7X/" target="_blank">Course announcement →</a><br>
-            <a href="https://www.instagram.com/reel/DSVnIhSERyu/" target="_blank">Showcase reel →</a><br>
-            <a href="https://www.instagram.com/p/DSa0dFdjG4r/" target="_blank">Student work documentation →</a>
-          </p>
-        </div>
       </section>
 
-      <!-- CCE -->
-      <section class="entry" id="cce">
-        <div class="entry-header">
-          <h2 class="entry-title">Creative Code &amp; Electronics</h2>
-          <p class="entry-meta" data-i18n="meta-cce">KINE 354 · Spring 2026 · Department of Kinetic Imaging, Virginia
-            Commonwealth University</p>
-        </div>
-        <div class="entry-body" data-i18n="body-cce">
-          <p>An introduction to programming languages and electronics as applied to digital art making. Students explore
-            creative coding with p5.js — from drawing and animation to sound and interactivity — alongside physical
-            computing with Arduino and the Adafruit Circuit Playground Express.</p>
-          <p><a href="cce.html">View course page →</a></p>
-        </div>
-      </section>
-
-      <!-- 3D Computer Art -->
-      <section class="entry" id="3da">
-        <div class="entry-header">
-          <h2 class="entry-title" data-i18n="title-3da">3D Computer Art</h2>
-          <p class="entry-meta" data-i18n="meta-3da">KINE 384 · Spring 2026 · Department of Kinetic Imaging, Virginia
-            Commonwealth University</p>
-        </div>
-        <div class="entry-body" data-i18n="body-3da">
-          <p>A comprehensive introduction to 3D modeling, rendering, and animation using Blender. Students develop their
-            own 3D aesthetic through sculpting, lighting, world building, and augmented reality.</p>
-          <p><a href="3da.html">View course page →</a></p>
-        </div>
-      </section>
+        <!-- OOPS! -->
+        <section class="view teaching-entry" id="oops">
+          <a href="#teaching" class="back-link">←</a>
+          <h2 class="teaching-title">OOPS! (Off-Purpose Software)</h2>
+          <p class="teaching-meta" data-i18n="meta-oops">Fall 2025 · SFPC · Co-taught w/ Herdimas Anggara & Rasim Bayramov</p>
+          <div class="teaching-desc" data-i18n="body-oops-desc">
+            <p>A 7-week class about using serious tools unseriously. Students explore Google Workspace (Docs, Sheets, Slides, Forms) and push it to the edge of breakdown — writing Apps Script as revisionist memoir, using autofill as a timing device, and finding other methods of misuse through scripting or overly literal obedience.</p>
+            <p>
+              <a href="https://sfpc.study/blog/oops" target="_blank">Read blog post</a><br>
+              <a href="https://www.instagram.com/p/DMgT9boJi7X/" target="_blank">Course announcement</a><br>
+              <a href="https://www.instagram.com/reel/DSVnIhSERyu/" target="_blank">Showcase reel</a>
+            </p>
+          </div>
+                    <div class="unified-carousel" style="max-width: 600px; margin: 40px auto; aspect-ratio: 1 / 1;">
+            <div class="carousel-track">
+              <img class="carousel-slide active" src="images/oops/ig1.png" alt="Course announcement" style="display:block;">
+              <img class="carousel-slide" src="images/oops/ig4.png" alt="Student work: First Day at Work">
+              <img class="carousel-slide" src="images/oops/ig3.png" alt="End-of-session showcase">
+              <img class="carousel-slide" src="images/oops/sfpc-blog.jpg" alt="SFPC blog post">
+            </div>
+            <div class="carousel-btn prev" onclick="moveCarousel(this, -1)"></div>
+            <div class="carousel-btn next" onclick="moveCarousel(this, 1)"></div>
+          </div>
+        </section>
 
       <!-- ─────────────────────────────
          WRITING
     ───────────────────────────── -->
-      <p class="section-heading" data-i18n="label-writing">Writing</p>
+            <section class="view" id="writing">
+        <p class="section-heading" data-i18n="label-writing">Writing & Research</p>
+        
+        <div class="table-list">
+          <div class="table-row">
+            <div class="table-col-label">Essays / Publications</div>
+            <div class="table-col-links">
+              <a href="#thesis" class="table-link">→ From Ink to Code, From Binary to Boundless Reality</a>
+              <a href="#endless-barrier" class="table-link">→ The Endless Barrier in Reading</a>
+              <a href="#emptiness" class="table-link">→ Speaking Across Emptiness</a>
+              <a href="#rotation" class="table-link">→ "Earth's Rotation Vertigo"</a>
+            </div>
+          </div>
+          
+          <div class="table-row">
+            <div class="table-col-label">Academic Research</div>
+            <div class="table-col-links">
+              <a href="#lsl" class="table-link">→ Lab Streaming Layer Framework Research (Virtual Reality, Springer)</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- MFA Thesis -->
-      <section class="entry" id="thesis">
+      <section class="entry view" id="thesis">
         <div class="entry-header">
           <h2 class="entry-title">From Ink to Code, From Binary to Boundless Reality—Until All Returns to Emptiness</h2>
           <p class="entry-meta" data-i18n="meta-thesis">MFA Thesis · Virginia Commonwealth University, Kinetic Imaging ·
@@ -632,7 +496,8 @@
       </section>
 
       <!-- The Endless Barrier in Reading -->
-      <section class="entry" id="endless-barrier">
+      <section class="entry view" id="endless-barrier">
+        <a href="#writing" class="back-link">←</a>
         <div class="entry-header">
           <h2 class="entry-title">The Endless Barrier in Reading</h2>
           <p class="entry-meta" data-i18n="meta-endless-barrier">Essay · Substack — Bad Sense</p>
@@ -647,7 +512,8 @@
       </section>
 
       <!-- Speaking Across Emptiness -->
-      <section class="entry" id="emptiness">
+      <section class="entry view" id="emptiness">
+        <a href="#writing" class="back-link">←</a>
         <div class="entry-header">
           <h2 class="entry-title">Speaking Across Emptiness: On Translation, Self, and Silence</h2>
           <p class="entry-meta" data-i18n="meta-emptiness">Essay · sensenoteverything.zip</p>
@@ -661,7 +527,8 @@
       </section>
 
       <!-- Earth's Rotation Vertigo -->
-      <section class="entry" id="rotation">
+      <section class="entry view" id="rotation">
+        <a href="#writing" class="back-link">←</a>
         <div class="entry-header">
           <h2 class="entry-title">"Earth's Rotation Vertigo"</h2>
           <p class="entry-meta" data-i18n="meta-rotation">Text · Polyphonic Shimmering</p>
@@ -674,13 +541,8 @@
         </div>
       </section>
 
-      <!-- ─────────────────────────────
-         RESEARCH
-    ───────────────────────────── -->
-      <p class="section-heading" data-i18n="label-research">Research</p>
-
       <!-- LSL Research -->
-      <section class="entry" id="lsl">
+      <section class="entry view" id="lsl">
         <div class="entry-header">
           <h2 class="entry-title">Lab Streaming Layer Framework Research</h2>
           <p class="entry-meta" data-i18n="meta-lsl">2023 · Research Paper · Virtual Reality, Springer</p>
@@ -696,9 +558,7 @@
       <!-- ─────────────────────────────
          ABOUT / CV
     ───────────────────────────── -->
-      <p class="section-heading" id="about" data-i18n="nav-about">About</p>
-
-      <section class="entry" style="border-bottom:none; margin-bottom:80px;">
+      <section class="entry view" id="about" style="border-bottom:none; margin-bottom:80px;">
         <div class="about-portrait">
           <img src="images/Artist%20Photo%20%C2%A9Jiayi%20Liang%20(1).png" alt="ShanMu Sun — Photo © Jiayi Liang">
         </div>
@@ -915,9 +775,8 @@
       <!-- ─────────────────────────────
          CONTACT
     ───────────────────────────── -->
-      <p class="section-heading" id="contact" data-i18n="nav-contact">Contact</p>
-
-      <section class="entry" style="border-bottom:none;">
+      <section class="entry view" id="contact" style="border-bottom:none;">
+        <p class="section-heading" id="contact_inner" data-i18n="nav-contact">Contact</p>
         <p class="contact-email">
           <a href="mailto:shanmusun17@gmail.com">shanmusun17@gmail.com</a>
         </p>
@@ -931,154 +790,6 @@
 
   <script src="main.js" defer></script>
 
-  <!-- ═══════════════════════════════════════════════════
-       FLOATING HOMEPAGE — Cinematic Slideshow
-  ═══════════════════════════════════════════════════ -->
-  <script>
-    (function () {
-      'use strict';
-
-      var isFloat = false;
-      var currentSlide = 0;
-      var slides = [];
-      var dots = [];
-      var slideInterval;
-      var AUTO_PLAY_INTERVAL = 6000;
-
-      function initSlideshow() {
-        slides = document.querySelectorAll('.slide');
-        dots = document.querySelectorAll('.slideshow-dots .dot');
-
-        var prevBtn = document.getElementById('slideshowPrev');
-        var nextBtn = document.getElementById('slideshowNext');
-
-        if (prevBtn) {
-          prevBtn.addEventListener('click', function () {
-            prevSlide();
-            resetInterval();
-          });
-        }
-
-        if (nextBtn) {
-          nextBtn.addEventListener('click', function () {
-            nextSlide();
-            resetInterval();
-          });
-        }
-
-        // Export for inline HTML onclick handlers
-        window.goToSlide = function (index) {
-          goToSlide(index);
-          resetInterval();
-        };
-
-        window.exitFloat = exitFloat;
-      }
-
-      function goToSlide(index) {
-        if (!slides.length || index < 0 || index >= slides.length) return;
-        slides[currentSlide].classList.remove('active');
-        if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
-
-        currentSlide = index;
-
-        slides[currentSlide].classList.add('active');
-        if (dots[currentSlide]) dots[currentSlide].classList.add('active');
-      }
-
-      function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
-      function prevSlide() { goToSlide((currentSlide - 1 + slides.length) % slides.length); }
-
-      function startSlideshow() {
-        if (slideInterval) clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, AUTO_PLAY_INTERVAL);
-      }
-
-      function stopSlideshow() {
-        if (slideInterval) clearInterval(slideInterval);
-      }
-
-      function resetInterval() {
-        if (isFloat) startSlideshow();
-      }
-
-      /* ─────────────────────────────────────────────
-         Enter / exit float mode
-         ───────────────────────────────────────────── */
-      function enterFloat() {
-        isFloat = true;
-        document.body.classList.add('float-mode');
-        startSlideshow();
-      }
-
-      function exitFloat(targetHash) {
-        isFloat = false;
-        document.body.classList.remove('float-mode');
-        stopSlideshow();
-
-        if (targetHash) {
-          var el = document.querySelector(targetHash);
-          if (el) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth' }); }, 60);
-        }
-      }
-
-      /* ─────────────────────────────────────────────
-         Wire up navigation
-      ───────────────────────────────────────────── */
-      function wireNav() {
-        /* All sidebar + mobile nav anchor links → exit float */
-        document.querySelectorAll('.sidebar a[href^="#"], .mobile-nav a[href^="#"]').forEach(function (link) {
-          link.addEventListener('click', function (e) {
-            if (isFloat) {
-              e.preventDefault();
-              e.stopPropagation();
-              exitFloat(link.getAttribute('href'));
-            }
-          }, true);
-        });
-
-        /* SHANMU SUN (desktop sidebar) → enter float */
-        var sbn = document.querySelector('.sidebar-name');
-        if (sbn) {
-          sbn.addEventListener('click', function () {
-            if (!isFloat) {
-              enterFloat();
-              // Reset to first slide when entering float mode
-              goToSlide(0);
-            }
-          });
-        }
-
-        /* SHANMU SUN (mobile header) → enter float */
-        var mn = document.querySelector('.mobile-name');
-        if (mn) {
-          mn.addEventListener('click', function () {
-            if (!isFloat) {
-              enterFloat();
-              // Reset to first slide when entering float mode
-              goToSlide(0);
-            }
-          });
-        }
-      }
-
-      /* ─────────────────────────────────────────────
-         Boot
-      ───────────────────────────────────────────── */
-      function boot() {
-        initSlideshow();
-        wireNav();
-        enterFloat();  /* start in float mode */
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', boot);
-      } else {
-        boot();
-      }
-
-    })();
-  </script>
 
 </body>
 

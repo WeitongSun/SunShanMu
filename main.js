@@ -1,3 +1,53 @@
+
+// ── Home Slideshow Logic ─────────────────
+function initHomeSlider() {
+  const slides = document.querySelectorAll('.home-slide');
+  if (slides.length <= 1) return;
+
+  let currentIndex = 0;
+  setInterval(() => {
+    slides[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].classList.add('active');
+  }, 4000); // Change image every 4 seconds
+}
+document.addEventListener('DOMContentLoaded', initHomeSlider);
+
+// ── SPA Router ──────────────────────────────
+function handleRoute() {
+  const hash = window.location.hash || '#home';
+  
+  // Hide all views
+  document.querySelectorAll('.view').forEach(el => {
+    el.style.display = 'none';
+    el.classList.remove('active-view');
+  });
+  
+  // Show target view
+  const target = document.querySelector(hash);
+  if (target) {
+    target.style.display = 'block';
+    setTimeout(() => target.classList.add('active-view'), 10);
+    window.scrollTo(0, 0);
+  }
+
+  // Update active states in sidebar
+  document.querySelectorAll('.sb-list a, .mobile-nav a, .sb-group-label, .sb-info a').forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === hash) {
+      a.classList.add('active');
+    }
+  });
+
+  if (hash === '#home' && typeof resizeHomeCanvas === 'function') {
+    resizeHomeCanvas();
+  }
+}
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', handleRoute);
+
+// 3D Canvas removed per user request
 // ── Image fade-in on load ────────────────────
 document.querySelectorAll(
   '.img-wrap img, .img-grid-2 img, .about-portrait img'
@@ -12,25 +62,7 @@ document.querySelectorAll(
   }
 });
 
-// ── Section scroll-reveal ────────────────────
-const revealEls = document.querySelectorAll('.entry, .section-heading');
-revealEls.forEach(el => {
-  el.style.opacity   = '0';
-  el.style.transform = 'translateY(18px)';
-  el.style.transition =
-    'opacity 0.65s cubic-bezier(0.33, 0, 0.2, 1), ' +
-    'transform 0.65s cubic-bezier(0.33, 0, 0.2, 1)';
-});
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity   = '1';
-      e.target.style.transform = 'translateY(0)';
-      revealObs.unobserve(e.target);
-    }
-  });
-}, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
-revealEls.forEach(el => revealObs.observe(el));
+
 
 // ── Menu toggle ──────────────────────────────
 function toggleMenu() {
@@ -40,20 +72,7 @@ function closeMenu() {
   document.getElementById('mobileNav').classList.remove('open');
 }
 
-// ── Active sidebar link ───────────────────────
-const allLinks = document.querySelectorAll('.sb-list a, .mobile-nav a');
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      allLinks.forEach(a => a.classList.remove('active'));
-      allLinks.forEach(a => {
-        if (a.getAttribute('href') === '#' + entry.target.id)
-          a.classList.add('active');
-      });
-    }
-  });
-}, { rootMargin: '-10% 0px -80% 0px' });
-document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+
 
 // ── Language toggle ───────────────────────────
 const T = {
@@ -221,3 +240,29 @@ function toggleLang() {
   currentLang = currentLang === 'en' ? 'zh' : 'en';
   applyLang(currentLang);
 }
+
+/* ── Unified Carousel Logic ── */
+window.moveCarousel = function(btn, dir) {
+  var container = btn.closest('.unified-carousel');
+  if (!container) return;
+  var slides = container.querySelectorAll('.carousel-slide');
+  if (slides.length === 0) return;
+  
+  var activeIndex = -1;
+  for (var i = 0; i < slides.length; i++) {
+    if (slides[i].classList.contains('active')) {
+      activeIndex = i;
+      break;
+    }
+  }
+  
+  if (activeIndex === -1) activeIndex = 0;
+  
+  // Custom transition: set inactive slides to display:none, active to display:block
+  slides[activeIndex].classList.remove('active');
+  slides[activeIndex].style.display = 'none';
+  
+  var nextIndex = (activeIndex + dir + slides.length) % slides.length;
+  slides[nextIndex].classList.add('active');
+  slides[nextIndex].style.display = 'block';
+};
