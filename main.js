@@ -146,6 +146,10 @@ const T = {
                           zh: '文本 · Polyphonic Shimmering' },
   'meta-lsl':           { en: '2023 · Research Paper · Virtual Reality, Springer',
                           zh: '2023 · 研究论文 · Virtual Reality，Springer出版' },
+  'meta-sor-paper':     { en: '2026 · NeurIPS Creative AI Track · Published on OpenReview',
+                          zh: '2026 · NeurIPS Creative AI Track · 发表于 OpenReview' },
+  'body-sor-paper':     { en: '<p><em>Published to NeurIPS 2026, Creative AI Track.</em></p><p>One patient, 26 CT scans, eleven years: the paper accompanying <a href="#sound-of-reasoning">The Sound of Reasoning</a> turns radiological uncertainty into scattering points and grains of sound, and leaves silence where the patient waited.</p><p>Co-authored with Ruiqi Zhang, Wenxuan Li, Yanyan Li, Shanshan Zhu, and Zongwei Zhou.</p><p><a href="https://openreview.net/forum?id=gUabfXv8Me" target="_blank">Read on OpenReview →</a></p>',
+                          zh: '<p><em>发表于 NeurIPS 2026，Creative AI Track。</em></p><p>一位病人，26次CT扫描，十一年：与作品《<a href="#sound-of-reasoning">推理之声</a>》配套的论文将放射学的不确定性转化为散射的光点与声音的颗粒，并在病人等待的地方留下寂静。</p><p>与 Ruiqi Zhang、Wenxuan Li、Yanyan Li、Shanshan Zhu、Zongwei Zhou 合著。</p><p><a href="https://openreview.net/forum?id=gUabfXv8Me" target="_blank">在 OpenReview 阅读 →</a></p>' },
 
   'cap-install-view':  { en: 'Installation view',  zh: '装置现场' },
   'cap-detail':        { en: 'Detail',              zh: '细节' },
