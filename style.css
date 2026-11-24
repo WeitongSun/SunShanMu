@@ -674,7 +674,7 @@ body.float-mode #float-world {
 .teaching-entry {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 .teaching-title {
   font-family: var(--font);
@@ -695,12 +695,13 @@ body.float-mode #float-world {
 }
 .teaching-desc {
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.7;
   color: #333;
-  margin-top: 4px;
+  margin-top: 24px;
+  max-width: 720px;
 }
 .teaching-desc p {
-  margin-bottom: 12px;
+  margin-bottom: 22px;
 }
 .teaching-desc p:last-child {
   margin-bottom: 0;
@@ -879,6 +880,14 @@ body.float-mode #float-world {
 }
 .back-link:hover {
   opacity: 1;
+}
+.teaching-entry .back-link {
+  align-self: flex-start;
+  font-size: 1.3rem;
+  line-height: 1;
+  opacity: 1;
+  margin-bottom: 32px;
+  padding: 4px 8px 4px 0;
 }
 
 /* ── Table List (Tega Brain Style) ── */
