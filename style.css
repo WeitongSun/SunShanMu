@@ -691,7 +691,7 @@ body.float-mode #float-world {
   color: #666;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin: 0;
+  margin: 16px 0 0;
 }
 .teaching-desc {
   font-size: 15px;
@@ -919,6 +919,9 @@ body.float-mode #float-world {
   text-decoration: none;
   transition: opacity 0.2s;
   line-height: 1.4;
+  display: block;
+  padding-left: 1.5em;
+  text-indent: -1.5em;
 }
 .table-link:hover {
   text-decoration: underline;
